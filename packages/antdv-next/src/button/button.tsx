@@ -15,10 +15,12 @@ import { useCompactItemContext } from '../space/Compact.tsx'
 import {
   isTwoCNChar,
   isUnBorderedButtonVariant,
+  spaceChildren,
 } from './buttonHelper.tsx'
 import DefaultLoadingIcon from './DefaultLoadingIcon.tsx'
 import IconWrapper from './IconWrapper.tsx'
 import useStyle from './style'
+import CompactStyle from './style/compact.ts'
 
 export type LegacyButtonType = ButtonType | 'danger'
 
@@ -156,7 +158,7 @@ const InternalCompoundedButton = defineComponent<
     const innerLoading = shallowRef(loadingOrDelay.value.loading)
     const hasTwoCNChar = shallowRef(false)
     const buttonRef = shallowRef<HTMLButtonElement | HTMLAnchorElement>()
-    const isMountRef = shallowRef(false)
+    const isMountRef = shallowRef(true)
     onMounted(() => {
       isMountRef.value = false
       if (props.autoFocus && buttonRef.value) {
@@ -235,9 +237,30 @@ const InternalCompoundedButton = defineComponent<
       const { loading } = props
       const sizeCls = sizeFullName.value ? (sizeClassNameMap?.[sizeFullName.value] ?? '') : ''
       const iconChildren = filterEmpty(toArray(getSlotPropFn(slots, props, 'icon')?.()))
-      const iconType = innerLoading.value ? 'loading' : iconChildren
+      const hasIcon = iconChildren.length > 0
+      const iconType = innerLoading.value ? 'loading' : hasIcon
       const children = filterEmpty(slots?.default?.())
-      // ========================= Render =========================
+      const needInserted = children.length === 1 && !hasIcon && !isUnBorderedButtonVariant(mergedVariant.value)
+      const kids = children.length
+        ? spaceChildren(children, needInserted && mergedInsertSpace.value)
+        : null
+
+      const attrClass = (attrs as any)?.class
+      const attrStyle = (attrs as any)?.style
+      const attrHref = (attrs as any)?.href
+      const attrType = (attrs as any)?.type
+      const attrTabIndex = (attrs as any)?.tabindex ?? (attrs as any)?.tabIndex
+
+      const restAttrs = { ...attrs } as Record<string, any>
+      delete restAttrs.class
+      delete restAttrs.style
+      delete restAttrs.onClick
+      delete restAttrs.href
+      delete restAttrs.type
+      delete restAttrs.tabindex
+      delete restAttrs.tabIndex
+      delete restAttrs.disabled
+
       const cls = classNames(
         prefixCls.value,
         hashId,
@@ -251,7 +274,7 @@ const InternalCompoundedButton = defineComponent<
           [`${prefixCls.value}-color-${mergedColorText.value}`]: mergedColorText.value,
           [`${prefixCls.value}-variant-${mergedVariant.value}`]: mergedVariant.value,
           [`${prefixCls.value}-${sizeCls}`]: sizeCls,
-          [`${prefixCls.value}-icon-only`]: !children && children !== 0 && !!iconType,
+          [`${prefixCls.value}-icon-only`]: !children.length && !!iconType,
           [`${prefixCls.value}-background-ghost`]: props.ghost && !isUnBorderedButtonVariant(mergedVariant.value),
           [`${prefixCls.value}-loading`]: innerLoading.value,
           [`${prefixCls.value}-two-chinese-chars`]: hasTwoCNChar.value && mergedInsertSpace.value && !innerLoading.value,
@@ -262,38 +285,88 @@ const InternalCompoundedButton = defineComponent<
         compactItemClassnames.value,
         componentCtx.value.class,
         props.rootClass,
+        attrClass,
       )
-      const iconClasses = classNames(props.classes?.icon, componentCtx.value?.classes?.icon)
-      const iconNode = iconChildren.length && !innerLoading.value
+      const iconClasses = classNames(componentCtx.value.classes?.icon, props.classes?.icon)
+      const iconStyle = [componentCtx.value.styles?.icon, props.styles?.icon]
+      const loadingIconNode = loading && typeof loading === 'object' && loading.icon
+        ? (typeof loading.icon === 'function' ? loading.icon() : loading.icon)
+        : null
+      const iconNode = hasIcon && !innerLoading.value
         ? (
             <IconWrapper
               prefixCls={prefixCls.value}
-              class={[iconClasses]}
-              style={[props.styles?.icon, componentCtx.value?.styles?.icon]}
+              class={iconClasses}
+              style={iconStyle}
             >
               {iconChildren}
             </IconWrapper>
           )
-        : (loading && typeof loading === 'object' && loading.icon
+        : (loadingIconNode
             ? (
                 <IconWrapper
                   prefixCls={prefixCls.value}
-                  class={[iconClasses]}
-                  style={[props.styles?.icon, componentCtx.value?.styles?.icon]}
+                  class={iconClasses}
+                  style={iconStyle}
                 >
-                  {loading.icon?.()}
+                  {loadingIconNode}
                 </IconWrapper>
               )
             : (
                 <DefaultLoadingIcon
-                  existIcon={!!iconChildren.length}
+                  existIcon={hasIcon}
                   prefixCls={prefixCls.value}
                   loading={innerLoading.value}
                   mount={isMountRef.value}
                 />
               )
           )
-      return <></>
+
+      const mergedStyle = [componentCtx.value.style, attrStyle]
+      const mergedHref = props.href ?? attrHref
+      const htmlType = props.htmlType ?? attrType ?? 'button'
+
+      if (mergedHref !== undefined) {
+        const anchorAttrs = { ...restAttrs }
+        const resolvedTabIndex = mergedDisabled.value ? -1 : (attrTabIndex ?? 0)
+
+        return wrapCSSVar(
+          <a
+            {...anchorAttrs}
+            ref={buttonRef as any}
+            class={[cls, { [`${prefixCls.value}-disabled`]: mergedDisabled.value }]}
+            style={mergedStyle}
+            href={mergedDisabled.value ? undefined : mergedHref}
+            onClick={handleClick}
+            tabindex={resolvedTabIndex}
+            aria-disabled={mergedDisabled.value}
+          >
+            {iconNode}
+            {kids}
+          </a>,
+        )
+      }
+
+      const buttonAttrs = { ...restAttrs }
+      if (attrTabIndex !== undefined) {
+        buttonAttrs.tabindex = attrTabIndex
+      }
+
+      return wrapCSSVar(
+        <button
+          {...buttonAttrs}
+          ref={buttonRef as any}
+          type={htmlType}
+          class={cls}
+          style={mergedStyle}
+          onClick={handleClick}
+          disabled={mergedDisabled.value}
+        >
+          {iconNode}
+          {kids}
+          {compactItemClassnames.value ? <CompactStyle prefixCls={prefixCls.value} /> : null}
+        </button>,
+      )
     }
   },
   {

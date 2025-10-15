@@ -1,9 +1,98 @@
+import type { VNodeChild } from 'vue'
+import { Fragment, Text, cloneVNode, createVNode, isVNode } from 'vue'
 import { PresetColors } from '../theme/interface'
 
 const rxTwoCNChar = /^[\u4E00-\u9FA5]{2}$/
 export const isTwoCNChar = rxTwoCNChar.test.bind(rxTwoCNChar)
 export function isUnBorderedButtonVariant(type?: ButtonVariantType) {
   return type === 'text' || type === 'link'
+}
+
+function splitCNCharsBySpace(child: VNodeChild, needInserted: boolean): VNodeChild {
+  if (child === null || child === undefined) {
+    return child
+  }
+
+  const SPACE = needInserted ? ' ' : ''
+
+  if (typeof child === 'string' || typeof child === 'number') {
+    const text = String(child)
+    const content = isTwoCNChar(text) ? text.split('').join(SPACE) : text
+    return createVNode('span', null, content)
+  }
+
+  if (isVNode(child)) {
+    if (child.type === Text) {
+      const text = String(child.children ?? '')
+      const content = isTwoCNChar(text) ? text.split('').join(SPACE) : text
+      return createVNode('span', { key: child.key }, content)
+    }
+
+    if (child.type === Fragment) {
+      return createVNode('span', { key: child.key }, child.children)
+    }
+
+    if (typeof child.type === 'string' && typeof child.children === 'string' && isTwoCNChar(child.children)) {
+      return cloneVNode(child, null, child.children.split('').join(SPACE))
+    }
+
+    return child
+  }
+
+  return child
+}
+
+function isPureTextChild(child: VNodeChild): boolean {
+  if (typeof child === 'string' || typeof child === 'number') {
+    return true
+  }
+
+  if (isVNode(child)) {
+    return child.type === Text && typeof child.children === 'string'
+  }
+
+  return false
+}
+
+function getChildText(child: VNodeChild): string {
+  if (typeof child === 'string' || typeof child === 'number') {
+    return String(child)
+  }
+
+  if (isVNode(child) && child.type === Text && typeof child.children === 'string') {
+    return child.children
+  }
+
+  return ''
+}
+
+export function spaceChildren(children: VNodeChild[], needInserted: boolean): VNodeChild[] {
+  const childList: VNodeChild[] = []
+  let isPrevChildPure = false
+
+  children.forEach((child) => {
+    const isCurrentChildPure = isPureTextChild(child)
+    if (isPrevChildPure && isCurrentChildPure) {
+      const lastIndex = childList.length - 1
+      const lastChild = childList[lastIndex]
+      const lastText = getChildText(lastChild)
+      const currentText = getChildText(child)
+
+      if (lastText !== '' && currentText !== '') {
+        childList[lastIndex] = `${lastText}${currentText}`
+      }
+      else {
+        childList.push(child)
+      }
+    }
+    else {
+      childList.push(child)
+    }
+
+    isPrevChildPure = isCurrentChildPure
+  })
+
+  return childList.map(item => splitCNCharsBySpace(item, needInserted))
 }
 
 const _ButtonTypes = ['default', 'primary', 'dashed', 'link', 'text'] as const
