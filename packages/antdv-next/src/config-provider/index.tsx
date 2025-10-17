@@ -1,7 +1,8 @@
 import type { App, Plugin, SlotsType, VNodeChild } from 'vue'
 import type { ConfigConsumerProps, Theme, ThemeConfig } from './context'
 import type { ConfigProviderEmits, ConfigProviderProps, ConfigProviderSlots } from './define'
-import { createTheme } from '@antdv-next/cssinjs'
+import { createTheme, useStyleContext } from '@antdv-next/cssinjs'
+import { IconContextProvider } from '@antdv-next/icons'
 import defu from 'defu'
 import { computed, defineComponent } from 'vue'
 import { defaultTheme, DesignTokenProvider } from '../theme/context.ts'
@@ -132,11 +133,11 @@ const ProviderChildren = defineComponent<
 
       return config
     })
-    // const styleContext = useStyleContext()
-    // const layer = computed(() => styleContext.value.layer)
+    const styleContext = useStyleContext()
+    const layer = computed(() => styleContext.value.layer)
 
     // Icon Support
-    // const memoIconContextValue = computed(() => ({ prefixCls: iconPrefixCls.value, csp: csp.value, layer: layer.value ? 'antd' : undefined }))
+    const memoIconContextValue = computed(() => ({ prefixCls: iconPrefixCls.value, csp: csp.value, layer: layer.value ? 'antd' : undefined }))
 
     // ================================ Dynamic theme ================================
     const memoTheme = computed(() => {
@@ -185,7 +186,7 @@ const ProviderChildren = defineComponent<
     return () => {
       let childNode = slots?.default?.()
       if (iconPrefixCls.value || csp.value) {
-        childNode = <>{childNode}</>
+        childNode = <IconContextProvider {...memoIconContextValue.value}>{childNode}</IconContextProvider>
       }
       if (props.componentSize) {
         childNode = <SizeProvider size={props.componentSize}>{childNode}</SizeProvider>
