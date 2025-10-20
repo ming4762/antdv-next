@@ -1,145 +1,136 @@
-import type { GlobalToken } from '../theme/interface'
-import { computed } from 'vue'
-import { addMediaQueryListener, removeMediaQueryListener } from '../_util/mediaQueryUtil.ts'
-import { useToken } from '../theme/internal.ts'
+import type { App, CSSProperties, Ref } from 'vue'
+import type { Breakpoint, ScreenMap } from '../_util/responsiveObserver.ts'
+import { classNames } from '@v-c/util'
+import { omit } from 'es-toolkit'
+import { computed, defineComponent, shallowRef, watch } from 'vue'
+import { responsiveArray } from '../_util/responsiveObserver.ts'
+import { useConfig } from '../config-provider/context.ts'
+import { useBreakpoint } from './hooks/useBreakpoint.tsx'
+import useGutter from './hooks/useGutter.ts'
+import { useRowContextProvider } from './RowContext.ts'
+import { useRowStyle } from './style'
 
-export type Breakpoint = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
-export type BreakpointMap = Record<Breakpoint, string>
-export type ScreenMap = Partial<Record<Breakpoint, boolean>>
-export type ScreenSizeMap = Partial<Record<Breakpoint, number>>
+const _RowAligns = ['top', 'middle', 'bottom', 'stretch'] as const
+const _RowJustify = [
+  'start',
+  'end',
+  'center',
+  'space-around',
+  'space-between',
+  'space-evenly',
+] as const
 
-export const responsiveArray: Breakpoint[] = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs']
-type SubscribeFunc = (screens: ScreenMap) => void
-
-function getResponsiveMap(token: GlobalToken): BreakpointMap {
-  return {
-    xs: `(max-width: ${token.screenXSMax}px)`,
-    sm: `(min-width: ${token.screenSM}px)`,
-    md: `(min-width: ${token.screenMD}px)`,
-    lg: `(min-width: ${token.screenLG}px)`,
-    xl: `(min-width: ${token.screenXL}px)`,
-    xxl: `(min-width: ${token.screenXXL}px)`,
-  }
+type Responsive = 'xxl' | 'xl' | 'lg' | 'md' | 'sm' | 'xs'
+type ResponsiveLike<T> = {
+  [key in Responsive]?: T;
 }
 
-/**
- * Ensures that the breakpoints token are valid, in good order
- * For each breakpoint : screenMin <= screen <= screenMax and screenMax <= nextScreenMin
- */
-function validateBreakpoints(token: GlobalToken) {
-  const indexableToken: any = token
-  const revBreakpoints = [...responsiveArray].reverse()
+export type Gutter = number | undefined | Partial<Record<Breakpoint, number>>
 
-  revBreakpoints.forEach((breakpoint, i) => {
-    const breakpointUpper = breakpoint.toUpperCase()
-    const screenMin = `screen${breakpointUpper}Min`
-    const screen = `screen${breakpointUpper}`
+type ResponsiveAligns = ResponsiveLike<(typeof _RowAligns)[number]>
+type ResponsiveJustify = ResponsiveLike<(typeof _RowJustify)[number]>
+export interface RowProps {
+  gutter?: Gutter | [Gutter, Gutter]
+  align?: (typeof _RowAligns)[number] | ResponsiveAligns
+  justify?: (typeof _RowJustify)[number] | ResponsiveJustify
+  prefixCls?: string
+  wrap?: boolean
+}
 
-    if (!(indexableToken[screenMin] <= indexableToken[screen])) {
-      throw new Error(
-        `${screenMin}<=${screen} fails : !(${indexableToken[screenMin]}<=${indexableToken[screen]})`,
+function useMergedPropByScreen(
+  oriProp: Ref<RowProps['align'] | RowProps['justify']>,
+  screen: Ref<ScreenMap | null>,
+) {
+  const prop = shallowRef(typeof oriProp.value === 'string' ? oriProp.value : '')
+  const calcMergedAlignOrJustify = () => {
+    if (typeof oriProp.value === 'string') {
+      prop.value = oriProp.value
+    }
+    if (typeof oriProp.value !== 'object') {
+      return
+    }
+    for (let i = 0; i < responsiveArray.length; i++) {
+      const breakpoint: Breakpoint = responsiveArray[i]!
+      // if do not match, do nothing
+      if (!screen.value || !screen.value[breakpoint]) {
+        continue
+      }
+      const curVal = oriProp.value[breakpoint]
+      if (curVal !== undefined) {
+        prop.value = curVal
+        return
+      }
+    }
+  }
+  watch(
+    [() => JSON.stringify(oriProp), screen],
+    () => {
+      calcMergedAlignOrJustify()
+    },
+    {
+      immediate: true,
+    },
+  )
+  return prop
+}
+
+const Row = defineComponent<RowProps>(
+  (props, { attrs, slots }) => {
+    const configCtx = useConfig()
+    const screens = useBreakpoint(true, null)
+
+    const mergedAlign = useMergedPropByScreen(computed(() => props.align), screens)
+    const mergedJustify = useMergedPropByScreen(computed(() => props.justify), screens)
+    const prefixCls = computed(() => configCtx.value?.getPrefixCls('row', props.prefixCls))
+    const [wrapCSSVar, hashId, cssVarCls] = useRowStyle(prefixCls.value)
+
+    const gutters = useGutter(computed(() => props.gutter), screens)
+
+    useRowContextProvider({
+      gutter: gutters as Ref<[number, number]>,
+      wrap: computed(() => !!props.wrap),
+    })
+
+    return () => {
+      const { wrap } = props
+      const classes = classNames(
+        prefixCls.value,
+        {
+          [`${prefixCls.value}-no-wrap`]: wrap === false,
+          [`${prefixCls.value}-${mergedJustify.value}`]: mergedJustify.value,
+          [`${prefixCls.value}-${mergedAlign.value}`]: mergedAlign.value,
+          [`${prefixCls.value}-rtl`]: configCtx.value.direction === 'rtl',
+        },
+        hashId,
+        cssVarCls,
+      )
+
+      // Add gutter related style
+      const rowStyle: CSSProperties = {}
+      const horizontalGutter = gutters.value[0] != null && gutters.value[0] > 0 ? gutters.value[0] / -2 : undefined
+      if (horizontalGutter) {
+        rowStyle.marginLeft = `${horizontalGutter}px`
+        rowStyle.marginRight = `${horizontalGutter}px`
+      }
+      // "gutters" is a new array in each rendering phase, it'll make 'React.useMemo' effectless.
+      // So we deconstruct "gutters" variable here.
+      const [_, gutterV] = gutters.value
+      rowStyle.rowGap = gutterV
+
+      return wrapCSSVar(
+        <div {...omit(attrs, ['class', 'style'])} class={classes} style={[rowStyle, (attrs as any).style]}>
+          {slots?.default?.()}
+        </div>,
       )
     }
-
-    if (i < revBreakpoints.length - 1) {
-      const screenMax = `screen${breakpointUpper}Max`
-
-      if (!(indexableToken[screen] <= indexableToken[screenMax])) {
-        throw new Error(
-          `${screen}<=${screenMax} fails : !(${indexableToken[screen]}<=${indexableToken[screenMax]})`,
-        )
-      }
-
-      const nextBreakpointUpperMin = (revBreakpoints as any)[i + 1].toUpperCase()
-      const nextScreenMin = `screen${nextBreakpointUpperMin}Min`
-
-      if (!(indexableToken[screenMax] <= indexableToken[nextScreenMin])) {
-        throw new Error(
-          `${screenMax}<=${nextScreenMin} fails : !(${indexableToken[screenMax]}<=${indexableToken[nextScreenMin]})`,
-        )
-      }
-    }
-  })
-  return token
+  },
+  {
+    name: 'ARow',
+    inheritAttrs: false,
+  },
+)
+;(Row as any).install = (app: App) => {
+  app.component(Row.name, Row)
 }
 
-export function matchScreen(screens: ScreenMap, screenSizes?: ScreenSizeMap) {
-  if (!screenSizes) {
-    return
-  }
-  for (const breakpoint of responsiveArray) {
-    if (screens[breakpoint] && screenSizes?.[breakpoint] !== undefined) {
-      return screenSizes[breakpoint]
-    }
-  }
-}
-interface ResponsiveObserverType {
-  responsiveMap: BreakpointMap
-  dispatch: (map: ScreenMap) => boolean
-  subscribe: (func: SubscribeFunc) => number
-  unsubscribe: (token: number) => void
-  register: () => void
-  unregister: () => void
-  matchHandlers: Record<
-    PropertyKey,
-    {
-      mql: MediaQueryList
-      listener: (this: MediaQueryList, ev: MediaQueryListEvent) => void
-    }
-  >
-}
-
-function useResponsiveObserver() {
-  const [,token] = useToken()
-
-  return computed<ResponsiveObserverType>(() => {
-    const responsiveMap = getResponsiveMap(validateBreakpoints(token.value))
-    const subscribers = new Map<number, SubscribeFunc>()
-    let subUid = -1
-    let screens: Partial<Record<Breakpoint, boolean>> = {}
-    return {
-      responsiveMap,
-      matchHandlers: {},
-      dispatch(pointMap: ScreenMap) {
-        screens = pointMap
-        subscribers.forEach(func => func(screens))
-        return subscribers.size >= 1
-      },
-      subscribe(func: SubscribeFunc): number {
-        if (!subscribers.size) {
-          this.register()
-        }
-        subUid += 1
-        subscribers.set(subUid, func)
-        func(screens)
-        return subUid
-      },
-      unsubscribe(paramToken: number) {
-        subscribers.delete(paramToken)
-        if (!subscribers.size) {
-          this.unregister()
-        }
-      },
-      register() {
-        Object.entries(responsiveMap).forEach(([screen, mediaQuery]) => {
-          const listener = ({ matches }: { matches: boolean }) => {
-            this.dispatch({ ...screens, [screen]: matches })
-          }
-          const mql = window.matchMedia(mediaQuery)
-          addMediaQueryListener(mql, listener)
-          this.matchHandlers[mediaQuery] = { mql, listener }
-          listener(mql)
-        })
-      },
-      unregister() {
-        Object.values(responsiveMap).forEach((mediaQuery) => {
-          const handler: any = this.matchHandlers[mediaQuery]
-          removeMediaQueryListener(handler?.mql, handler?.listener)
-        })
-        subscribers.clear()
-      },
-    }
-  })
-}
-
-export default useResponsiveObserver
+export default Row
