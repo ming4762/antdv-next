@@ -30,6 +30,7 @@ export interface UseTokenReturn<
     prefix?: string
     key?: string
   }>
+  // 运行时不生成样式的配置
   zeroRuntime?: Ref<boolean>
 }
 
