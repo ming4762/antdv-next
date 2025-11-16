@@ -1,27 +1,30 @@
+import type { Ref } from 'vue'
 import type { ScreenMap } from '../../_util/responsiveObserver'
-import { onMounted, onUnmounted, ref } from 'vue'
+import { nextTick, ref, unref, watchEffect } from 'vue'
 import useResponsiveObserver from '../../_util/responsiveObserver'
 
 export function useBreakpoint(
-  refreshOnChange = true,
-  defaultScreens: ScreenMap | null = {} as ScreenMap,
+  refreshOnChange: boolean | Ref<boolean> = true,
+  defaultScreens: ScreenMap | null | Ref<ScreenMap | null> = {} as ScreenMap,
 ) {
-  const screensRef = ref<ScreenMap | null>(defaultScreens)
+  const screensRef = ref<ScreenMap | null>(unref(defaultScreens))
   const responsiveObserver = useResponsiveObserver()
-  let token: number
-  onMounted(() => {
-    token = responsiveObserver.value?.subscribe(
+
+  watchEffect(async (onCleanup) => {
+    await nextTick()
+    const token = responsiveObserver.value?.subscribe(
       (supportScreens) => {
-        screensRef.value = supportScreens
-        if (refreshOnChange) {
+        screensRef.value = unref(supportScreens)
+        if (unref(refreshOnChange)) {
           // TODO: trigger component update
         }
       },
     )
+    onCleanup(() => {
+      responsiveObserver.value.unsubscribe(token)
+    })
   })
-  onUnmounted(() => {
-    responsiveObserver.value.unsubscribe(token)
-  })
+
   return screensRef
 }
 

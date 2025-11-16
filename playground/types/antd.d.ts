@@ -50,5 +50,7 @@ declare module 'vue' {
     ADropdown: typeof import('antdv-next')['Dropdown']
     ATour: typeof import('antdv-next')['Tour']
     ABreadcrumb: typeof import('antdv-next')['Breadcrumb']
+    AAvatar: typeof import('antdv-next')['Avatar']
+    AAvatarGroup: typeof import('antdv-next')['AvatarGroup']
   }
 }
