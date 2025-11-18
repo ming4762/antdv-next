@@ -1,6 +1,16 @@
 import type { Component } from 'vue'
 import type { DeepNamePath } from './namePathType'
 
+export type ReducerAction = UpdateAction | ValidateAction
+
+export type BatchTask = (key: string, callback: VoidFunction) => void
+
+export type InternalNamePath = (string | number)[]
+export type NamePath<T = any> = DeepNamePath<T>
+
+export type StoreValue = any
+export type Store = Record<string, StoreValue>
+
 interface UpdateAction {
   type: 'updateValue'
   namePath: InternalNamePath
@@ -12,16 +22,6 @@ interface ValidateAction {
   namePath: InternalNamePath
   triggerName: string
 }
-
-export type ReducerAction = UpdateAction | ValidateAction
-
-export type BatchTask = (key: string, callback: VoidFunction) => void
-
-export type InternalNamePath = (string | number)[]
-export type NamePath<T = any> = DeepNamePath<T>
-
-export type StoreValue = any
-export type Store = Record<string, StoreValue>
 
 export interface Meta {
   touched: boolean
@@ -43,20 +43,19 @@ export interface FieldData<Values = any> extends Partial<Omit<InternalFieldData,
   name: NamePath<Values>
 }
 
-export type RuleType
-  = | 'string'
-    | 'number'
-    | 'boolean'
-    | 'method'
-    | 'regexp'
-    | 'integer'
-    | 'float'
-    | 'object'
-    | 'enum'
-    | 'date'
-    | 'url'
-    | 'hex'
-    | 'email'
+export type RuleType = 'string'
+  | 'number'
+  | 'boolean'
+  | 'method'
+  | 'regexp'
+  | 'integer'
+  | 'float'
+  | 'object'
+  | 'enum'
+  | 'date'
+  | 'url'
+  | 'hex'
+  | 'email'
 
 type Validator = (
   rule: RuleObject,
@@ -211,13 +210,12 @@ interface DependenciesUpdateInfo {
   relatedFields: InternalNamePath[]
 }
 
-export type NotifyInfo
-  = | ValueUpdateInfo
-    | ValidateFinishInfo
-    | ResetInfo
-    | RemoveInfo
-    | SetFieldInfo
-    | DependenciesUpdateInfo
+export type NotifyInfo = ValueUpdateInfo
+  | ValidateFinishInfo
+  | ResetInfo
+  | RemoveInfo
+  | SetFieldInfo
+  | DependenciesUpdateInfo
 
 export type ValuedNotifyInfo = NotifyInfo & {
   store: Store
