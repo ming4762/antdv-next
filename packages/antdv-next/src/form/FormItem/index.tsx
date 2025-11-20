@@ -282,8 +282,12 @@ const InternalFormItem = defineComponent<
         validated: false,
       })
       if (hasName.value && formContext.value?.model) {
-        // 避免对原始值造成影响
-        setValue(formContext.value.model, namePath.value, initialValueFormat(initialValue.value))
+        const newStore = setValue(
+          formContext.value.model,
+          namePath.value,
+          initialValueFormat(initialValue.value),
+        )
+        Object.assign(formContext.value.model, newStore)
       }
     }
 

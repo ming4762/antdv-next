@@ -3,7 +3,7 @@ import type { FormInstance } from 'antdv-next'
 import { reactive, shallowRef } from 'vue'
 
 const model = reactive({
-  username: '',
+  username: '11',
   password: '',
   remember: false,
 })

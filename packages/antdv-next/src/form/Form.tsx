@@ -406,19 +406,24 @@ const InternalForm = defineComponent<
       }
     }
 
+    const updateModelValue = (namePath: InternalNamePath, value: any) => {
+      if (!model.value)
+        return
+      const newStore = set(model.value, namePath, value)
+      Object.assign(model.value, newStore)
+    }
+
     const setFieldValue = (name: NamePath, value: any) => {
       const namePath = getNamePath(name)
-      if (model.value) {
-        set(model.value, namePath, value)
-        triggerValuesChange(namePath, value)
-      }
+      updateModelValue(namePath, value)
+      triggerValuesChange(namePath, value)
     }
 
     const setFieldsValue = (values: Record<string, any>) => {
       if (!model.value)
         return
       Object.keys(values || {}).forEach((key) => {
-        set(model.value, getNamePath(key as any), values[key])
+        updateModelValue(getNamePath(key as any), values[key])
       })
       triggerFieldsChange()
     }
@@ -493,7 +498,7 @@ const InternalForm = defineComponent<
           })
         }
         if (item.value !== undefined) {
-          set(model.value ?? {}, item.name as InternalNamePath, item.value)
+          updateModelValue(item.name as InternalNamePath, item.value)
         }
       })
       triggerFieldsChange()
