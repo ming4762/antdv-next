@@ -99,15 +99,24 @@ const ErrorList = defineComponent<
         helpProps.id = `${fieldId}_help`
       }
 
-      const transitionProps = getTransitionProps(`${prefixCls.value}-show-help`)
-      const transitionGroupProps = getTransitionGroupProps(
-        `${prefixCls.value}-show-help-item`,
-      )
       const { className: rootClassName } = getAttrStyleAndClass(attrs)
       const collapseMotion = initCollapseMotion(prefixCls.value)
-      const mergedTransitionProps = {
-        ...collapseMotion,
-        ...transitionGroupProps,
+      const transitionPropsName = `${prefixCls.value}-show-help`
+      const transitionProps = {
+        name: transitionPropsName,
+        ...getTransitionProps(transitionPropsName),
+        appear: true,
+        css: true,
+        onAfterEnter: () => {
+          props.onVisibleChanged?.(true)
+        },
+        onAfterLeave: () => {
+          props.onVisibleChanged?.(false)
+        },
+      }
+      const transitionGroupPropsName = `${prefixCls.value}-show-help-item`
+      const transitionGroupProps = {
+        tag: 'div',
         class: clsx(
           baseClassName.value,
           cssVarCls.value,
@@ -115,17 +124,15 @@ const ErrorList = defineComponent<
           rootClassName,
           hashId.value,
         ),
+        ...getTransitionGroupProps(transitionGroupPropsName),
+        ...collapseMotion,
+        name: `${prefixCls.value}-show-help-item`,
       }
       return (
-        <Transition
-          {...transitionProps}
-          onAfterEnter={() => props.onVisibleChanged?.(true)}
-          onAfterLeave={() => props.onVisibleChanged?.(false)}
-        >
+        <Transition {...transitionProps}>
           <TransitionGroup
-            {...mergedTransitionProps}
+            {...transitionGroupProps}
             v-show={!!filledKeyFullKeyList.length}
-            tag="div"
           >
             {filledKeyFullKeyList.map((itemProps) => {
               const { key, error, errorStatus, class: itemClassName, style: itemStyle } = itemProps

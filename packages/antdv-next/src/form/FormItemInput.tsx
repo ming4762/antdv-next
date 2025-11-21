@@ -151,7 +151,6 @@ const FormItemInput = defineComponent<
             </div>
           )
         : null
-
       const additionalDom = errorListDom || extraDom
         ? (
             <div
