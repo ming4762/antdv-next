@@ -1,14 +1,15 @@
 import type {
+  Color,
   ColorGenInput,
-  ColorPickerProps as RcColorPickerProps,
 } from '@v-c/color-picker'
 
 import type { Key } from '@v-c/util/dist/type'
 import type { CSSProperties } from 'vue'
+import type { SemanticClassNames, SemanticClassNamesType, SemanticStyles, SemanticStylesType } from '../_util/hooks'
 import type { VueNode } from '../_util/type.ts'
 import type { SizeType } from '../config-provider/SizeContext'
-// import type { PopoverProps } from '../popover';
-// import type { TooltipPlacement } from '../tooltip';
+import type { PopoverProps } from '../popover'
+import type { TooltipPlacement } from '../tooltip'
 import type { AggregationColor } from './color'
 
 export type { ColorGenInput }
@@ -42,37 +43,47 @@ export interface PresetsItem {
 
 export type TriggerType = 'click' | 'hover'
 
-// export type TriggerPlacement = TooltipPlacement // Alias, to prevent breaking changes.
+export type TriggerPlacement = TooltipPlacement // Alias, to prevent breaking changes.
 
 export type SingleValueType = AggregationColor | string
 
-export type ColorValueType
-  = | SingleValueType
-    | null
-    | {
-      color: SingleValueType
-      percent: number
-    }[]
+export type LineGradientType = {
+  color: SingleValueType
+  percent: number
+}[]
+
+export type ColorValueType = SingleValueType | null | LineGradientType
 
 export type ModeType = 'single' | 'gradient'
 
-export type ColorPickerProps = Omit<
-  RcColorPickerProps,
-  | 'onChange'
-  | 'value'
-  | 'defaultValue'
-  | 'panelRender'
-  | 'disabledAlpha'
-  | 'onChangeComplete'
-  | 'components'
-> & {
+type SemanticName = 'root'
+
+type PopupSemantic = 'root'
+
+export type ColorPickerClassNamesType = SemanticClassNamesType<
+  ColorPickerProps,
+  SemanticName,
+  { popup?: SemanticClassNames<PopupSemantic> }
+>
+
+export type ColorPickerStylesType = SemanticStylesType<
+  ColorPickerProps,
+  SemanticName,
+  {
+    popup?: SemanticStyles<PopupSemantic>
+    popupOverlayInner?: CSSProperties
+  }
+>
+
+export type ColorPickerProps = {
+  color: Color
+  prefixCls?: string
   mode?: ModeType | ModeType[]
   value?: ColorValueType
   defaultValue?: ColorValueType
-  // children?: React.ReactNode
   open?: boolean
   disabled?: boolean
-  // placement?: TriggerPlacement
+  placement?: TriggerPlacement
   trigger?: TriggerType
   format?: ColorFormatType
   defaultFormat?: ColorFormatType
@@ -80,23 +91,34 @@ export type ColorPickerProps = Omit<
   presets?: PresetsItem[]
   arrow?: boolean | { pointAtCenter: boolean }
   panelRender?: (
-    panel: VueNode,
+    panel: any,
     extra: { components: { Picker: any, Presets: any } },
   ) => any
   showText?: boolean | ((color: AggregationColor) => any)
   size?: SizeType
-  styles?: { popup?: CSSProperties, popupOverlayInner?: CSSProperties }
-  rootClassName?: string
+  classes?: ColorPickerClassNamesType
+  styles?: ColorPickerStylesType
+  rootClass?: string
   disabledAlpha?: boolean
-  [key: `data-${string}`]: string
-  onOpenChange?: (open: boolean) => void
-  onFormatChange?: (format?: ColorFormatType) => void
-  onChange?: (value: AggregationColor, css: string) => void
-  onClear?: () => void
-  onChangeComplete?: (value: AggregationColor) => void
   disabledFormat?: boolean
+} & Pick<
+  PopoverProps,
+    'getPopupContainer' | 'autoAdjustOverflow' | 'destroyOnHidden'
+>
+
+export interface ColorPickerEmits {
+  'change': (value: AggregationColor, css: string) => void
+  'clear': () => void
+  'changeComplete': (value: AggregationColor) => void
+  'openChange': (open: boolean) => void
+  'update:open': (open: boolean) => void
+  'formatChange': (format?: ColorFormatType) => void
+  'update:value': (value: ColorValueType) => void
+  [key: string]: (...args: any[]) => void
 }
-// & Pick<
-//   PopoverProps,
-//     'getPopupContainer' | 'autoAdjustOverflow' | 'destroyTooltipOnHide' | 'destroyOnHidden'
-// >
+
+export interface ColorPickerSlots {
+  panelRender: (panel: VueNode, extra: { components: { Picker: any, Presets: any } }) => any
+  showText: (color: AggregationColor) => any
+  default: () => any
+}
