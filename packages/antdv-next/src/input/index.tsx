@@ -32,3 +32,11 @@ const CompoundedInput = Input
 }
 
 export default CompoundedInput
+
+export {
+  TextArea,
+}
+export const InputGroup = Group
+export const InputOTP = OTP
+export const InputPassword = Password
+export const InputSearch = Search

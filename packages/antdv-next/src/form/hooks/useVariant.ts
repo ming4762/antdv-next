@@ -1,13 +1,27 @@
 import type { Ref } from 'vue'
 import type { Variant } from '../../config-provider/context'
+import type { ConfigProviderProps } from '../../config-provider/define.ts'
 import { computed } from 'vue'
 import { useConfig, Variants } from '../../config-provider/context'
 import { useVariantContext } from '../context.tsx'
 
-type VariantComponent = 'input' | 'textArea' | 'inputSearch' | 'otp'
+type VariantComponents = keyof Pick<
+  ConfigProviderProps,
+  | 'input'
+  | 'inputNumber'
+  | 'textArea'
+  // | 'mentions'
+  // | 'select'
+  // | 'cascader'
+  // | 'treeSelect'
+  // | 'datePicker'
+  // | 'timePicker'
+  // | 'rangePicker'
+  // | 'card'
+>
 
 export default function useVariant(
-  component: VariantComponent,
+  component: VariantComponents,
   variant?: Ref<Variant | undefined>,
   legacyBordered?: Ref<boolean | undefined> | boolean,
 ) {

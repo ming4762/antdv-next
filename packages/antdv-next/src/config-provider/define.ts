@@ -11,6 +11,11 @@ import type {
   TooltipConfig,
   Variant,
   WaveConfig,
+  InputConfig,
+  InputNumberConfig,
+  TextAreaConfig,
+  InputSearchConfig,
+  OTPConfig,
 } from './context.ts'
 import type { RenderEmptyHandler } from './defaultRenderEmpty'
 import type { SizeType } from './SizeContext'
@@ -23,9 +28,11 @@ export interface ConfigProviderProps {
   renderEmpty?: RenderEmptyHandler
   csp?: CSPConfig
   variant?: Variant
-  // input?: InputConfig
-  // inputNumber?: InputNumberConfig
-  // textArea?: TextAreaConfig
+  input?: InputConfig
+  inputNumber?: InputNumberConfig
+  textArea?: TextAreaConfig
+  inputSearch?: InputSearchConfig
+  otp?: OTPConfig
   // select?: SelectConfig
   // pagination?: PaginationConfig
   /**

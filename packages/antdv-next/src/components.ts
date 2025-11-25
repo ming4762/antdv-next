@@ -49,6 +49,14 @@ export type {
   TextAreaProps,
   TextAreaRef,
 } from './input'
+export { default as InputNumber } from './input-number'
+export type {
+  InputNumberEmits,
+  InputNumberProps,
+  InputNumberRef,
+  InputNumberStepContext,
+  ValueType as InputNumberValueType,
+} from './input-number'
 export { default as Layout, LayoutContent, LayoutFooter, LayoutHeader, LayoutSider, useLayoutSider } from './layout'
 export type { LayoutProps } from './layout'
 export { default as Menu, MenuDivider, MenuItem, SubMenu } from './menu'

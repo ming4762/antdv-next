@@ -16,6 +16,7 @@ import type { EmptyProps } from '../empty'
 import type { FlexProps } from '../flex'
 import type { FloatButtonGroupProps, FloatButtonProps } from '../float-button'
 import type { FormProps } from '../form/Form.tsx'
+import type { InputNumberProps } from '../input-number'
 import type { InputProps } from '../input/Input.tsx'
 import type { OTPProps } from '../input/OTP'
 import type { SearchProps } from '../input/Search.tsx'
@@ -261,15 +262,21 @@ export type SwitchStyleConfig = ComponentStyleConfig & Pick<SwitchProps, 'classe
 
 export type InputConfig = ComponentStyleConfig
   & Pick<InputProps, 'autoComplete' | 'classes' | 'styles' | 'allowClear' | 'variant'>
+
+export type InputNumberConfig = ComponentStyleConfig
+  & Pick<InputNumberProps, 'classes' | 'styles' | 'variant'>
+
 export type TextAreaConfig = ComponentStyleConfig
   & Pick<TextAreaProps, 'classes' | 'styles' | 'allowClear' | 'variant'>
+
 export type InputSearchConfig = ComponentStyleConfig & Pick<SearchProps, 'classes' | 'styles'>
+
 export type OTPConfig = ComponentStyleConfig & Pick<OTPProps, 'classes' | 'styles' | 'variant'>
 
 export interface ConfigComponentProps {
   input?: InputConfig
+  inputNumber?: InputNumberConfig
   textArea?: TextAreaConfig
-  // inputNumber?: InputNumberConfig;
   // pagination?: PaginationConfig;
   inputSearch?: InputSearchConfig
   otp?: OTPConfig
