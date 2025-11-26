@@ -36,7 +36,7 @@ export { default as Form, FormItem } from './form'
 export type { FormEmits, FormInstance, FormProps, FormSlots } from './form'
 export { Col, Row } from './grid'
 export type { ColProps, ColSize, RowProps } from './grid'
-export { default as Input } from './input'
+export { default as Input, InputGroup, InputOTP, InputPassword, InputSearch, TextArea } from './input'
 export type {
   InputEmits,
   InputGroupProps,

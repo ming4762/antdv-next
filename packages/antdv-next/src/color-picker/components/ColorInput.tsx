@@ -2,6 +2,8 @@ import type { EmptyEmit } from '../../_util/type.ts'
 import type { AggregationColor } from '../color'
 import type { ColorFormatType } from '../interface'
 import { computed, defineComponent, shallowRef, watch } from 'vue'
+import Button from '../../button'
+import Dropdown from '../../dropdown'
 import { FORMAT_HEX, FORMAT_HSB, FORMAT_RGB } from '../interface'
 import ColorAlphaInput from './ColorAlphaInput'
 import ColorHexInput from './ColorHexInput'
@@ -18,6 +20,8 @@ export interface ColorInputProps {
   disabledFormat?: boolean
 }
 
+const selectOptions: ColorFormatType[] = [FORMAT_HEX, FORMAT_HSB, FORMAT_RGB]
+
 export default defineComponent<
   ColorInputProps,
   EmptyEmit,
@@ -25,10 +29,14 @@ export default defineComponent<
 >(
   (props) => {
     const colorFormat = shallowRef<ColorFormatType>(props.format ?? FORMAT_HEX)
-    watch(() => props.format, (val) => {
-      if (val)
-        colorFormat.value = val
-    })
+
+    watch(
+      () => props.format,
+      (val) => {
+        if (val)
+          colorFormat.value = val
+      },
+    )
 
     const triggerFormatChange = (fmt: ColorFormatType) => {
       colorFormat.value = fmt
@@ -49,24 +57,31 @@ export default defineComponent<
 
     return () => {
       const prefixCls = props.prefixCls
+      const menuItems = selectOptions.map(opt => ({
+        key: opt,
+        label: opt.toUpperCase(),
+      }))
+
       return (
         <div class={`${prefixCls}-input-container`}>
           {!props.disabledFormat && (
-            <div class={`${prefixCls}-format-select`}>
-              {[FORMAT_HEX, FORMAT_HSB, FORMAT_RGB].map(opt => (
-                <button
-                  key={opt}
-                  type="button"
-                  class={{
-                    [`${prefixCls}-format-btn`]: true,
-                    [`${prefixCls}-format-btn-active`]: colorFormat.value === opt,
-                  }}
-                  onClick={() => triggerFormatChange(opt as any)}
-                >
-                  {opt.toUpperCase()}
-                </button>
-              ))}
-            </div>
+            <Dropdown
+              trigger={['click']}
+              placement="bottomRight"
+              menu={{
+                items: menuItems,
+                selectedKeys: [colorFormat.value],
+                onClick: ({ key }: any) => triggerFormatChange(key as ColorFormatType),
+              } as any}
+            >
+              <Button
+                size="small"
+                type="text"
+                class={`${prefixCls}-format-select`}
+              >
+                {colorFormat.value.toUpperCase()}
+              </Button>
+            </Dropdown>
           )}
           <div class={`${prefixCls}-input`}>
             {steppersNode.value}

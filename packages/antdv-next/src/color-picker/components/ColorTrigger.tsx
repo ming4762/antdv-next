@@ -5,7 +5,6 @@ import type { ColorFormatType, ColorPickerProps } from '../interface'
 import { ColorBlock } from '@v-c/color-picker'
 import { clsx } from '@v-c/util'
 import { computed, defineComponent } from 'vue'
-import { getStatusClassNames } from '../../_util/statusUtils.ts'
 import useLocale from '../../locale/useLocale'
 import { getColorAlpha } from '../util'
 import ColorClear from './ColorClear'
@@ -84,13 +83,13 @@ export default defineComponent<
         class={clsx(
           colorTriggerPrefixCls.value,
           props.className,
-          getStatusClassNames(props.prefixCls, undefined),
+          (attrs as any).class,
           {
             [`${colorTriggerPrefixCls.value}-active`]: props.open,
             [`${colorTriggerPrefixCls.value}-disabled`]: props.disabled,
           },
         )}
-        style={props.style}
+        style={(props.style || (attrs.style as CSSProperties)) ?? undefined}
       >
         {containerNode.value}
         {props.showText && <div class={colorTextPrefixCls.value}>{desc.value}</div>}

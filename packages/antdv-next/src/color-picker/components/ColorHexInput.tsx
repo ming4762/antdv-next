@@ -1,5 +1,6 @@
 import type { AggregationColor } from '../color'
 import { defineComponent, shallowRef, watch } from 'vue'
+import Input from '../../input/Input'
 import { toHexFormat } from '../color'
 import { generateColor } from '../util'
 
@@ -14,29 +15,35 @@ const isHexString = (hex?: string) => hexReg.test(`#${hex}`)
 
 export default defineComponent<ColorHexInputProps>(
   (props) => {
-    const hexValue = shallowRef<string | undefined>(
-      props.value ? toHexFormat(props.value.toHexString()) : undefined,
+    const hexValue = shallowRef<string>()
+
+    watch(
+      () => props.value,
+      (val) => {
+        if (val) {
+          hexValue.value = toHexFormat(val.toHexString())
+        }
+      },
+      { immediate: true },
     )
-    watch(() => props.value, (val) => {
-      if (val) {
-        hexValue.value = toHexFormat(val.toHexString())
-      }
-    })
+
     const handleHexChange = (e: Event) => {
       const originValue = (e.target as HTMLInputElement).value
       const formatted = toHexFormat(originValue)
       hexValue.value = formatted
+
       if (isHexString(toHexFormat(originValue, true))) {
         props.onChange?.(generateColor(originValue))
       }
     }
 
     return () => (
-      <input
+      <Input
         class={`${props.prefixCls}-hex-input`}
         value={hexValue.value}
-        onInput={handleHexChange}
-        size={1}
+        prefix="#"
+        onChange={handleHexChange}
+        size="small"
       />
     )
   },

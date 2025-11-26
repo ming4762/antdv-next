@@ -63,5 +63,12 @@ declare module 'vue' {
     ASwitch: typeof import('antdv-next')['Switch']
     AColorPicker: typeof import('antdv-next')['ColorPicker']
     ASlider: typeof import('antdv-next')['Slider']
+    AInput: typeof import('antdv-next')['Input']
+    AInputSearch: typeof import('antdv-next')['InputSearch']
+    AInputPassword: typeof import('antdv-next')['InputPassword']
+    AInputOtp: typeof import('antdv-next')['InputOTP']
+    AInputGroup: typeof import('antdv-next')['InputGroup']
+    AInputNumber: typeof import('antdv-next')['InputNumber']
+    ATextarea: typeof import('antdv-next')['TextArea']
   }
 }

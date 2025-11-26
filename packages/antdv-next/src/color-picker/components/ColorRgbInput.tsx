@@ -12,8 +12,7 @@ export interface ColorRgbInputProps {
 
 export default defineComponent<ColorRgbInputProps>(
   (props) => {
-    // @ts-expect-error this
-    const internalValue = shallowRef<AggregationColor>(() => generateColor(props.value || '#000') as any)
+    const internalValue = shallowRef<AggregationColor>(generateColor(props.value || '#000'))
 
     const rgbValue = () => props.value || internalValue.value
 
@@ -21,19 +20,21 @@ export default defineComponent<ColorRgbInputProps>(
       const rgb = rgbValue().toRgb()
       rgb[type] = step || 0
       const genColor = generateColor(rgb)
+
       internalValue.value = genColor
       props.onChange?.(genColor)
     }
 
     return () => {
       const prefix = props.prefixCls
-      const value = rgbValue()
+      const rgb = rgbValue().toRgb()
+
       return (
         <div class={`${prefix}-rgb-input`}>
           <ColorSteppers
             max={255}
             min={0}
-            value={Number(value.toRgb().r)}
+            value={Number(rgb.r)}
             prefixCls={prefix}
             className={`${prefix}-rgb-input`}
             onChange={step => handleRgbChange(Number(step), 'r')}
@@ -41,7 +42,7 @@ export default defineComponent<ColorRgbInputProps>(
           <ColorSteppers
             max={255}
             min={0}
-            value={Number(value.toRgb().g)}
+            value={Number(rgb.g)}
             prefixCls={prefix}
             className={`${prefix}-rgb-input`}
             onChange={step => handleRgbChange(Number(step), 'g')}
@@ -49,7 +50,7 @@ export default defineComponent<ColorRgbInputProps>(
           <ColorSteppers
             max={255}
             min={0}
-            value={Number(value.toRgb().b)}
+            value={Number(rgb.b)}
             prefixCls={prefix}
             className={`${prefix}-rgb-input`}
             onChange={step => handleRgbChange(Number(step), 'b')}

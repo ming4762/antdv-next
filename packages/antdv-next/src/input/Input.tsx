@@ -129,7 +129,7 @@ const InternalInput = defineComponent<
         ['addonBefore', 'Space.Compact'],
       ].forEach(([prop, replacement]) => {
         // @ts-expect-error this is fine
-        warning.deprecated(props[prop], prop, replacement)
+        warning.deprecated(!props[prop], prop, replacement)
       })
     }
 

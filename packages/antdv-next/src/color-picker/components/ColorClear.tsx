@@ -1,34 +1,28 @@
-import { CloseOutlined } from '@antdv-next/icons'
-import { clsx } from '@v-c/util'
+import type { AggregationColor } from '../color'
 import { defineComponent } from 'vue'
-import { AggregationColor } from '../color'
+import { generateColor } from '../util'
 
 export interface ColorClearProps {
   prefixCls: string
   value?: AggregationColor
   disabled?: boolean
-  onChange?: (color: AggregationColor) => void
+  onChange?: (value: AggregationColor) => void
 }
 
 export default defineComponent<ColorClearProps>(
   (props) => {
-    const handleClear = () => {
-      if (props.disabled)
+    const handleClick = () => {
+      if (props.disabled || !props.onChange || !props.value || props.value.cleared) {
         return
-      props.onChange?.(new AggregationColor(''))
+      }
+      const hsba = props.value.toHsb()
+      hsba.a = 0
+      const genColor = generateColor(hsba)
+      genColor.cleared = true
+      props.onChange(genColor)
     }
-    return () => {
-      const className = `${props.prefixCls}-clear`
-      return (
-        <button
-          type="button"
-          class={clsx(className, { [`${className}-disabled`]: props.disabled })}
-          onClick={handleClear}
-        >
-          <CloseOutlined />
-        </button>
-      )
-    }
+
+    return () => <div class={`${props.prefixCls}-clear`} onClick={handleClick} />
   },
   {
     name: 'ColorClear',

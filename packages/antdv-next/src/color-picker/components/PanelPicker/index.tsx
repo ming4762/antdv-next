@@ -1,6 +1,4 @@
-import type { ComponentPublicInstance } from 'vue'
-import { Color as VcColor, Picker as VcPicker, Slider as VcSlider } from '@v-c/color-picker'
-import { clsx } from '@v-c/util'
+import VcColorPicker from '@v-c/color-picker'
 import { defineComponent, shallowRef, watch } from 'vue'
 import Segmented from '../../../segmented'
 import { AggregationColor } from '../../color'
@@ -8,84 +6,123 @@ import { usePanelPickerContext } from '../../context'
 import { genAlphaColor, generateColor } from '../../util'
 import ColorClear from '../ColorClear'
 import ColorInput from '../ColorInput'
-
-const HUE_COLORS = [
-  { color: 'rgb(255, 0, 0)', percent: 0 },
-  { color: 'rgb(255, 255, 0)', percent: 17 },
-  { color: 'rgb(0, 255, 0)', percent: 33 },
-  { color: 'rgb(0, 255, 255)', percent: 50 },
-  { color: 'rgb(0, 0, 255)', percent: 67 },
-  { color: 'rgb(255, 0, 255)', percent: 83 },
-  { color: 'rgb(255, 0, 0)', percent: 100 },
-]
-
-function createColorInstance(color: AggregationColor) {
-  return new VcColor(color?.toRgbString?.() || '')
-}
+import ColorSlider from '../ColorSlider'
+import GradientColorBar from './GradientColorBar'
 
 export default defineComponent(
   () => {
-    const pickerContext = usePanelPickerContext()
-    const pickerRef = shallowRef<ComponentPublicInstance>()
+    const panelPickerContext = usePanelPickerContext()
 
-    const pickerColor = shallowRef<AggregationColor | null>(pickerContext.value?.value)
+    const colors = () => {
+      const ctx = panelPickerContext.value
+      if (ctx?.value && !ctx.value.cleared) {
+        return ctx.value.getColors()
+      }
+      return [
+        {
+          percent: 0,
+          color: new AggregationColor(''),
+        },
+        {
+          percent: 100,
+          color: new AggregationColor(''),
+        },
+      ]
+    }
+
+    const isSingle = () => !panelPickerContext.value?.value?.isGradient()
+
+    const lockedColor = shallowRef<AggregationColor>(panelPickerContext.value?.value ?? new AggregationColor(''))
+
     watch(
-      () => pickerContext.value?.value,
-      (val) => {
-        pickerColor.value = val as any
+      () => [
+        isSingle(),
+        panelPickerContext.value?.gradientDragging,
+        panelPickerContext.value?.activeIndex,
+        panelPickerContext.value?.value?.toHexString?.(),
+      ],
+      () => {
+        if (!isSingle()) {
+          lockedColor.value = colors()[panelPickerContext.value?.activeIndex || 0]?.color as any
+        }
       },
       { immediate: true },
     )
 
-    const colors = () => pickerContext.value?.value?.getColors?.() ?? []
-    const isSingle = () => !(pickerContext.value?.value?.isGradient?.())
     const activeColor = () => {
-      const list = colors()
-      if (isSingle())
-        return pickerContext.value!.value
-      return list[pickerContext.value?.activeIndex || 0]?.color ?? pickerContext.value!.value
+      const ctx = panelPickerContext.value!
+      if (isSingle()) {
+        return ctx.value
+      }
+      if (ctx.gradientDragging) {
+        return lockedColor.value
+      }
+      return colors()[ctx.activeIndex]?.color ?? ctx.value
     }
 
+    const pickerColor = shallowRef<AggregationColor | null>(activeColor())
+    const forceSync = shallowRef(0)
+
+    const mergedPickerColor = () => (pickerColor.value?.equals(activeColor()) ? activeColor() : pickerColor.value)
+
+    watch(
+      () => [activeColor()?.toHexString?.(), forceSync.value],
+      () => {
+        pickerColor.value = activeColor()
+      },
+      { immediate: true },
+    )
+
     const fillColor = (nextColor: AggregationColor, info?: { type?: 'hue' | 'alpha', value?: number }) => {
+      const ctx = panelPickerContext.value!
       let submitColor = generateColor(nextColor)
-      if (pickerContext.value?.value?.cleared) {
+
+      if (ctx.value?.cleared) {
         const rgb = submitColor.toRgb()
+
         if (!rgb.r && !rgb.g && !rgb.b && info) {
+          const { type: infoType, value: infoValue = 0 } = info
+
           submitColor = new AggregationColor({
-            h: info.type === 'hue' ? info.value : 0,
+            h: infoType === 'hue' ? infoValue : 0,
             s: 1,
             b: 1,
-            a: info.type === 'alpha' ? (info.value ?? 0) / 100 : 1,
-          } as any)
+            a: infoType === 'alpha' ? infoValue / 100 : 1,
+          })
         }
         else {
           submitColor = genAlphaColor(submitColor)
         }
       }
-      if (pickerContext.value?.mode === 'single' || isSingle()) {
+
+      if (ctx.mode === 'single') {
         return submitColor
       }
+
       const nextColors = [...colors()]
-      const idx = pickerContext.value?.activeIndex || 0
-      ;(nextColors as any)[idx] = { ...nextColors[idx], color: submitColor }
+      const activeIndex = ctx.activeIndex || 0
+      ;(nextColors as any)[activeIndex] = {
+        ...nextColors[activeIndex],
+        color: submitColor,
+      }
+
       return new AggregationColor(nextColors)
     }
 
-    const onPickerChange = (colorValue: any, _info?: { type?: 'hue' | 'alpha', value?: number }) => {
-      const nextColor = fillColor(generateColor(colorValue), _info)
-      // @ts-expect-error this is fine
-      pickerColor.value = nextColor?.isGradient?.()
-        ? nextColor.getColors()[pickerContext.value?.activeIndex || 0]?.color
-        : nextColor
-      pickerContext.value?.onChange?.(nextColor, true)
+    const onPickerChange = (colorValue: AggregationColor, info?: { type?: 'hue' | 'alpha', value?: number }) => {
+      const nextColor = fillColor(generateColor(colorValue), info)
+      const activeIndex = panelPickerContext.value?.activeIndex || 0
+      pickerColor.value = nextColor.isGradient() ? (nextColor.getColors() as any)[activeIndex].color : nextColor
+      panelPickerContext.value?.onChange?.(nextColor, true)
     }
 
-    const onPickerComplete = (colorValue: any, info?: { type?: 'hue' | 'alpha', value?: number }) => {
-      pickerContext.value?.onChangeComplete?.(fillColor(generateColor(colorValue), info))
+    const onInternalChangeComplete = (nextColor: AggregationColor, info?: { type?: 'hue' | 'alpha', value?: number }) => {
+      panelPickerContext.value?.onChangeComplete?.(fillColor(nextColor, info))
+      forceSync.value += 1
     }
 
     const onInputChange = (colorValue: AggregationColor) => {
-      pickerContext.value?.onChange?.(fillColor(colorValue))
+      panelPickerContext.value?.onChange?.(fillColor(colorValue))
     }
 
     return () => {
@@ -101,82 +138,54 @@ export default defineComponent(
         format,
         onFormatChange,
         disabledFormat,
-      } = pickerContext.value!
-      const operationNode = (() => {
-        const showMode = (modeOptions?.length || 0) > 1
-        if (!allowClear && !showMode)
-          return null
-        return (
-          <div class={`${prefixCls}-operation`}>
-            {showMode && (
-              <Segmented size="small" options={modeOptions} value={mode} onChange={val => onModeChange(val as any)} />
-            )}
-            {allowClear && (
+      } = panelPickerContext.value!
+
+      const showMode = (modeOptions?.length || 0) > 1
+      const operationNode = allowClear || showMode
+        ? (
+            <div class={`${prefixCls}-operation`}>
+              {showMode && (
+                <Segmented
+                  size="small"
+                  options={modeOptions}
+                  value={mode}
+                  onChange={val => onModeChange(val as any)}
+                />
+              )}
               <ColorClear
                 prefixCls={prefixCls}
-                value={pickerContext.value?.value}
+                value={panelPickerContext.value?.value}
                 disabled={disabled}
                 onChange={(clearColor) => {
-                  pickerContext.value?.onChange?.(clearColor)
+                  panelPickerContext.value?.onChange?.(clearColor)
                   onClear?.()
                 }}
               />
-            )}
-          </div>
-        )
-      })()
+            </div>
+          )
+        : null
 
       const active = activeColor()
-      const vcColor = createColorInstance(active)
-      const hue = active.toHsb().h
-      const alpha = Math.round((active.toHsb().a ?? 0) * 100)
 
       return (
         <>
           {operationNode}
-          <div class={`${prefixCls}-picker`}>
-            <VcPicker
-              ref={pickerRef}
-              color={vcColor}
-              prefixCls={prefixCls}
-              disabled={disabled}
-              onChange={(c: VcColor, info: any) => onPickerChange(c, info)}
-              onChangeComplete={(c: VcColor, info: any) => onPickerComplete(c, info)}
-            />
-            <div class={`${prefixCls}-slider-container`}>
-              <div class={clsx(`${prefixCls}-slider-group`, { [`${prefixCls}-slider-group-disabled-alpha`]: disabledAlpha })}>
-                <VcSlider
-                  prefixCls={prefixCls}
-                  disabled={!!disabled}
-                  colors={HUE_COLORS}
-                  min={0}
-                  max={359}
-                  value={hue}
-                  type="hue"
-                  color={vcColor}
-                  onChange={(v: number) => onPickerChange(new AggregationColor(vcColor.setHue(v)), { type: 'hue', value: v })}
-                  onChangeComplete={(v: number) => onPickerComplete(new AggregationColor(vcColor.setHue(v)), { type: 'hue', value: v })}
-                />
-                {!disabledAlpha && (
-                  <VcSlider
-                    prefixCls={prefixCls}
-                    disabled={!!disabled}
-                    colors={[
-                      { percent: 0, color: 'rgba(255, 0, 4, 0)' },
-                      { percent: 100, color: 'rgba(255, 0, 4, 1)' },
-                    ]}
-                    min={0}
-                    max={100}
-                    value={alpha}
-                    type="alpha"
-                    color={vcColor}
-                    onChange={(v: number) => onPickerChange(new AggregationColor(vcColor.setA(v / 100)), { type: 'alpha', value: v })}
-                    onChangeComplete={(v: number) => onPickerComplete(new AggregationColor(vcColor.setA(v / 100)), { type: 'alpha', value: v })}
-                  />
-                )}
-              </div>
-            </div>
-          </div>
+
+          <GradientColorBar {...panelPickerContext.value!} colors={colors()} />
+
+          <VcColorPicker
+            prefixCls={prefixCls}
+            value={mergedPickerColor()?.toHsb()}
+            disabledAlpha={disabledAlpha}
+            disabled={disabled}
+            onChange={(colorValue, info) => {
+              onPickerChange(colorValue as any, info as any)
+            }}
+            onChangeComplete={(colorValue, info) => {
+              onInternalChangeComplete(colorValue as any, info as any)
+            }}
+            components={{ slider: ColorSlider as any }}
+          />
           <ColorInput
             value={active}
             onChange={onInputChange}

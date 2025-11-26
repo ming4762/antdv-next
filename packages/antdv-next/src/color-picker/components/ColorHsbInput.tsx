@@ -12,49 +12,51 @@ export interface ColorHsbInputProps {
 
 export default defineComponent<ColorHsbInputProps>(
   (props) => {
-    // @ts-expect-error this is fine
-    const internalValue = shallowRef<AggregationColor>(() => generateColor(props.value || '#000'))
+    const internalValue = shallowRef<AggregationColor>(generateColor(props.value || '#000'))
+
     const hsbValue = () => props.value || internalValue.value
 
     const handleHsbChange = (step: number | null, type: keyof HSB) => {
       const hsb = hsbValue().toHsb()
-      hsb[type] = step || 0
+      hsb[type] = type === 'h' ? step || 0 : (step || 0) / 100
       const genColor = generateColor(hsb)
+
       internalValue.value = genColor
       props.onChange?.(genColor)
     }
 
     return () => {
       const prefix = props.prefixCls
-      const value = hsbValue()
-      const hsb = value.toHsb()
+      const hsb = hsbValue().toHsb()
+
       return (
         <div class={`${prefix}-hsb-input`}>
           <ColorSteppers
-            max={359}
+            max={360}
             min={0}
-            value={getRoundNumber(hsb.h)}
+            value={Number(hsb.h)}
             prefixCls={prefix}
             className={`${prefix}-hsb-input`}
+            formatter={step => getRoundNumber(step || 0).toString()}
             onChange={step => handleHsbChange(Number(step), 'h')}
           />
           <ColorSteppers
             max={100}
             min={0}
-            value={getRoundNumber(hsb.s * 100)}
+            value={Number(hsb.s) * 100}
             prefixCls={prefix}
             className={`${prefix}-hsb-input`}
-            onChange={step => handleHsbChange(Number(step) / 100, 's')}
-            formatter={v => (v === null || v === undefined ? '' : v)}
+            formatter={step => `${getRoundNumber(step || 0)}%`}
+            onChange={step => handleHsbChange(Number(step), 's')}
           />
           <ColorSteppers
             max={100}
             min={0}
-            value={getRoundNumber(hsb.b * 100)}
+            value={Number(hsb.b) * 100}
             prefixCls={prefix}
             className={`${prefix}-hsb-input`}
-            onChange={step => handleHsbChange(Number(step) / 100, 'b')}
-            formatter={v => (v === null || v === undefined ? '' : v)}
+            formatter={step => `${getRoundNumber(step || 0)}%`}
+            onChange={step => handleHsbChange(Number(step), 'b')}
           />
         </div>
       )

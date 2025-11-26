@@ -1,6 +1,6 @@
 import type { AggregationColor } from '../color'
-import { defineComponent } from 'vue'
-import { generateColor, getRoundNumber } from '../util'
+import { computed, defineComponent, shallowRef, watch } from 'vue'
+import { generateColor, getColorAlpha } from '../util'
 import ColorSteppers from './ColorSteppers'
 
 export interface ColorAlphaInputProps {
@@ -11,25 +11,36 @@ export interface ColorAlphaInputProps {
 
 export default defineComponent<ColorAlphaInputProps>(
   (props) => {
+    const internalValue = shallowRef<AggregationColor>(generateColor(props.value || '#000'))
+
+    watch(
+      () => props.value,
+      (val) => {
+        if (val)
+          internalValue.value = val
+      },
+    )
+
+    const alphaValue = computed(() => props.value ?? internalValue.value)
+
     const handleAlphaChange = (step: number | null) => {
-      const rgb = props.value?.toHsb() || { h: 0, s: 0, b: 0, a: 1 }
-      rgb.a = (step ?? 0) / 100
-      const genColor = generateColor(rgb)
+      const hsba = alphaValue.value.toHsb()
+      hsba.a = (step || 0) / 100
+      const genColor = generateColor(hsba)
+
+      internalValue.value = genColor
       props.onChange?.(genColor)
     }
-    return () => {
-      const alpha = getRoundNumber((props.value?.toHsb().a || 0) * 100)
-      return (
-        <ColorSteppers
-          min={0}
-          max={100}
-          value={alpha}
-          prefixCls={props.prefixCls}
-          className={`${props.prefixCls}-alpha-input`}
-          onChange={handleAlphaChange}
-        />
-      )
-    }
+
+    return () => (
+      <ColorSteppers
+        value={getColorAlpha(alphaValue.value)}
+        prefixCls={props.prefixCls}
+        formatter={step => `${step}%`}
+        className={`${props.prefixCls}-alpha-input`}
+        onChange={handleAlphaChange}
+      />
+    )
   },
   {
     name: 'ColorAlphaInput',
