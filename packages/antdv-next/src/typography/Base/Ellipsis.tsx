@@ -4,6 +4,7 @@ import { filterEmpty } from '@v-c/util/dist/props-util'
 import { computed, defineComponent, nextTick, shallowRef, watch, watchEffect } from 'vue'
 import toList from '../../_util/toList'
 import { getSlotPropsFnRun } from '../../_util/tools.ts'
+import { getTextNodeArr } from '../../_util/vueNode.ts'
 import { isValidText } from './util'
 
 interface MeasureTextProps {
@@ -121,7 +122,7 @@ const Ellipsis = defineComponent<
   }>
 >(
   (props, { slots }) => {
-    const nodeList = computed(() => filterEmpty(toList(getSlotPropsFnRun({}, props, 'text'), true)))
+    const nodeList = computed(() => getTextNodeArr(filterEmpty(toList(getSlotPropsFnRun({}, props, 'text'), true))))
 
     const nodeLen = computed(() => getNodesLen(nodeList.value))
 
@@ -218,7 +219,6 @@ const Ellipsis = defineComponent<
         if (!props.enableMeasure) {
           return slots?.default?.(nodeList.value, false)
         }
-
         if (
           needEllipsis.value !== STATUS_MEASURE_NEED_ELLIPSIS
           || !ellipsisCutIndex.value

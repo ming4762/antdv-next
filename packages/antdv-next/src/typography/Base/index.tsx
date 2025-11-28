@@ -209,16 +209,15 @@ const Base = defineComponent<
 
     const rows = computed(() => ellipsisConfig.value.rows ?? 1)
 
-    const needMeasureEllipsis = computed(() =>
-      mergedEnableEllipsis.value
-      && (
+    const needMeasureEllipsis = computed(() => {
+      return mergedEnableEllipsis.value && (
         ellipsisConfig.value.suffix !== undefined
         || ellipsisConfig.value.onEllipsis
         || ellipsisConfig.value.expandable
         || enableEdit.value
         || enableCopy.value
-      ),
-    )
+      )
+    })
 
     watchEffect(() => {
       if (enableEllipsis.value && !needMeasureEllipsis.value) {
@@ -230,8 +229,9 @@ const Base = defineComponent<
     const cssEllipsis = shallowRef(mergedEnableEllipsis.value)
 
     const canUseCssEllipsis = computed(() => {
-      if (needMeasureEllipsis.value)
+      if (needMeasureEllipsis.value) {
         return false
+      }
 
       if (rows.value === 1)
         return isTextOverflowSupport.value
@@ -240,9 +240,12 @@ const Base = defineComponent<
     })
 
     watch(
-      () => [canUseCssEllipsis.value, mergedEnableEllipsis.value],
+      [canUseCssEllipsis, mergedEnableEllipsis],
       () => {
         cssEllipsis.value = canUseCssEllipsis.value && mergedEnableEllipsis.value
+      },
+      {
+        immediate: true,
       },
     )
 
@@ -411,15 +414,17 @@ const Base = defineComponent<
       ]
     }
 
-    const renderEllipsis = (canEllipsis: boolean) => [
-      canEllipsis && !expanded.value && (
-        <span aria-hidden key="ellipsis">
-          {ELLIPSIS_STR}
-        </span>
-      ),
-      ellipsisConfig.value.suffix,
-      renderOperations(canEllipsis),
-    ]
+    const renderEllipsis = (canEllipsis: boolean) => {
+      return [
+        canEllipsis && !expanded.value && (
+          <span aria-hidden key="ellipsis">
+            {ELLIPSIS_STR}
+          </span>
+        ),
+        ellipsisConfig.value.suffix,
+        renderOperations(canEllipsis),
+      ]
+    }
 
     const componentCls = computed(() => classNames(
       {
@@ -467,6 +472,7 @@ const Base = defineComponent<
           />
         )
       }
+      console.log(mergedEnableEllipsis.value, cssEllipsis.value)
       return (
         <ResizeObserver onResize={onResize} disabled={!mergedEnableEllipsis.value}>
           <EllipsisTooltip
@@ -521,7 +527,7 @@ const Base = defineComponent<
                             </span>
                           )
                         : node}
-                      {renderEllipsis(canEllipsis)}
+                      <>{renderEllipsis(canEllipsis)}</>
                     </>,
                   )
                 }}

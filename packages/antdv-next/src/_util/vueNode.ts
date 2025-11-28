@@ -2,7 +2,7 @@ import type { VNodeChild } from 'vue'
 import type { AnyObject, VueNode } from './type.ts'
 import { isFragment } from '@v-c/util/dist/Children/isFragment'
 import { filterEmpty } from '@v-c/util/dist/props-util'
-import { cloneVNode, Fragment, h, isVNode } from 'vue'
+import { cloneVNode, Fragment, h, isVNode, Text } from 'vue'
 
 export {
   isFragment,
@@ -44,4 +44,23 @@ export function checkRenderNode(node: any) {
   }
 
   return undefined
+}
+
+export function getTextByNode(node: any) {
+  if (isVNode(node) && node.type === Text) {
+    return node.children
+  }
+  else if ((typeof node === 'object' && node !== null) && (typeof node.children === 'string' || typeof node.children === 'number')) {
+    return node.children
+  }
+  return node
+}
+
+export function getTextNodeArr(nodes: any[]) {
+  const res: any[] = []
+  for (let i = 0; i < nodes.length; i++) {
+    const node = nodes[i]
+    res.push(getTextByNode(node))
+  }
+  return res
 }
