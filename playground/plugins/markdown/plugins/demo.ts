@@ -1,8 +1,5 @@
 import type { MarkdownItEnv } from '@mdit-vue/types'
-import type { ChildNode } from 'domhandler'
 import type MarkdownIt from 'markdown-it'
-import render from 'dom-serializer'
-import { parseDocument } from 'htmlparser2'
 import pathe from 'pathe'
 
 declare module '@mdit-vue/types' {
@@ -12,58 +9,53 @@ declare module '@mdit-vue/types' {
 }
 
 function checkWrapper(content: string, wrapper = 'demo'): boolean {
-  const REGEX_DEMO = new RegExp(`<${wrapper}.*?>(.*?)</${wrapper}>`, 'gis')
-  const REGEX_DEMO1 = new RegExp(`<${wrapper}.*?/>`, 'gis')
-  return REGEX_DEMO.test(content) || REGEX_DEMO1.test(content)
+  // 匹配 <demo 后面接空格、斜杠或大于号（忽略大小写）
+  const REGEX_CHECK = new RegExp(`<${wrapper}(\\s|>|/)`, 'i')
+  return REGEX_CHECK.test(content)
 }
 
-// 支持递归处理被包裹的组件
-function resolverDemo(children: ChildNode[], id: string, root: string, wrapper = 'demo') {
-  for (let i = 0; i < children.length; i++) {
-    const child = children[i]
-    if (child.type === 'tag' && child.name === wrapper) {
-      // 这里是demo
-      const src = child.attribs.src
-      if (!src) {
-        console.error('src is required')
-        return
-      }
+function replaceSrcPath(content: string, id: string, root: string, wrapper = 'demo') {
+  const REGEX_TAG = new RegExp(`(<${wrapper}\\b[^>]*>)`, 'gi')
+
+  return content.replace(REGEX_TAG, (tagMatch) => {
+    return tagMatch.replace(/(\s|^)src=(['"])(.*?)\2/gi, (srcMatch, prefix, quote, srcValue) => {
+      if (!srcValue)
+        return srcMatch
+
       const dir = pathe.dirname(id)
-      const filePath = pathe.resolve(dir, src)
+      const filePath = pathe.resolve(dir, srcValue)
       const relative = pathe.relative(root, filePath)
-      child.attribs.src = relative.startsWith('/') ? relative : `/${relative}`
-    }
-    else if (child.type === 'tag' && child.children && child.children.length > 0) {
-      // 递归处理子节点
-      resolverDemo(child.children, id, root, wrapper)
-    }
-  }
-}
+      const newSrc = relative.startsWith('/') ? relative : `/${relative}`
 
-function parserDemo(content: string, id: string, root: string, wrapper = 'demo') {
-  const dom = parseDocument(content, {
-    lowerCaseAttributeNames: false,
-    lowerCaseTags: false,
-    recognizeSelfClosing: true,
-  })
-  resolverDemo(dom.children, id, root, wrapper)
-  return render(dom, {
-    decodeEntities: false,
-    selfClosingTags: true,
+      return `${prefix}src=${quote}${newSrc}${quote}`
+    })
   })
 }
 
 export function demoPlugin(md: MarkdownIt, config: { root?: string } = {}) {
-  // 处理数据结构的配置
-  const render = md.renderer.render
-  md.renderer.render = function (tokens, index, env: MarkdownItEnv) {
-    for (const token of tokens) {
-      if ((token.type === 'html_block' || token.type === 'html_inline' || token.type === 'inline') && checkWrapper(token.content)) {
-        // token.content = parserDemo(token.content, env.id, config.root ?? process.cwd()) ?? token.content
+  // 保存原始 render 函数
+  const originalRender = md.renderer.render
 
-        token.content = parserDemo(token.content, env.id!, config?.root ?? process.cwd()) ?? token.content
+  md.renderer.render = function (tokens, options, env: MarkdownItEnv) {
+    const root = config.root ?? process.cwd()
+    const currentId = env.id || ''
+
+    // 遍历所有 token
+    for (const token of tokens) {
+      // 1. 处理块级 HTML (html_block)
+      if (token.type === 'html_block' && checkWrapper(token.content)) {
+        token.content = replaceSrcPath(token.content, currentId, root)
+      }
+
+      else if (token.type === 'inline' && token.children) {
+        for (const child of token.children) {
+          if (child.type === 'html_inline' && checkWrapper(child.content)) {
+            child.content = replaceSrcPath(child.content, currentId, root)
+          }
+        }
       }
     }
-    return render.call(this, tokens, index, env)
+
+    return originalRender.call(this, tokens, options, env)
   }
 }

@@ -1,22 +1,88 @@
 import type { PluginOption } from 'vite'
-import { createMarkdown, loadBaseMd } from '../markdown'
-import { DemoCtx } from './context.ts'
+import fs from 'node:fs/promises'
+import { parse } from 'vue/compiler-sfc'
+import { createMarkdown, loadBaseMd, loadShiki } from '../markdown'
 
 export function demoPlugin(): PluginOption {
   const md = createMarkdown()({
     withPlugin: false,
     config(md) {
       loadBaseMd(md)
+      loadShiki(md)
     },
   })
-  const demoCtx = new DemoCtx()
+  const VIRTUAL_MODULE_ID = 'virtual:demos'
+  const RESOLVED_VIRTUAL_MODULE_ID = `\0${VIRTUAL_MODULE_ID}`
+  const DEMO_SUFFIX = 'demo=true'
   return {
     name: 'vite:demo',
-    configResolved(config) {
-      demoCtx.setup(config)
+    enforce: 'pre',
+    async resolveId(id, importer) {
+      if (id === VIRTUAL_MODULE_ID) {
+        return RESOLVED_VIRTUAL_MODULE_ID
+      }
+      if (id.includes(DEMO_SUFFIX)) {
+        const resolved = await this.resolve(id, importer, { skipSelf: true })
+        if (resolved) {
+          return `\0${resolved.id}`
+        }
+      }
     },
-    async buildStart() {
-      await demoCtx.scan()
+
+    async load(id) {
+      const [, query] = id.split('?')
+      const params = new URLSearchParams(query)
+      if (params.get('vue') !== null && params.get('type') === 'docs') {
+        return 'export default {}'
+      }
+      if (id === RESOLVED_VIRTUAL_MODULE_ID) {
+        return `const demos = import.meta.glob('/src/pages/**/demo/*.vue',{
+            query: {demo:'true'},
+            eager: true,
+            import: 'default'
+        })
+        export default demos
+        `
+      }
+      if (id.startsWith('\0') && id.includes(DEMO_SUFFIX)) {
+        const virtualId = id.slice(1)
+        const [filePath] = virtualId.split('?')
+        const code = await fs.readFile(filePath, 'utf-8')
+
+        const { descriptor } = parse(code, {
+          filename: filePath,
+          sourceMap: false,
+        })
+        const locales: Record<string, any> = {}
+        // 提取docsBlock的部分
+        const docsBlock = descriptor.customBlocks.filter(block => block.type === 'docs')
+
+        await Promise.all(docsBlock?.map(async (block) => {
+          // 获取标签的内容
+          const lang = block.attrs.lang as string || 'zh-CN'
+          const env: any = {}
+          const content = block.content.trim()
+          const html = await md.renderAsync(content, env)
+          // 提取标题内容
+          const title = env.formatters?.title ?? env?.title ?? ''
+          locales[lang] = {
+            html,
+            title,
+          }
+        }))
+        const sourceCode = code.replace(/<docs[^>]*>[\s\S]*?<\/docs>/g, '').trim()
+        const sourceHtml = await md.renderAsync(`\`\`\`vue\n${sourceCode}\n\`\`\``)
+        return {
+          code: `import Component from '${filePath}';
+export default { 
+  component: Component,
+  locales: ${JSON.stringify(locales)},
+  source: ${JSON.stringify(sourceCode)},
+  html: ${JSON.stringify(sourceHtml)}
+}`,
+          map: null,
+        }
+      }
     },
   }
 }

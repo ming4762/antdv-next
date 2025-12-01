@@ -26,7 +26,7 @@ import { gitHubAlertsPlugin } from './plugins/github-alerts'
 import { imagePlugin } from './plugins/image'
 import { preWrapperPlugin } from './plugins/pre-wrapper'
 
-function loadShiki(md: MarkdownItAsync) {
+export function loadShiki(md: MarkdownItAsync, cls: string = 'ant-doc-code') {
   md.use(fromAsyncCodeToHtml(codeToHtml, {
     themes: {
       light: 'vitesse-light',
@@ -52,7 +52,7 @@ function loadShiki(md: MarkdownItAsync) {
         pre(element) {
           delete element.properties.tabindex
           delete element.properties.style
-          this.addClassToHast(element, 'ant-doc-code')
+          this.addClassToHast(element, cls)
         },
       },
     ],

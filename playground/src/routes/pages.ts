@@ -7,6 +7,6 @@ export const pagesRoutes: RouteRecordRaw[] = [
   },
   {
     path: '/icons',
-    component: () => import('@/pages/icons/index.vue'),
+    component: () => import('@/pages/components/icons/index.vue'),
   },
 ]

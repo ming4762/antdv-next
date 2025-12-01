@@ -18,7 +18,10 @@ export default defineConfig({
       defaultPropsToUndefined: true,
     }),
     vueJsx(),
-    vue(),
+    vue({
+      include: [/\.vue$/, /\.md$/],
+      exclude: [/\.vue?demo=true/],
+    }),
     inspect(),
     Unocss(),
   ],
