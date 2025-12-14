@@ -237,8 +237,8 @@ importers:
         specifier: ^1.0.1
         version: 1.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/image':
-        specifier: link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/image
-        version: link:../../../../../github/antdv-next/vue-components/packages/image
+        specifier: ^0.0.1
+        version: 0.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/input':
         specifier: ^1.0.0
         version: 1.0.0(vue@3.5.25(typescript@5.9.3))
@@ -276,8 +276,8 @@ importers:
         specifier: ^1.0.8
         version: 1.0.8(vue@3.5.25(typescript@5.9.3))
       '@v-c/steps':
-        specifier: link:/Users/yanyu/workspace/github/antdv-next/vue-components/packages/steps
-        version: link:../../../../../github/antdv-next/vue-components/packages/steps
+        specifier: ^0.0.1
+        version: 0.0.1(vue@3.5.25(typescript@5.9.3))
       '@v-c/switch':
         specifier: ^0.0.1
         version: 0.0.1(vue@3.5.25(typescript@5.9.3))
@@ -1630,6 +1630,11 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
+  '@v-c/image@0.0.1':
+    resolution: {integrity: sha512-IfPjQtvHSYPmU0h2e4jdfUzsKt4Jal71BB4MHWpkcSOIAw5mzxfyNRt5o0WdYlxk1YYxaXJq0HE+oeriNaMfkQ==}
+    peerDependencies:
+      vue: ^3.0.0
+
   '@v-c/input-number@1.0.0':
     resolution: {integrity: sha512-a9BYB/K8zkdZwTyex4s/v7awbZ9+g3iMi8RPNoSVPN0kCacEA8l/9yqURRSn52C5im4Y7s02ogUdMGYbORDkOQ==}
     peerDependencies:
@@ -1703,6 +1708,11 @@ packages:
 
   '@v-c/slider@1.0.8':
     resolution: {integrity: sha512-MPbli0TOp54w7rn9+WwacS/DzMSwWNgXIBTMgbHvlM+eAS4+fe8hVa0TbheBnlTcZwVHAkF5tVYuoS2OYVSI7Q==}
+    peerDependencies:
+      vue: ^3.0.0
+
+  '@v-c/steps@0.0.1':
+    resolution: {integrity: sha512-L2y+Cq5ZfdHZI9GzhaQ9229Y6VMoow277EY06MAWbLhjOo7XQQ/u5mp3QOBKwmR/RCkdBhGeCqYbxBaFtZpgvg==}
     peerDependencies:
       vue: ^3.0.0
 
@@ -5247,6 +5257,12 @@ snapshots:
       '@v-c/util': 1.0.3(vue@3.5.25(typescript@5.9.3))
       vue: 3.5.25(typescript@5.9.3)
 
+  '@v-c/image@0.0.1(vue@3.5.25(typescript@5.9.3))':
+    dependencies:
+      '@v-c/portal': 1.0.1(vue@3.5.25(typescript@5.9.3))
+      '@v-c/util': 1.0.3(vue@3.5.25(typescript@5.9.3))
+      vue: 3.5.25(typescript@5.9.3)
+
   '@v-c/input-number@1.0.0(vue@3.5.25(typescript@5.9.3))':
     dependencies:
       '@v-c/input': 1.0.0(vue@3.5.25(typescript@5.9.3))
@@ -5339,6 +5355,11 @@ snapshots:
       vue: 3.5.25(typescript@5.9.3)
 
   '@v-c/slider@1.0.8(vue@3.5.25(typescript@5.9.3))':
+    dependencies:
+      '@v-c/util': 1.0.3(vue@3.5.25(typescript@5.9.3))
+      vue: 3.5.25(typescript@5.9.3)
+
+  '@v-c/steps@0.0.1(vue@3.5.25(typescript@5.9.3))':
     dependencies:
       '@v-c/util': 1.0.3(vue@3.5.25(typescript@5.9.3))
       vue: 3.5.25(typescript@5.9.3)
