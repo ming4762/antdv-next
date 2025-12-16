@@ -10,7 +10,7 @@ export const router = createRouter({
     {
       path: '/~demos',
       redirect: '/~demos/affix-demo-basic',
-      component: () => import('@/pages/components/demo.vue'),
+      component: () => import('@/layouts/demo/index.vue'),
       children: demoRoutes,
     },
   ],

@@ -1,5 +1,5 @@
 import type { NotificationAPI, NotificationConfig as VcNotificationConfig } from '@v-c/notification'
-import type { Key } from '@v-c/util/dist/type'
+import type { Key, MaybeRef } from '@v-c/util/dist/type'
 import type { CSSProperties } from 'vue'
 import type { SemanticClassNames, SemanticStyles } from '../_util/hooks'
 import type {
@@ -16,7 +16,7 @@ import type {
 import type { PureContentProps } from './PurePanel'
 import { useNotificationProvider, useNotification as useVcNotification } from '@v-c/notification'
 import { clsx } from '@v-c/util'
-import { computed, defineComponent, shallowRef } from 'vue'
+import { computed, defineComponent, shallowRef, unref } from 'vue'
 import { mergeClassNames, mergeStyles, resolveStyleOrClass, useMergeSemantic, useToArr, useToProps } from '../_util/hooks'
 import { toPropsRefs } from '../_util/tools'
 import { devUseWarning } from '../_util/warning'
@@ -156,7 +156,7 @@ const Holder = defineComponent<HolderProps>(
 // ==============================================================================
 let keyIndex = 0
 
-export function useInternalMessage(messageConfig?: HolderProps) {
+export function useInternalMessage(messageConfig?: MaybeRef<HolderProps>) {
   const holderRef = shallowRef<HolderRef>()
   const warning = devUseWarning('Message')
 
@@ -318,7 +318,7 @@ export function useInternalMessage(messageConfig?: HolderProps) {
     return instance
   }
 
-  const holderContext = () => <Holder key="message-holder" {...messageConfig} ref={holderRef as any} />
+  const holderContext = () => <Holder key="message-holder" {...unref(messageConfig)} ref={holderRef as any} />
 
   return [wrapAPI(), holderContext] as const
 }

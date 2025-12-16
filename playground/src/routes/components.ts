@@ -9,7 +9,6 @@ export function generateDocRoutes() {
   for (const path in enDocs) {
     // 去掉路径和后缀，得到请求的路由
     const routePath = path.replace('/index.en-US.md', '').replace('/src/pages', '').toLowerCase()
-    console.log(routePath)
     routes.push({
       path: routePath,
       component: enDocs[path] as any,
@@ -28,7 +27,7 @@ export function generateDocRoutes() {
 export default [
   {
     path: '/components',
-    component: () => import('@/pages/components/index.vue'),
+    component: () => import('@/layouts/docs/index.vue'),
     children: generateDocRoutes(),
   },
 ] as RouteRecordRaw[]

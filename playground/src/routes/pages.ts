@@ -9,4 +9,11 @@ export const pagesRoutes: RouteRecordRaw[] = [
     path: '/icons',
     component: () => import('@/pages/components/icons/index.vue'),
   },
+  {
+    path: '/components',
+    component: () => import('@/layouts/docs/index.vue'),
+    children: [
+
+    ],
+  },
 ]
