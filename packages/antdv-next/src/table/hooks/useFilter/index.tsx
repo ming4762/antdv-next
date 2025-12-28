@@ -4,6 +4,7 @@ import type {
   ColumnsType,
   ColumnTitleProps,
   ColumnType,
+  FilterDropdownProps as ColumnFilterDropdownProps,
   FilterKey,
   FilterValue,
   GetPopupContainer,
@@ -74,6 +75,8 @@ function injectFilter<RecordType extends AnyObject = AnyObject>(
   getPopupContainer?: GetPopupContainer,
   pos?: string,
   rootClassName?: string,
+  filterDropdown?: FilterConfig<RecordType>['filterDropdown'],
+  filterIcon?: FilterConfig<RecordType>['filterIcon'],
 ): ColumnsType<RecordType> {
   return columns.map((column, index) => {
     const columnPos = getColumnPos(index, pos)
@@ -98,6 +101,8 @@ function injectFilter<RecordType extends AnyObject = AnyObject>(
             prefixCls={`${prefixCls}-filter`}
             dropdownPrefixCls={dropdownPrefixCls}
             column={newColumn}
+            filterDropdownRender={filterDropdown}
+            filterIconRender={filterIcon}
             columnKey={columnKey}
             filterState={filterState}
             filterOnClose={filterOnClose}
@@ -128,6 +133,8 @@ function injectFilter<RecordType extends AnyObject = AnyObject>(
           getPopupContainer,
           columnPos,
           rootClassName,
+          filterDropdown,
+          filterIcon,
         ),
       }
     }
@@ -200,6 +207,8 @@ export interface FilterConfig<RecordType = AnyObject> {
   dropdownPrefixCls: MaybeRef<string>
   mergedColumns: MaybeRef<ColumnsType<RecordType>>
   locale: MaybeRef<TableLocale>
+  filterDropdown?: (ctx: ColumnFilterDropdownProps & { column: ColumnType<RecordType> }) => any
+  filterIcon?: (ctx: { column: ColumnType<RecordType>, filtered: boolean }) => any
   onFilterChange: (
     filters: Record<string, FilterValue | null>,
     filterStates: FilterState<RecordType>[],
@@ -228,6 +237,8 @@ export default function useFilter<RecordType extends AnyObject = AnyObject>(
     getPopupContainer: rawGetPopupContainer,
     locale: rawTableLocale,
     rootClassName: rawRootClassName,
+    filterDropdown,
+    filterIcon,
   } = props
   const warning = devUseWarning('Table')
 
@@ -306,6 +317,8 @@ export default function useFilter<RecordType extends AnyObject = AnyObject>(
       getPopupContainer.value,
       undefined,
       rootClassName.value,
+      filterDropdown,
+      filterIcon,
     )
 
   return [transformColumns, mergedFilterStates, filters] as const

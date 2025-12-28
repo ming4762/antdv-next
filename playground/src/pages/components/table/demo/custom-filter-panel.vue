@@ -9,7 +9,7 @@ Custom filter panel.
 <script setup lang="ts">
 import type { TableProps } from 'antdv-next'
 import { SearchOutlined } from '@antdv-next/icons'
-import { h, ref } from 'vue'
+import { h, nextTick, ref } from 'vue'
 
 interface DataType {
   key: string
@@ -20,13 +20,6 @@ interface DataType {
 
 type DataIndex = keyof DataType
 
-interface FilterDropdownArgs {
-  setSelectedKeys: (keys: string[]) => void
-  selectedKeys: string[]
-  confirm: (params?: { closeDropdown?: boolean }) => void
-  clearFilters?: () => void
-}
-
 const dataSource: DataType[] = [
   { key: '1', name: 'John Brown', age: 32, address: 'New York No. 1 Lake Park' },
   { key: '2', name: 'Joe Black', age: 42, address: 'London No. 1 Lake Park' },
@@ -36,8 +29,9 @@ const dataSource: DataType[] = [
 
 const searchText = ref('')
 const searchedColumn = ref<DataIndex | ''>('')
+const searchInput = ref<any>(null)
 
-function handleSearch(selectedKeys: string[], confirm: FilterDropdownArgs['confirm'], dataIndex: DataIndex) {
+function handleSearch(selectedKeys: string[], confirm: any, dataIndex: DataIndex) {
   confirm()
   searchText.value = selectedKeys[0] || ''
   searchedColumn.value = dataIndex
@@ -66,36 +60,17 @@ function highlightText(text: string, keyword: string) {
 
 function getColumnSearchProps(dataIndex: DataIndex): NonNullable<TableProps['columns']>[number] {
   return {
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }: any) => {
-      const value = String(selectedKeys[0] || '')
-      return h('div', { class: 'table-filter' }, [
-        h('input', {
-          value,
-          placeholder: `Search ${dataIndex}`,
-          class: 'table-filter-input',
-          onInput: (event: Event) => {
-            const target = event.target as HTMLInputElement
-            setSelectedKeys(target.value ? [target.value] : [])
-          },
-          onKeydown: (event: KeyboardEvent) => {
-            if (event.key === 'Enter') {
-              handleSearch(selectedKeys as string[], confirm, dataIndex)
-            }
-          },
-        }),
-        h('div', { class: 'table-filter-actions' }, [
-          h('button', {
-            class: 'table-filter-btn primary',
-            onClick: () => handleSearch(selectedKeys as string[], confirm, dataIndex),
-          }, 'Search'),
-          h('button', {
-            class: 'table-filter-btn',
-            onClick: () => handleReset(clearFilters),
-          }, 'Reset'),
-        ]),
-      ])
+    filterDropdown: () => null,
+    filterDropdownProps: {
+      onOpenChange(open) {
+        if (open) {
+          nextTick(() => {
+            searchInput.value?.focus?.()
+            searchInput.value?.select?.()
+          })
+        }
+      },
     },
-    filterIcon: (filtered: boolean) => h(SearchOutlined, { style: { color: filtered ? '#1677ff' : undefined } }),
     onFilter: (value, record) => String(record[dataIndex]).toLowerCase().includes(String(value).toLowerCase()),
     render: (text) => {
       const raw = text ? String(text) : ''
@@ -129,46 +104,70 @@ const columns: TableProps['columns'] = [
     ...getColumnSearchProps('address'),
   },
 ]
+
+function getDataIndex(column: any): DataIndex | null {
+  const dataIndex = column?.dataIndex
+  if (typeof dataIndex === 'string') {
+    return dataIndex as DataIndex
+  }
+  return null
+}
 </script>
 
 <template>
-  <a-table :columns="columns" :data-source="dataSource" />
+  <a-table :columns="columns" :data-source="dataSource">
+    <template #filterIcon="{ filtered }">
+      <SearchOutlined :style="{ color: filtered ? '#1677ff' : undefined }" />
+    </template>
+    <template #filterDropdown="{ column, setSelectedKeys, selectedKeys, confirm, clearFilters, close }">
+      <template v-if="getDataIndex(column)">
+        <div class="p-8px" @keydown.stop>
+          <a-input
+            ref="searchInput"
+            class="mb-8px block"
+            :placeholder="`Search111 ${getDataIndex(column)}`"
+            :value="String(selectedKeys[0] || '')"
+            @update:value="value => setSelectedKeys(value ? [String(value)] : [])"
+            @keydown.enter="handleSearch(selectedKeys as string[], confirm, getDataIndex(column)!)"
+          />
+          <a-space>
+            <a-button
+              type="primary"
+              size="small"
+              style="width: 90px"
+              @click="handleSearch(selectedKeys as string[], confirm, getDataIndex(column)!)"
+            >
+              Search
+            </a-button>
+            <a-button
+              size="small"
+              style="width: 90px"
+              @click="handleReset(clearFilters)"
+            >
+              Reset
+            </a-button>
+            <a-button
+              type="link"
+              size="small"
+              @click="() => { confirm({ closeDropdown: false }); searchText = String(selectedKeys[0] || ''); searchedColumn = getDataIndex(column)! }"
+            >
+              Filter
+            </a-button>
+            <a-button
+              type="link"
+              size="small"
+              @click="close?.()"
+            >
+              Close
+            </a-button>
+          </a-space>
+        </div>
+      </template>
+    </template>
+  </a-table>
 </template>
 
-<style scoped>
-.table-filter {
-  padding: 8px;
-  width: 200px;
-}
-
-.table-filter-input {
-  width: 100%;
-  box-sizing: border-box;
-  margin-bottom: 8px;
-  padding: 4px 6px;
-  border: 1px solid var(--ant-color-border);
-  border-radius: 4px;
-}
-
-.table-filter-actions {
-  display: flex;
-  gap: 8px;
-}
-
-.table-filter-btn {
-  flex: 1;
-  border: 1px solid var(--ant-color-border);
-  background: var(--ant-color-bg-container);
-  border-radius: 4px;
-  padding: 2px 6px;
-  cursor: pointer;
-}
-
-.table-filter-btn.primary {
-  border-color: var(--ant-color-primary);
-  color: var(--ant-color-primary);
-}
-
+<style>
 .table-highlight {
   background: #ffc069;
   padding: 0;

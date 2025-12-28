@@ -13,6 +13,7 @@ import type {
   ColumnsType,
   ColumnType,
   ExpandType,
+  FilterDropdownProps,
   FilterValue,
   GetPopupContainer,
   Key,
@@ -161,7 +162,8 @@ export interface TableSlots<RecordType = AnyObject> {
   expandIcon?: (info: any) => any
   headerCell?: (ctx: { column: ColumnType<RecordType>, index: number, text: any }) => any
   bodyCell?: (ctx: { column: ColumnType<RecordType>, index: number, text: any, record: RecordType }) => any
-  filterDropdown?: () => any
+  filterDropdown?: (ctx: FilterDropdownProps & { column: ColumnType<RecordType> }) => any
+  filterIcon?: (ctx: { column: ColumnType<RecordType>, filtered: boolean }) => any
 }
 
 function resolvePanelRender<RecordType>(
@@ -419,11 +421,22 @@ const InternalTable = defineComponent<
       triggerOnChange({ filters, filterStates }, 'filter', true)
     }
 
+    const renderFilterDropdown = slots.filterDropdown
+      ? (ctx: FilterDropdownProps & { column: ColumnType }) =>
+          getSlotPropsFnRun(slots, props as any, 'filterDropdown', true, ctx)
+      : undefined
+    const renderFilterIcon = slots.filterIcon
+      ? (ctx: { column: ColumnType, filtered: boolean }) =>
+          getSlotPropsFnRun(slots, props as any, 'filterIcon', true, ctx)
+      : undefined
+
     const [transformFilterColumns, filterStates, filters] = useFilter({
       prefixCls,
       dropdownPrefixCls: computed(() => getPrefixCls('dropdown', props.dropdownPrefixCls)),
       mergedColumns: mergedColumns as any,
       onFilterChange,
+      filterDropdown: renderFilterDropdown,
+      filterIcon: renderFilterIcon,
       getPopupContainer: computed(() => props.getPopupContainer || contextGetPopupContainer),
       locale: mergedLocale,
       rootClassName: computed(() =>
@@ -625,19 +638,6 @@ const InternalTable = defineComponent<
       return undefined
     })
 
-    const mergedEmptyNode = computed(() => {
-      if (spinProps.value?.spinning && rawData.value === EMPTY_LIST) {
-        return null
-      }
-      if (slots.emptyText) {
-        return getSlotPropsFnRun(slots, props as any, 'emptyText')
-      }
-      if (typeof mergedLocale.value.emptyText !== 'undefined') {
-        return mergedLocale.value.emptyText
-      }
-      return renderEmpty?.('Table') || <DefaultRenderEmpty componentName="Table" />
-    })
-
     const renderHeaderCell = (ctx: { column: ColumnType, index: number, text: any }) =>
       getSlotPropsFnRun(slots, props as any, 'headerCell', true, ctx)
     const renderBodyCell = (ctx: { column: ColumnType, index: number, text: any, record: any }) =>
@@ -662,6 +662,20 @@ const InternalTable = defineComponent<
     })
 
     return () => {
+      const { locale } = props
+      const mergedEmptyNodeFn = () => {
+        if (spinProps.value?.spinning && rawData.value === EMPTY_LIST) {
+          return null
+        }
+        if (slots.emptyText) {
+          return getSlotPropsFnRun(slots, props as any, 'emptyText')
+        }
+        if (typeof locale?.emptyText !== 'undefined') {
+          return locale?.emptyText
+        }
+        return renderEmpty?.('Table') || <DefaultRenderEmpty componentName="Table" />
+      }
+      const mergedEmptyNode = mergedEmptyNodeFn()
       const { className, style, restAttrs } = getAttrStyleAndClass(attrs)
       const wrapperCls = clsx(
         cssVarCls.value,
@@ -711,7 +725,7 @@ const InternalTable = defineComponent<
               data={pageData.value as any}
               rowKey={getRowKey.value as any}
               rowClassName={internalRowClassName as any}
-              emptyText={mergedEmptyNode.value as any}
+              emptyText={mergedEmptyNode as any}
               classNames={mergedClassNames.value as any}
               styles={mergedStyles.value as any}
               expandable={mergedExpandableConfig.value}
