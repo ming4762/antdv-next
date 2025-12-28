@@ -1,6 +1,7 @@
 import type { SlotsType } from 'vue'
 import type { TableEmits, TableProps, TableSlots } from './InternalTable.tsx'
 import { EXPAND_COLUMN, Summary } from '@v-c/table'
+import { omit } from 'es-toolkit'
 import { defineComponent, shallowRef } from 'vue'
 import Column from './Column.tsx'
 import ColumnGroup from './ColumnGroup.tsx'
@@ -18,7 +19,7 @@ const Table = defineComponent<
   string,
   SlotsType<TableSlots>
 >(
-  (props, { slots, attrs, expose }) => {
+  (props, { slots, attrs, expose, emit }) => {
     const renderTimesRef = shallowRef(0)
     renderTimesRef.value += 1
     const tableRef = shallowRef<any>(null)
@@ -32,8 +33,14 @@ const Table = defineComponent<
 
     return () => (
       <InternalTable
-        {...props}
+        {...omit(props, ['onUpdate:expandedRowKeys', 'onChange'])}
         {...attrs}
+        onChange={(...args) => {
+          emit('change', ...args)
+        }}
+        onUpdate:expandedRowKeys={(...args) => {
+          emit('update:expandedRowKeys', ...args)
+        }}
         _renderTimes={renderTimesRef.value}
         ref={tableRef}
         v-slots={slots}

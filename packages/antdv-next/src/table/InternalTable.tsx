@@ -113,6 +113,8 @@ export interface TableProps<RecordType = AnyObject>
     | 'classNames'
     | 'styles'
     | 'getPopupContainer'
+    | 'onUpdate:expandedRowKeys'
+    | 'onScroll'
   > {
   classes?: TableClassNamesType<RecordType>
   styles?: TableStylesType<RecordType>
@@ -146,6 +148,7 @@ export interface TableEmits<RecordType = AnyObject> {
     extra: TableCurrentDataSource<RecordType>,
   ) => void
   'update:expandedRowKeys': (keys: readonly Key[]) => void
+  'scroll': NonNullable<VcTableProps['onScroll']>
   [key: string]: (...args: any[]) => void
 }
 
@@ -158,6 +161,7 @@ export interface TableSlots<RecordType = AnyObject> {
   expandIcon?: (info: any) => any
   headerCell?: (ctx: { column: ColumnType<RecordType>, index: number, text: any }) => any
   bodyCell?: (ctx: { column: ColumnType<RecordType>, index: number, text: any, record: RecordType }) => any
+  filterDropdown?: () => any
 }
 
 function resolvePanelRender<RecordType>(
@@ -373,7 +377,6 @@ const InternalTable = defineComponent<
           getContainer: () => internalRefs.body.value!,
         })
       }
-
       emit('change', changeInfo.pagination!, changeInfo.filters!, changeInfo.sorter!, {
         currentDataSource: getFilterData(
           getSortData(rawData.value as any, changeInfo.sorterStates!, childrenColumnName.value),
@@ -635,9 +638,9 @@ const InternalTable = defineComponent<
       return renderEmpty?.('Table') || <DefaultRenderEmpty componentName="Table" />
     })
 
-    const renderHeaderCell = (ctx: { column: ColumnType<RecordType>, index: number, text: any }) =>
+    const renderHeaderCell = (ctx: { column: ColumnType, index: number, text: any }) =>
       getSlotPropsFnRun(slots, props as any, 'headerCell', true, ctx)
-    const renderBodyCell = (ctx: { column: ColumnType<RecordType>, index: number, text: any, record: RecordType }) =>
+    const renderBodyCell = (ctx: { column: ColumnType, index: number, text: any, record: any }) =>
       getSlotPropsFnRun(slots, props as any, 'bodyCell', true, ctx)
 
     const mergedVirtual = computed(() => props.virtual ?? contextVirtual.value)

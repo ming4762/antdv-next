@@ -19,14 +19,14 @@ interface DataType {
   address: string
 }
 
-const sharedOnCell = (_: DataType, index?: number) => {
+function sharedOnCell(_: any, index?: number) {
   if (index === 1) {
     return { colSpan: 0 }
   }
   return {}
 }
 
-const columns: TableProps<DataType>['columns'] = [
+const columns: TableProps['columns'] = [
   {
     title: 'RowHead',
     dataIndex: 'key',

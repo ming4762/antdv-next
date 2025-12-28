@@ -73,8 +73,8 @@ export interface ColumnTitleProps<RecordType = AnyObject> {
 }
 
 export type ColumnTitle<RecordType = AnyObject>
-  = | VueNode
-    | ((props: ColumnTitleProps<RecordType>) => VueNode)
+  = | any
+    | ((props: ColumnTitleProps<RecordType>) => any)
 
 export type FilterValue = (Key | boolean)[]
 export type FilterKey = (string | number)[] | null

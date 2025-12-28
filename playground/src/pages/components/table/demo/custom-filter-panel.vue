@@ -19,7 +19,8 @@ interface DataType {
 }
 
 type DataIndex = keyof DataType
-type FilterDropdownArgs = {
+
+interface FilterDropdownArgs {
   setSelectedKeys: (keys: string[]) => void
   selectedKeys: string[]
   confirm: (params?: { closeDropdown?: boolean }) => void
@@ -63,9 +64,9 @@ function highlightText(text: string, keyword: string) {
   return [before, h('mark', { class: 'table-highlight' }, match), after]
 }
 
-function getColumnSearchProps(dataIndex: DataIndex): TableProps<DataType>['columns'][number] {
+function getColumnSearchProps(dataIndex: DataIndex): NonNullable<TableProps['columns']>[number] {
   return {
-    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => {
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }: any) => {
       const value = String(selectedKeys[0] || '')
       return h('div', { class: 'table-filter' }, [
         h('input', {
@@ -106,7 +107,7 @@ function getColumnSearchProps(dataIndex: DataIndex): TableProps<DataType>['colum
   }
 }
 
-const columns: TableProps<DataType>['columns'] = [
+const columns: TableProps['columns'] = [
   {
     title: 'Name',
     dataIndex: 'name',

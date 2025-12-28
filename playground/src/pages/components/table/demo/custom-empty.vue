@@ -9,13 +9,7 @@ Custom empty content.
 <script setup lang="ts">
 import type { TableProps } from 'antdv-next'
 
-interface DataType {
-  key: string
-  name: string
-  age: number
-}
-
-const columns: TableProps<DataType>['columns'] = [
+const columns: TableProps['columns'] = [
   { title: 'Name', dataIndex: 'name', key: 'name' },
   { title: 'Age', dataIndex: 'age', key: 'age' },
 ]
@@ -24,14 +18,9 @@ const columns: TableProps<DataType>['columns'] = [
 <template>
   <a-table :columns="columns" :data-source="[]">
     <template #emptyText>
-      <div class="table-empty">No data yet</div>
+      <div class="table-empty color-text-tertiary px-8px py-0">
+        No data yet
+      </div>
     </template>
   </a-table>
 </template>
-
-<style scoped>
-.table-empty {
-  color: var(--ant-color-text-tertiary);
-  padding: 8px 0;
-}
-</style>
