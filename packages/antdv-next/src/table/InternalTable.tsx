@@ -48,7 +48,7 @@ import Spin from '../spin'
 import { useToken } from '../theme/internal'
 import renderExpandIcon from './ExpandIcon.tsx'
 import useContainerWidth from './hooks/useContainerWidth.ts'
-import useFilter, { getFilterData } from './hooks/useFilter'
+import useFilter, { collectFilterStates, generateFilterInfo, getFilterData, getMergedFilterStates } from './hooks/useFilter'
 import useLazyKVMap from './hooks/useLazyKVMap.ts'
 import usePagination, { DEFAULT_PAGE_SIZE, getPaginationParam } from './hooks/usePagination.ts'
 import useSelection from './hooks/useSelection.tsx'
@@ -417,35 +417,20 @@ const InternalTable = defineComponent<
       getSortData(rawData.value as any, sortStates.value, childrenColumnName.value),
     )
 
+    const filterStates = shallowRef<FilterState[]>(
+      collectFilterStates(mergedColumns.value as any, true),
+    )
+    const filterStateWarning = isDev ? devUseWarning('Table') : undefined
+    const mergedFilterStates = computed(() =>
+      getMergedFilterStates(mergedColumns.value as any, filterStates.value, filterStateWarning),
+    )
+    const filters = computed(() => generateFilterInfo(mergedFilterStates.value))
     const onFilterChange = (filters: Record<string, FilterValue | null>, filterStates: FilterState[]) => {
       triggerOnChange({ filters, filterStates }, 'filter', true)
     }
 
-    const renderFilterDropdown = slots.filterDropdown
-      ? (ctx: FilterDropdownProps & { column: ColumnType }) =>
-          getSlotPropsFnRun(slots, props as any, 'filterDropdown', true, ctx)
-      : undefined
-    const renderFilterIcon = slots.filterIcon
-      ? (ctx: { column: ColumnType, filtered: boolean }) =>
-          getSlotPropsFnRun(slots, props as any, 'filterIcon', true, ctx)
-      : undefined
-
-    const [transformFilterColumns, filterStates, filters] = useFilter({
-      prefixCls,
-      dropdownPrefixCls: computed(() => getPrefixCls('dropdown', props.dropdownPrefixCls)),
-      mergedColumns: mergedColumns as any,
-      onFilterChange,
-      filterDropdown: renderFilterDropdown,
-      filterIcon: renderFilterIcon,
-      getPopupContainer: computed(() => props.getPopupContainer || contextGetPopupContainer),
-      locale: mergedLocale,
-      rootClassName: computed(() =>
-        clsx(props.rootClass, cssVarCls.value, rootCls.value, hashId.value),
-      ),
-    })
-
     const mergedData = computed(() =>
-      getFilterData(sortedData.value as any, filterStates.value, childrenColumnName.value),
+      getFilterData(sortedData.value as any, mergedFilterStates.value, childrenColumnName.value),
     )
 
     const columnTitleProps = computed(() => {
@@ -482,7 +467,7 @@ const InternalTable = defineComponent<
       changeEventInfo.sorter = getSorters()
       changeEventInfo.sorterStates = sortStates.value
       changeEventInfo.filters = filters.value
-      changeEventInfo.filterStates = filterStates.value
+      changeEventInfo.filterStates = mergedFilterStates.value
       changeEventInfo.pagination = props.pagination === false
         ? {}
         : getPaginationParam(mergedPagination.value, props.pagination)
@@ -545,15 +530,6 @@ const InternalTable = defineComponent<
       )
     }
 
-    const transformColumns = (innerColumns: ColumnsType<AnyObject>): ColumnsType<AnyObject> =>
-      transformTitleColumns(
-        transformSelectionColumns(
-          transformFilterColumns(
-            transformSorterColumns(innerColumns),
-          ),
-        ),
-      )
-
     const getContainerWidth = useContainerWidth(prefixCls.value)
 
     const rootRef = shallowRef<HTMLDivElement | null>(null)
@@ -615,6 +591,35 @@ const InternalTable = defineComponent<
         return renderEmpty?.('Table') || <DefaultRenderEmpty componentName="Table" />
       }
       const mergedEmptyNode = mergedEmptyNodeFn()
+      const mergedGetPopupContainer = props.getPopupContainer || contextGetPopupContainer
+      const renderFilterDropdown = slots.filterDropdown
+        ? (ctx: FilterDropdownProps & { column: ColumnType }) =>
+            getSlotPropsFnRun(slots, props as any, 'filterDropdown', true, ctx)
+        : undefined
+      const renderFilterIcon = slots.filterIcon
+        ? (ctx: { column: ColumnType, filtered: boolean }) =>
+            getSlotPropsFnRun(slots, props as any, 'filterIcon', true, ctx)
+        : undefined
+      const [transformFilterColumns] = useFilter({
+        prefixCls: prefixCls.value,
+        dropdownPrefixCls: getPrefixCls('dropdown', props.dropdownPrefixCls),
+        mergedFilterStates: mergedFilterStates.value,
+        filterStates,
+        onFilterChange,
+        filterDropdown: renderFilterDropdown,
+        filterIcon: renderFilterIcon,
+        getPopupContainer: mergedGetPopupContainer,
+        locale: mergedLocale.value,
+        rootClassName: clsx(props.rootClass, cssVarCls.value, rootCls.value, hashId.value),
+      })
+      const transformColumns = (innerColumns: ColumnsType): ColumnsType =>
+        transformTitleColumns(
+          transformSelectionColumns(
+            transformFilterColumns(
+              transformSorterColumns(innerColumns),
+            ),
+          ),
+        )
       const renderPagination = (placement: 'start' | 'end' | 'center' = 'end') => (
         <Pagination
           {...mergedPagination.value as any}
