@@ -177,13 +177,16 @@ function resolvePanelRender<RecordType>(
   return undefined
 }
 
+const defaults = {
+  showSorterTooltip: { target: 'full-header' },
+} as any
 const InternalTable = defineComponent<
   InternalTableProps,
   TableEmits,
   string,
   SlotsType<TableSlots>
 >(
-  (props, { slots, emit, attrs, expose }) => {
+  (props = defaults, { slots, emit, attrs, expose }) => {
     const {
       prefixCls,
       direction,

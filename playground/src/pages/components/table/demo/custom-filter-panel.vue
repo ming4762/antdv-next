@@ -102,6 +102,8 @@ const columns: TableProps['columns'] = [
     dataIndex: 'address',
     key: 'address',
     ...getColumnSearchProps('address'),
+    sorter: (a, b) => a.address.length - b.address.length,
+    sortDirections: ['descend', 'ascend'],
   },
 ]
 

@@ -159,7 +159,6 @@ function injectSorter<RecordType extends AnyObject = AnyObject>(prefixCls: strin
       const tooltipProps: TooltipProps = typeof showSorterTooltip === 'object'
         ? { title: sortTip, ...showSorterTooltip }
         : { title: sortTip }
-
       newColumn = {
         ...newColumn,
         className: clsx(newColumn.className, { [`${prefixCls}-column-sort`]: sortOrder }),
