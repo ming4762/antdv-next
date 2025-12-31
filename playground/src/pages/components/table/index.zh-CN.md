@@ -54,7 +54,6 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
   <demo src="./demo/row-selection-and-operation.vue">选择与操作</demo>
   <demo src="./demo/reset-filter.vue">重置筛选</demo>
   <demo src="./demo/virtual-list.vue">虚拟列表</demo>
-  <demo src="./demo/jsx.vue">渲染函数</demo>
   <demo src="./demo/style-class.vue">自定义样式</demo>
   <demo src="./demo/dynamic-settings.vue">动态配置</demo>
   <demo src="./demo/cell-slot.vue">表头与单元格插槽</demo>
