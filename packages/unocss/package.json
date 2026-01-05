@@ -1,7 +1,7 @@
 {
   "name": "@antdv-next/unocss",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha.0",
   "description": "antd-unocss preset for Ant Design Vue Next",
   "repository": {
     "type": "git",
@@ -19,7 +19,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsdown"
+    "build": "tsdown",
+    "prepublish": "pnpm build",
+    "patch": "bumpp --release --commit \"chore(release): @antdv-next/cssinjs %s\" --push --tag \"@antdv-next/cssinjs@%s\""
   },
   "peerDependencies": {
     "vue": ">=3.2.0"

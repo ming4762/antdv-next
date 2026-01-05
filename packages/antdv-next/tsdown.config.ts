@@ -8,6 +8,7 @@ export default defineConfig({
   ],
   unbundle: true,
   format: 'es',
+  minify: true,
   clean: true,
   copy: [
     { from: 'src/style/reset.css', to: 'dist/reset.css' },

@@ -1,12 +1,16 @@
 import type { InjectionKey, Ref } from 'vue'
-import type { TransferLocale as TransferLocaleForEmpty } from '../empty'
-import type { PaginationLocale } from '../pagination/interface.ts'
 import type { PickerLocale as DatePickerLocale } from '../date-picker'
-import type { TimePickerLocale } from '../time-picker'
+import type { TransferLocale as TransferLocaleForEmpty } from '../empty'
+import type { ValidateMessages } from '../form/types.ts'
+import type { ModalLocale } from '../modal/interface.ts'
+import type { PaginationLocale } from '../pagination'
 import type { PopconfirmLocale } from '../popconfirm/PurePanel'
-import type { TourLocale } from '../tour/interface.ts'
-import type { TransferLocale } from '../transfer/interface.ts'
-import { computed, defineComponent, inject, provide } from 'vue'
+import type { TableLocale } from '../table'
+import type { TimePickerLocale } from '../time-picker'
+import type { TourLocale } from '../tour'
+import type { TransferLocale } from '../transfer'
+import type { UploadLocale } from '../upload/interface.ts'
+import { computed, defineComponent, inject, provide, ref } from 'vue'
 
 export type LocaleContextProps = Locale & { exist?: boolean }
 
@@ -27,13 +31,13 @@ export interface Locale {
   DatePicker?: DatePickerLocale
   TimePicker?: TimePickerLocale
   Calendar?: DatePickerLocale
-  // Table?: TableLocale;
-  // Modal?: ModalLocale;
+  Table?: TableLocale
+  Modal?: ModalLocale
   Tour?: TourLocale
   Popconfirm?: PopconfirmLocale
   Transfer?: TransferLocale
   Select?: Record<string, any>
-  // Upload?: UploadLocale;
+  Upload?: UploadLocale
   Empty?: TransferLocaleForEmpty
   global?: {
     placeholder?: string
@@ -50,8 +54,7 @@ export interface Locale {
   }
   Form?: {
     optional?: string
-    // defaultValidateMessages: ValidateMessages;
-    defaultValidateMessages: Record<string, any>
+    defaultValidateMessages: ValidateMessages
   }
   Image?: {
     preview: string
@@ -67,7 +70,6 @@ export interface Locale {
     singleColor: string
     gradientColor: string
   }
-  [key: string]: any
 }
 export function useLocaleProvider(props: LocaleContext) {
   provide(LocaleContextKey, props)
@@ -87,5 +89,5 @@ export const LocaleProvider = defineComponent<LocaleProviderProps>(
 )
 
 export function useLocaleContext() {
-  return inject(LocaleContextKey, undefined)
+  return inject(LocaleContextKey, { locale: ref(undefined) } as unknown as LocaleContext)
 }

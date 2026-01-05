@@ -19,6 +19,7 @@
     "@vitejs/plugin-vue": "catalog:",
     "@vitejs/plugin-vue-jsx": "catalog:",
     "@vue/tsconfig": "catalog:",
+    "bumpp": "^10.3.2",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
     "esno": "catalog:",
