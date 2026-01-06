@@ -1,3 +1,4 @@
+import type { Preset } from '@unocss/core'
 import { definePreset } from '@unocss/core'
 
 function generatePalette(name: ColorName, antPrefix: string = 'ant') {
@@ -51,9 +52,9 @@ export interface AntdPresetOptions {
   antPrefix?: string
 }
 
-export const presetAntd = definePreset((options: AntdPresetOptions = {}) => {
-  const prefix = options.prefix || 'a'
-  const antPrefix = options.antPrefix || 'ant'
+export const presetAntd = definePreset((options?: AntdPresetOptions): Preset => {
+  const prefix = options?.prefix || 'a'
+  const antPrefix = options?.antPrefix || 'ant'
 
   // 根据 antPrefix 动态生成调色板
   const builtPalettes = buildPalettes(antPrefix)
@@ -180,7 +181,7 @@ export const presetAntd = definePreset((options: AntdPresetOptions = {}) => {
     },
 
     // 2. 自定义规则 (基于前缀需求)
-    rules: [
+    rules: ([
       // --- 颜色类 ---
       // ${prefix}-color-primary 或 ${prefix}-c-primary -> color: var(--${antPrefix}-color-primary)
       [new RegExp(`^${prefix}-(?:color|c)-(.+)$`), ([_, c]: [any, any], { theme }: any) => {
@@ -335,7 +336,7 @@ export const presetAntd = definePreset((options: AntdPresetOptions = {}) => {
             return { 'box-shadow': v }
         },
       ],
-    ],
+    ] as any),
     autocomplete: {
       templates: [
         // 颜色类
