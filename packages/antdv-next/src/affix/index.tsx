@@ -35,7 +35,8 @@ export interface AffixProps extends ComponentBaseProps {
 }
 
 export interface AffixEmits {
-  [key: string]: any
+  change: (affixed: boolean) => void
+  [key: string]: (...args: any[]) => void
 }
 
 const AFFIX_STATUS_NONE = 0
@@ -59,7 +60,11 @@ export interface AffixRef {
 
 type InternalAffixProps = AffixProps & { onTestUpdatePosition?: any }
 
-export const Affix = defineComponent<InternalAffixProps, AffixEmits, string>(
+export const Affix = defineComponent<
+  InternalAffixProps,
+  AffixEmits,
+  string
+>(
   (props = affixDefaultProps, { slots, attrs, expose, emit }) => {
     const configContext = useConfig()
 
