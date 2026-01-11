@@ -6,13 +6,13 @@ const options = ref<{ value: string }[]>([])
 
 const mockVal = (str: string, repeat = 1) => ({ value: str.repeat(repeat) })
 
-const getPanelValue = (searchText: string) => (
-  searchText
+function getPanelValue(searchText: string) {
+  return searchText
     ? [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
     : []
-)
+}
 
-const handleSearch = (text: string) => {
+function handleSearch(text: string) {
   options.value = getPanelValue(text)
 }
 
@@ -24,16 +24,16 @@ const clearIcon = h(CloseSquareFilled)
     <a-auto-complete
       :options="options"
       style="width: 200px"
-      :showSearch="{ onSearch: handleSearch }"
+      :show-search="{ onSearch: handleSearch }"
       placeholder="UnClearable"
-      :allowClear="false"
+      :allow-clear="false"
     />
     <a-auto-complete
       :options="options"
       style="width: 200px"
-      :showSearch="{ onSearch: handleSearch }"
+      :show-search="{ onSearch: handleSearch }"
       placeholder="Customized clear icon"
-      :allowClear="{ clearIcon }"
+      :allow-clear="{ clearIcon }"
     />
   </a-flex>
 </template>

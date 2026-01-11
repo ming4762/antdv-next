@@ -17,6 +17,6 @@ const showSearch = {
     style="width: 200px"
     :options="options"
     placeholder="try to type `b`"
-    :showSearch="showSearch"
+    :show-search="showSearch"
   />
 </template>

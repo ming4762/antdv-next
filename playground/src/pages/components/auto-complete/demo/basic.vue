@@ -7,21 +7,21 @@ const anotherOptions = ref<{ value: string }[]>([])
 
 const mockVal = (str: string, repeat = 1) => ({ value: str.repeat(repeat) })
 
-const getPanelValue = (searchText: string) => (
-  searchText
+function getPanelValue(searchText: string) {
+  return searchText
     ? [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
     : []
-)
+}
 
-const handleSearch = (text: string) => {
+function handleSearch(text: string) {
   options.value = getPanelValue(text)
 }
 
-const handleAnotherSearch = (text: string) => {
+function handleAnotherSearch(text: string) {
   anotherOptions.value = getPanelValue(text)
 }
 
-const handleSelect = (data: string) => {
+function handleSelect(data: string) {
   console.log('onSelect', data)
 }
 </script>
@@ -32,7 +32,7 @@ const handleSelect = (data: string) => {
       :options="options"
       style="width: 200px"
       placeholder="input here"
-      :showSearch="{ onSearch: handleSearch }"
+      :show-search="{ onSearch: handleSearch }"
       @select="handleSelect"
     />
     <a-auto-complete
@@ -40,7 +40,7 @@ const handleSelect = (data: string) => {
       :options="anotherOptions"
       style="width: 200px"
       placeholder="control mode"
-      :showSearch="{ onSearch: handleAnotherSearch }"
+      :show-search="{ onSearch: handleAnotherSearch }"
       @select="handleSelect"
     />
   </a-flex>

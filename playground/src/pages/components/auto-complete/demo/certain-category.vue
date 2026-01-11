@@ -2,7 +2,7 @@
 import { UserOutlined } from '@antdv-next/icons'
 import { h } from 'vue'
 
-const renderTitle = (title: string) => {
+function renderTitle(title: string) {
   return h(
     'div',
     {
@@ -27,33 +27,35 @@ const renderTitle = (title: string) => {
   )
 }
 
-const renderItem = (title: string, count: number) => ({
-  value: title,
-  label: h(
-    'div',
-    {
-      style: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      },
-    },
-    [
-      title,
-      h(
-        'span',
-        {
-          style: {
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '4px',
-          },
+function renderItem(title: string, count: number) {
+  return {
+    value: title,
+    label: h(
+      'div',
+      {
+        style: {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
         },
-        [h(UserOutlined), String(count)],
-      ),
-    ],
-  ),
-})
+      },
+      [
+        title,
+        h(
+          'span',
+          {
+            style: {
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '4px',
+            },
+          },
+          [h(UserOutlined), String(count)],
+        ),
+      ],
+    ),
+  }
+}
 
 const options = [
   {
@@ -74,7 +76,7 @@ const options = [
 <template>
   <a-auto-complete
     :classes="{ popup: { root: 'certain-category-search-dropdown' } }"
-    :popupMatchSelectWidth="500"
+    :popup-match-select-width="500"
     style="width: 250px"
     :options="options"
   >

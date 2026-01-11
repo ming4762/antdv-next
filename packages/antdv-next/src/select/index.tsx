@@ -508,8 +508,8 @@ const Select = defineComponent<
           return optionRender({ option, info })
         }
       }
-      if (notFoundContent) {
-        selectProps.notFoundContent = notFoundContent
+      if (mergedNotFound !== undefined) {
+        selectProps.notFoundContent = mergedNotFound
       }
       return (
         <VcSelect

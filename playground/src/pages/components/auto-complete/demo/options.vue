@@ -3,7 +3,7 @@ import { ref } from 'vue'
 
 const options = ref<{ label: string, value: string }[]>([])
 
-const handleSearch = (value: string) => {
+function handleSearch(value: string) {
   if (!value || value.includes('@')) {
     options.value = []
     return
@@ -19,7 +19,7 @@ const handleSearch = (value: string) => {
   <a-auto-complete
     style="width: 200px"
     placeholder="input here"
-    :showSearch="{ onSearch: handleSearch }"
+    :show-search="{ onSearch: handleSearch }"
     :options="options"
   />
 </template>

@@ -3,7 +3,7 @@ import { h, ref } from 'vue'
 
 const getRandomInt = (max: number, min = 0) => Math.floor(Math.random() * (max - min + 1)) + min
 
-const searchResult = (query: string) => {
+function searchResult(query: string) {
   return Array.from({ length: getRandomInt(5) }).map((_, idx) => {
     const category = `${query}${idx}`
     return {
@@ -38,21 +38,21 @@ const searchResult = (query: string) => {
 
 const options = ref<{ value: string, label: any }[]>([])
 
-const handleSearch = (value: string) => {
+function handleSearch(value: string) {
   options.value = value ? searchResult(value) : []
 }
 
-const handleSelect = (value: string) => {
+function handleSelect(value: string) {
   console.log('onSelect', value)
 }
 </script>
 
 <template>
   <a-auto-complete
-    :popupMatchSelectWidth="252"
+    :popup-match-select-width="252"
     style="width: 300px"
     :options="options"
-    :showSearch="{ onSearch: handleSearch }"
+    :show-search="{ onSearch: handleSearch }"
     @select="handleSelect"
   >
     <a-input-search size="large" placeholder="input here" enter-button />

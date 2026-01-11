@@ -17,7 +17,7 @@ const stylesObject = {
   },
 }
 
-const stylesFn = ({ props }: { props: { variant?: string } }) => {
+function stylesFn({ props }: { props: { variant?: string } }) {
   if (props.variant === 'filled') {
     return {
       popup: {

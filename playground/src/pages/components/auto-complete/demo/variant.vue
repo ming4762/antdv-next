@@ -5,17 +5,17 @@ const options = ref<{ value: string }[]>([])
 
 const mockVal = (str: string, repeat = 1) => ({ value: str.repeat(repeat) })
 
-const getPanelValue = (searchText: string) => (
-  searchText
+function getPanelValue(searchText: string) {
+  return searchText
     ? [mockVal(searchText), mockVal(searchText, 2), mockVal(searchText, 3)]
     : []
-)
+}
 
-const handleSearch = (text: string) => {
+function handleSearch(text: string) {
   options.value = getPanelValue(text)
 }
 
-const handleSelect = (value: string) => {
+function handleSelect(value: string) {
   console.log('onSelect', value)
 }
 </script>
@@ -26,32 +26,32 @@ const handleSelect = (value: string) => {
       :options="options"
       style="width: 200px"
       placeholder="Outlined"
-      :showSearch="{ onSearch: handleSearch }"
+      :show-search="{ onSearch: handleSearch }"
       @select="handleSelect"
     />
     <a-auto-complete
       :options="options"
       style="width: 200px"
       placeholder="Filled"
-      :showSearch="{ onSearch: handleSearch }"
-      @select="handleSelect"
+      :show-search="{ onSearch: handleSearch }"
       variant="filled"
+      @select="handleSelect"
     />
     <a-auto-complete
       :options="options"
       style="width: 200px"
       placeholder="Borderless"
-      :showSearch="{ onSearch: handleSearch }"
-      @select="handleSelect"
+      :show-search="{ onSearch: handleSearch }"
       variant="borderless"
+      @select="handleSelect"
     />
     <a-auto-complete
       :options="options"
       style="width: 200px"
       placeholder="Underlined"
-      :showSearch="{ onSearch: handleSearch }"
-      @select="handleSelect"
+      :show-search="{ onSearch: handleSearch }"
       variant="underlined"
+      @select="handleSelect"
     />
   </a-flex>
 </template>
