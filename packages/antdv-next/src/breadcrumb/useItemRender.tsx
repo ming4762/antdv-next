@@ -1,10 +1,10 @@
-import type { VueNode } from '../_util/type.ts'
+import type { VueNode } from '../_util/type'
 import type { BreadcrumbProps, InternalRouteType, ItemType } from './Breadcrumb'
 
 import { clsx } from '@v-c/util'
 import pickAttrs from '@v-c/util/dist/pickAttrs'
-import { getSlotPropsFnRun } from '../_util/tools.ts'
-import { checkRenderNode } from '../_util/vueNode.ts'
+import { getSlotPropsFnRun } from '../_util/tools'
+import { checkRenderNode } from '../_util/vueNode'
 
 type AddParameters<TFunction extends (...args: any) => any, TParameters extends [...args: any]> = (
   ...args: [...Parameters<TFunction>, ...TParameters]

@@ -2,7 +2,7 @@ import type { Key } from '@v-c/util/dist/type'
 import type { CSSProperties } from 'vue'
 import type { VueNode } from '../_util/type'
 import type { DropdownProps } from '../dropdown'
-import type { ItemType } from './Breadcrumb.tsx'
+import type { ItemType } from './Breadcrumb'
 import { DownOutlined } from '@antdv-next/icons'
 import { filterEmpty } from '@v-c/util/dist/props-util'
 import { defineComponent } from 'vue'
@@ -13,7 +13,7 @@ import { useBaseConfig } from '../config-provider/context'
 import Dropdown from '../dropdown'
 import { useBreadcrumbContext } from './BreadcrumbContext'
 import BreadcrumbSeparator from './BreadcrumbSeparator'
-import { renderItem } from './useItemRender.tsx'
+import { renderItem } from './useItemRender'
 
 export interface SeparatorType {
   separator?: VueNode
@@ -94,6 +94,7 @@ export const InternalBreadcrumbItem = defineComponent<
       const { classes: mergedClassNames, styles: mergedStyles } = breadcrumbContext.value
       // wrap to dropDown
       const link = renderBreadcrumbNode(children)
+
       if (isNonNullable(link)) {
         return (
           <>

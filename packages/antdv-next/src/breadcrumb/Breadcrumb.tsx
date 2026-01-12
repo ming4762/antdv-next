@@ -3,7 +3,7 @@ import type { App, CSSProperties, SlotsType } from 'vue'
 import type { SemanticClassNamesType, SemanticStylesType } from '../_util/hooks'
 import type { AnyObject, VueNode } from '../_util/type'
 import type { DropdownProps } from '../dropdown'
-import type { BreadcrumbItemProps, MenuItem } from './BreadcrumbItem.tsx'
+import type { BreadcrumbItemProps, MenuItem } from './BreadcrumbItem'
 import { clsx } from '@v-c/util'
 import pickAttrs from '@v-c/util/dist/pickAttrs'
 import { filterEmpty } from '@v-c/util/dist/props-util'
@@ -14,9 +14,9 @@ import { useComponentBaseConfig } from '../config-provider/context'
 import { useBreadcrumbProvider } from './BreadcrumbContext.ts'
 
 import BreadcrumbItem, { InternalBreadcrumbItem } from './BreadcrumbItem'
-import BreadcrumbSeparator from './BreadcrumbSeparator.tsx'
+import BreadcrumbSeparator from './BreadcrumbSeparator'
 import useStyle from './style'
-import useItemRender from './useItemRender.tsx'
+import useItemRender from './useItemRender'
 
 export interface BreadcrumbItemType {
   key?: Key
@@ -226,7 +226,7 @@ const Breadcrumb = defineComponent<
               style={style}
               dropdownProps={dropdownProps}
               href={href}
-              separator={isLastItem ? '' : mergedSeparator.value}
+              separator={isLastItem ? false : mergedSeparator.value}
               onClick={handleClick}
               prefixCls={prefixCls.value}
             >
