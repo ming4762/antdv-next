@@ -79,9 +79,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 | locale | 默认文案设置，目前包括排序、过滤、空数据文案 | TableLocale | [默认值](https://github.com/ant-design/ant-design/blob/6dae4a7e18ad1ba193aedd5ab6867e1d823e2aa4/components/locale/zh_CN.tsx#L20-L37) | - |
 | rowSelection | 表格行是否可选择，[配置项](#rowselection) | TableRowSelection&lt;RecordType&gt; | - | - |
 | getPopupContainer | 设置表格内各类浮层的渲染节点，如筛选菜单 | GetPopupContainer | () =&gt; TableHtmlElement | - |
-| scroll | 表格是否可滚动，也可以指定滚动区域的宽、高，[配置项](#scroll) | VcTableProps&lt;RecordType&gt;['scroll'] & \{ scrollToFirstRowOnChange?: boolean \} | - | - |
+| scroll | 表格是否可滚动，也可以指定滚动区域的宽、高，[配置项](#scroll) | VcTableProps&lt;RecordType&gt;['scroll'] & &#123; scrollToFirstRowOnChange?: boolean &#125; | - | - |
 | sortDirections | 支持的排序方式，取值为 `ascend` `descend` | SortOrder[] | \[`ascend`, `descend`] | - |
-| showSorterTooltip | 表头是否显示下一次排序的 tooltip 提示。当参数类型为对象时，将被设置为 Tooltip 的属性 | boolean \| SorterTooltipProps | { target: 'full-header' } | 5.16.0 |
+| showSorterTooltip | 表头是否显示下一次排序的 tooltip 提示。当参数类型为对象时，将被设置为 Tooltip 的属性 | boolean \| SorterTooltipProps | &#123; target: 'full-header' &#125; | 5.16.0 |
 | virtual | 支持虚拟列表 | boolean | - | 5.9.0 |
 
 ### 事件 {#events}
@@ -101,8 +101,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*Sv8XQ50NB40AAA
 | summary | 总结栏 | (data: readonly RecordType[]) =&gt; any | - |
 | emptyText | - | () =&gt; any | - |
 | expandIcon | - | (info: any) =&gt; any | - |
-| expandedRowRender | - | (ctx: \{ record: RecordType, index: number, indent: number, expanded: boolean \}) =&gt; any | - |
-| headerCell | - | (ctx: \{ column: ColumnType&lt;RecordType&gt;, index: number, text: any \}) =&gt; any | - |
-| bodyCell | - | (ctx: \{ column: ColumnType&lt;RecordType&gt;, index: number, text: any, record: RecordType \}) =&gt; any | - |
-| filterDropdown | - | (ctx: FilterDropdownProps & \{ column: ColumnType&lt;RecordType&gt; \}) =&gt; any | - |
-| filterIcon | - | (ctx: \{ column: ColumnType&lt;RecordType&gt;, filtered: boolean \}) =&gt; any | - |
+| expandedRowRender | - | (ctx: &#123; record: RecordType, index: number, indent: number, expanded: boolean &#125;) =&gt; any | - |
+| headerCell | - | (ctx: &#123; column: ColumnType&lt;RecordType&gt;, index: number, text: any &#125;) =&gt; any | - |
+| bodyCell | - | (ctx: &#123; column: ColumnType&lt;RecordType&gt;, index: number, text: any, record: RecordType &#125;) =&gt; any | - |
+| filterDropdown | - | (ctx: FilterDropdownProps & &#123; column: ColumnType&lt;RecordType&gt; &#125;) =&gt; any | - |
+| filterIcon | - | (ctx: &#123; column: ColumnType&lt;RecordType&gt;, filtered: boolean &#125;) =&gt; any | - |

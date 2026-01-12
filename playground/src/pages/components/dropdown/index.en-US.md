@@ -28,7 +28,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | --- | --- | --- | --- | --- |
 | classes | Customize class for each semantic structure inside the Dropdown component. Supports object or function. | DropdownClassNamesType | - | - |
 | styles | Customize inline style for each semantic structure inside the Dropdown component. Supports object or function. | DropdownStylesType | - | - |
-| menu | The menu props | MenuProps & \{ activeKey?: VcMenuProps['activeKey'] \} | - | - |
+| menu | The menu props | MenuProps & &#123; activeKey?: VcMenuProps['activeKey'] &#125; | - | - |
 | autoFocus | - | boolean | - | - |
 | arrow | Whether the dropdown arrow should be visible | boolean \| DropdownArrowOptions | false | - |
 | trigger | The trigger mode which executes the dropdown action. Note that hover can't be used on touchscreens | ('click' \| 'hover' \| 'contextMenu')[] | \[`hover`] | - |
@@ -52,11 +52,11 @@ Common props ref：[Common props](/docs/vue/common-props)
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
 | update:open | - | (open: boolean) =&gt; void | - |
-| openChange | Called when the open state is changed. Not trigger when hidden by click item | (open: boolean, info: \{ source: 'trigger' \| 'menu' \}) =&gt; void | `info.source`: 5.11.0 |
+| openChange | Called when the open state is changed. Not trigger when hidden by click item | (open: boolean, info: &#123; source: 'trigger' \| 'menu' &#125;) =&gt; void | `info.source`: 5.11.0 |
 | menuClick | - | MenuEmits['click'] | - |
 
 ### Slots {#slots}
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| popupRender | Customize popup content | (info: \{ open: boolean, source: 'trigger' \| 'menu' \}) =&gt; any | 5.25.0 |
+| popupRender | Customize popup content | (info: &#123; open: boolean, source: 'trigger' \| 'menu' &#125;) =&gt; any | 5.25.0 |

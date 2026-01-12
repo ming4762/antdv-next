@@ -39,8 +39,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sir-TK0HkWcAAA
 | ghost | 使折叠面板透明且无边框 | boolean | false | 4.4.0 |
 | size | 设置折叠面板大小 | SizeType | `middle` | 5.2.0 |
 | collapsible | 所有子面板是否可折叠或指定可折叠触发区域 | CollapsibleType | - | 4.9.0 |
-| labelRender | - | (params: \{ item: CollapseItemType, index: number \}) =&gt; any | - | - |
-| contentRender | - | (params: \{ item: CollapseItemType, index: number \}) =&gt; any | - | - |
+| labelRender | - | (params: &#123; item: CollapseItemType, index: number &#125;) =&gt; any | - | - |
+| contentRender | - | (params: &#123; item: CollapseItemType, index: number &#125;) =&gt; any | - | - |
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | CollapseClassNamesType | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | CollapseStylesType | - | - |
 | items | 折叠项目内容 | CollapseItemType[] | - | 5.6.0 |
@@ -69,5 +69,5 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*sir-TK0HkWcAAA
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
 | expandIcon | 自定义切换图标 | (panelProps: PanelProps) =&gt; any | - |
-| labelRender | - | (params: \{ item: CollapseItemType, index: number \}) =&gt; any | - |
-| contentRender | - | (params: \{ item: CollapseItemType, index: number \}) =&gt; any | - |
+| labelRender | - | (params: &#123; item: CollapseItemType, index: number &#125;) =&gt; any | - |
+| contentRender | - | (params: &#123; item: CollapseItemType, index: number &#125;) =&gt; any | - |

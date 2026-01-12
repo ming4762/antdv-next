@@ -53,7 +53,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | name | - | string | - | - |
 | defaultValue | - | any[] | - | - |
 | value | - | any[] | - | - |
-| labelRender | - | (params: \{ item: CheckboxOptionType, index: number \}) =&gt; any | - | - |
+| labelRender | - | (params: &#123; item: CheckboxOptionType, index: number &#125;) =&gt; any | - | - |
 
 ### Events {#events}
 
@@ -85,4 +85,4 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| labelRender | - | (params: \{ item: CheckboxOptionType, index: number \}) =&gt; any | - |
+| labelRender | - | (params: &#123; item: CheckboxOptionType, index: number &#125;) =&gt; any | - |

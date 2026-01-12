@@ -43,7 +43,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | delete | Deleted line style | boolean | false |
 | disabled | Disabled content | boolean | false |
 | editable | If editable. Can control edit state when is object | boolean \| [editable](#editable) | false |
-| ellipsis | Display ellipsis when text overflows, can't configure expandable, rows and onExpand by using object. Diff with Typography.Paragraph, Text do not have 100% width style which means it will fix width on the first ellipsis. If you want to have responsive ellipsis, please set width manually | boolean \| [Omit<ellipsis, 'expandable' \| 'rows' \| 'onExpand'>](#ellipsis) | false |
+| ellipsis | Display ellipsis when text overflows, can't configure expandable, rows and onExpand by using object. Diff with Typography.Paragraph, Text do not have 100% width style which means it will fix width on the first ellipsis. If you want to have responsive ellipsis, please set width manually | boolean \| [Omit&lt;ellipsis, 'expandable' \| 'rows' \| 'onExpand'&gt;](#ellipsis) | false |
 | keyboard | Keyboard style | boolean | false |
 | mark | Marked style | boolean | false |
 | strong | Bold style | boolean | false |
@@ -57,7 +57,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Event | Description | Type |
 | --- | --- | --- |
-| click | Set the handler to handle click event | (event: MouseEvent) => void |
+| click | Set the handler to handle click event | (event: MouseEvent) =&gt; void |
 
 ### Typography.Title {#typography-title}
 
@@ -83,7 +83,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Event | Description | Type |
 | --- | --- | --- |
-| click | Set the handler to handle click event | (event: MouseEvent) => void |
+| click | Set the handler to handle click event | (event: MouseEvent) =&gt; void |
 
 ### Typography.Paragraph {#typography-paragraph}
 
@@ -109,7 +109,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Event | Description | Type |
 | --- | --- | --- |
-| click | Set the handler to handle click event | (event: MouseEvent) => void |
+| click | Set the handler to handle click event | (event: MouseEvent) =&gt; void |
 
 ### copyable {#copyable}
 
@@ -125,30 +125,30 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Event | Description | Type |
 | --- | --- | --- |
-| copy | Called when copied text | (event: MouseEvent) => void |
+| copy | Called when copied text | (event: MouseEvent) =&gt; void |
 
 ### editable {#editable}
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| autoSize | `autoSize` attribute of textarea | boolean \| { minRows: number, maxRows: number } | - |
+| autoSize | `autoSize` attribute of textarea | boolean \| &#123; minRows: number, maxRows: number &#125; | - |
 | editing | Whether to be editable | boolean | false |
-| icon | Custom editable icon | VueNode | &lt;EditOutlined /> |
+| icon | Custom editable icon | VueNode | &lt;EditOutlined /&gt; |
 | maxLength | `maxLength` attribute of textarea | number | - |
 | tooltip | Custom tooltip text, hide when it is false | VueNode | `Edit` |
 | text | Edit text, specify the editing content instead of using the children implicitly | string | - |
-| triggerType | Edit mode trigger - icon, text or both (not specifying icon as trigger hides it) | Array&lt;`icon`\|`text`> | \[`icon`] |
-| enterIcon | Custom "enter" icon in the edit field (passing `null` removes the icon) | VueNode | `<EnterOutlined />` |
+| triggerType | Edit mode trigger - icon, text or both (not specifying icon as trigger hides it) | Array&lt;`icon`\|`text`&gt; | \[`icon`] |
+| enterIcon | Custom "enter" icon in the edit field (passing `null` removes the icon) | VueNode | `&lt;EnterOutlined /&gt;` |
 | tabIndex | Set tabIndex of the edit button | number | 0 |
 
 #### Events
 
 | Event | Description | Type |
 | --- | --- | --- |
-| change | Called when input at textarea | (value: string) => void |
-| cancel | Called when type ESC to exit editable state | () => void |
-| start | Called when enter editable state | () => void |
-| end | Called when type ENTER to exit editable state | () => void |
+| change | Called when input at textarea | (value: string) =&gt; void |
+| cancel | Called when type ESC to exit editable state | () =&gt; void |
+| start | Called when enter editable state | () =&gt; void |
+| end | Called when type ENTER to exit editable state | () =&gt; void |
 
 ### ellipsis {#ellipsis}
 
@@ -157,7 +157,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | expandable | Whether to be expandable | boolean \| 'collapsible' | - |
 | rows | Max rows of content | number | - |
 | suffix | Suffix of ellipsis content | string | - |
-| symbol | Custom description of ellipsis | VueNode \| ((expanded: boolean) => VueNode) | `Expand` `Collapse` |
+| symbol | Custom description of ellipsis | VueNode \| ((expanded: boolean) =&gt; VueNode) | `Expand` `Collapse` |
 | tooltip | Show tooltip when ellipsis | VueNode \| [TooltipProps](/components/tooltip/#api) | - |
 | defaultExpanded | Default expand or collapse | boolean | - |
 | expanded | Expand or Collapse | boolean | - |
@@ -166,8 +166,8 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Event | Description | Type |
 | --- | --- | --- |
-| ellipsis | Called when enter or leave ellipsis state | (ellipsis: boolean) => void |
-| expand | Called when expand content | (event: MouseEvent, info: { expanded: boolean }) => void |
+| ellipsis | Called when enter or leave ellipsis state | (ellipsis: boolean) =&gt; void |
+| expand | Called when expand content | (event: MouseEvent, info: &#123; expanded: boolean &#125;) =&gt; void |
 
 ## Design Token {#design-token}
 

@@ -46,8 +46,8 @@ Common props ref：[Common props](/docs/vue/common-props)
 | titlePlacement | The position of title inside divider | `start` \| `end` \| `center` | `center` |
 | variant | Whether line is dashed, dotted or solid | `dashed` \| `dotted` \| `solid` | `solid` |
 | vertical | Orientation, Simultaneously configure with `orientation` and prioritize `orientation` | boolean | false |
-| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-dom), string> \| (info: { props })=> Record<[SemanticDOM](#semantic-dom), string> | - |
-| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record<[SemanticDOM](#semantic-dom), CSSProperties> \| (info: { props })=> Record<[SemanticDOM](#semantic-dom), CSSProperties> | - |
+| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;) =&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;) =&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - |
 
 ### Slots {#slots}
 

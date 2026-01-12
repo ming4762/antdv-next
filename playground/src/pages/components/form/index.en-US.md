@@ -31,7 +31,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | layout | Form layout | FormLayout | `horizontal` | - |
 | labelAlign | The text align of label of all items | FormLabelAlign | `right` | - |
 | labelWrap | whether label can be wrap | boolean | false | 4.18.0 |
-| labelCol | Label layout, like `&lt;Col&gt;` component. Set `span` `offset` value like `{span: 3, offset: 12}` or `sm: {span: 3, offset: 12}` | ColProps | - | - |
+| labelCol | Label layout, like `&lt;Col&gt;` component. Set `span` `offset` value like `&#123;span: 3, offset: 12&#125;` or `sm: &#123;span: 3, offset: 12&#125;` | ColProps | - | - |
 | wrapperCol | The layout for input controls, same as `labelCol` | ColProps | - | - |
 | feedbackIcons | Can be passed custom icons while `Form.Item` element has `hasFeedback` | FeedbackIcons | - | 5.9.0 |
 | size | Set field component size (antd components only) | SizeType | - | - |

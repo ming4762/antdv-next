@@ -54,7 +54,7 @@ demo:
 | name | - | string | - | - |
 | defaultValue | - | any[] | - | - |
 | value | - | any[] | - | - |
-| labelRender | - | (params: \{ item: CheckboxOptionType, index: number \}) =&gt; any | - | - |
+| labelRender | - | (params: &#123; item: CheckboxOptionType, index: number &#125;) =&gt; any | - | - |
 
 ### 事件 {#events}
 
@@ -86,4 +86,4 @@ demo:
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| labelRender | - | (params: \{ item: CheckboxOptionType, index: number \}) =&gt; any | - |
+| labelRender | - | (params: &#123; item: CheckboxOptionType, index: number &#125;) =&gt; any | - |

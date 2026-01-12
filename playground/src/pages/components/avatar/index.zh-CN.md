@@ -53,7 +53,7 @@ group:
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | prefixCls | - | string | - | - |
-| max | - | \{     count?: number     style?: CSSProperties     popover?: PopoverProps   \} | - | - |
+| max | - | &#123;     count?: number     style?: CSSProperties     popover?: PopoverProps   &#125; | - | - |
 | size | 设置头像的大小 | AvatarSize | `default` | 4.7.0 |
 | shape | 指定头像的形状 | 'circle' \| 'square' | `circle` | - |
 

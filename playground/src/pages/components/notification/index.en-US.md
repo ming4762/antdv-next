@@ -44,7 +44,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | type | - | IconType | - | - |
 | onClick | Specify a function that will be called when the notification is clicked | () =&gt; void | - | - |
 | closeIcon | Custom close icon | VueNode | true | 5.7.0: close button will be hidden when setting to null or false |
-| closable | - | \| boolean     \| (Exclude&lt;ClosableType, boolean&gt; & \{       onClose?: () =&gt; void     \}) | - | - |
+| closable | - | \| boolean     \| (Exclude&lt;ClosableType, boolean&gt; & &#123;       onClose?: () =&gt; void     &#125;) | - | - |
 | props | An object that can contain `data-*`, `aria-*`, or `role` props, to be put on the notification `div`. This currently only allows `data-testid` instead of `data-*` in TypeScript. See https://github.com/microsoft/TypeScript/issues/28960. | DivProps | - | - |
 | role | The semantics of notification content recognized by screen readers. The default value is `alert`. When set as the default value, the screen reader will promptly interrupt any ongoing content reading and prioritize the notification content for immediate attention. | 'alert' \| 'status' | `alert` | 5.6.0 |
 

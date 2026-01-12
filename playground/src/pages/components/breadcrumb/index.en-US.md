@@ -36,9 +36,9 @@ Common props ref：[Common props](/docs/vue/common-props)
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | BreadcrumbClassNamesType&lt;T&gt; | - | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | BreadcrumbStylesType&lt;T&gt; | - | - |
 | itemRender | Custom item renderer | (route: ItemType, params: T, routes: ItemType[], paths: string[]) =&gt; any | - | - |
-| titleRender | - | (params: \{ item: ItemType, index: number \}) =&gt; any | - | - |
-| menuLabelRender | - | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - | - |
-| menuExtraRender | - | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - | - |
+| titleRender | - | (params: &#123; item: ItemType, index: number &#125;) =&gt; any | - | - |
+| menuLabelRender | - | (params: &#123; item: ItemType, index: number, menu: MenuItem &#125;) =&gt; any | - | - |
+| menuExtraRender | - | (params: &#123; item: ItemType, index: number, menu: MenuItem &#125;) =&gt; any | - | - |
 
 #### BreadcrumbItem
 
@@ -48,7 +48,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | key | - | Key | - | - |
 | prefixCls | - | string | - | - |
 | href | - | string | - | - |
-| menu | - | Omit&lt;MenuType, 'items'&gt; & \{     items?: MenuItem[]   \} | - | - |
+| menu | - | Omit&lt;MenuType, 'items'&gt; & &#123;     items?: MenuItem[]   &#125; | - | - |
 | dropdownProps | - | DropdownProps | - | - |
 | onClick | - | (event: MouseEvent) =&gt; void | - | - |
 | class | - | string | - | - |
@@ -65,7 +65,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | Slot | Description | Type                                                                             | Version |
 | --- | --- |----------------------------------------------------------------------------------| --- |
 | itemRender | Custom item renderer | (route: ItemType, params: AnyObject, routes: ItemType[], paths: string[]) =&gt; any | - |
-| titleRender | - | (params: \{ item: ItemType, index: number \}) =&gt; any | - |
+| titleRender | - | (params: &#123; item: ItemType, index: number &#125;) =&gt; any | - |
 | separator | Custom separator | () =&gt; any | - |
-| menuLabelRender | - | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - |
-| menuExtraRender | - | (params:\{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - |
+| menuLabelRender | - | (params: &#123; item: ItemType, index: number, menu: MenuItem &#125;) =&gt; any | - |
+| menuExtraRender | - | (params:&#123; item: ItemType, index: number, menu: MenuItem &#125;) =&gt; any | - |

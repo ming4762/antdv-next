@@ -90,7 +90,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | action | - | PasswordAction | - | - |
 | visibilityToggle | - | VisibilityToggle | - | - |
 | suffix | The suffix icon for the Input | VueNode | - | - |
-| iconRender | - | (params: \{ visible: boolean \}) =&gt; any | - | - |
+| iconRender | - | (params: &#123; visible: boolean &#125;) =&gt; any | - | - |
 | iconVisible | - | boolean | - | - |
 
 #### Search

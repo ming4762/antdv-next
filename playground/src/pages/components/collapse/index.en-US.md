@@ -38,8 +38,8 @@ Common props ref：[Common props](/docs/vue/common-props)
 | ghost | Make the collapse borderless and its background transparent | boolean | false | 4.4.0 |
 | size | Set the size of collapse | SizeType | `middle` | 5.2.0 |
 | collapsible | Specify how to trigger Collapse. Either by clicking icon or by clicking any area in header or disable collapse functionality itself | CollapsibleType | - | 4.9.0 |
-| labelRender | - | (params: \{ item: CollapseItemType, index: number \}) =&gt; any | - | - |
-| contentRender | - | (params: \{ item: CollapseItemType, index: number \}) =&gt; any | - | - |
+| labelRender | - | (params: &#123; item: CollapseItemType, index: number &#125;) =&gt; any | - | - |
+| contentRender | - | (params: &#123; item: CollapseItemType, index: number &#125;) =&gt; any | - | - |
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | CollapseClassNamesType | - | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | CollapseStylesType | - | - |
 | items | collapse items content | CollapseItemType[] | - | 5.6.0 |
@@ -68,5 +68,5 @@ Common props ref：[Common props](/docs/vue/common-props)
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
 | expandIcon | Allow to customize collapse icon | (panelProps: PanelProps) =&gt; any | - |
-| labelRender | - | (params: \{ item: CollapseItemType, index: number \}) =&gt; any | - |
-| contentRender | - | (params: \{ item: CollapseItemType, index: number \}) =&gt; any | - |
+| labelRender | - | (params: &#123; item: CollapseItemType, index: number &#125;) =&gt; any | - |
+| contentRender | - | (params: &#123; item: CollapseItemType, index: number &#125;) =&gt; any | - |

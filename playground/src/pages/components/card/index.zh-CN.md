@@ -40,7 +40,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*5WDvQp_H7LUAAA
 | cover | 卡片封面 | VueNode | - | - |
 | actions | 卡片操作组，位置在卡片底部 | VueNode[] | - | - |
 | tabList | 页签标题列表 | CardTabListType[] | - | - |
-| tabBarExtraContent | tab bar 上额外的元素 | VueNode \| \{ [key: string]: VueNode \} | - | - |
+| tabBarExtraContent | tab bar 上额外的元素 | VueNode \| &#123; [key: string]: VueNode &#125; | - | - |
 | activeTabKey | 当前激活页签的 key | string | - | - |
 | defaultActiveTabKey | 初始化选中页签的 key，如果没有设置 activeTabKey | string | `第一个页签的 key` | - |
 | tabProps | [Tabs](/components/tabs-cn#tabs) | Record&lt;string, any&gt; | - | - |

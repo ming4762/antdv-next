@@ -66,6 +66,6 @@ Common props ref：[Common props](/docs/vue/common-props)
 | suffixIcon | The custom suffix icon | () =&gt; any | - |
 | notFoundContent | Specify content to show when no result matches | () =&gt; any | - |
 | popupRender | Customize dropdown content | (menu: any) =&gt; any | - |
-| displayRender | The render function of displaying selected options | (data: \{ labels: string[], selectedOptions?: DefaultOptionType[] \}) =&gt; any | `multiple`: 4.18.0 |
+| displayRender | The render function of displaying selected options | (data: &#123; labels: string[], selectedOptions?: DefaultOptionType[] &#125;) =&gt; any | `multiple`: 4.18.0 |
 | optionRender | Customize the rendering dropdown options | (option: DefaultOptionType) =&gt; any | 5.16.0 |
 | expandIcon | Customize the current item expand icon | () =&gt; any | 4.4.0 |

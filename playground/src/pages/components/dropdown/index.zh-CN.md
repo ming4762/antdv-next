@@ -29,7 +29,7 @@ demo:
 | --- | --- | --- | --- | --- |
 | classes | 用于自定义 Dropdown 组件内部各语义化结构的 class，支持对象或函数 | DropdownClassNamesType | - | - |
 | styles | 用于自定义 Dropdown 组件内部各语义化结构的行内 style，支持对象或函数 | DropdownStylesType | - | - |
-| menu | 菜单配置项 | MenuProps & \{ activeKey?: VcMenuProps['activeKey'] \} | - | - |
+| menu | 菜单配置项 | MenuProps & &#123; activeKey?: VcMenuProps['activeKey'] &#125; | - | - |
 | autoFocus | - | boolean | - | - |
 | arrow | 下拉框箭头是否显示 | boolean \| DropdownArrowOptions | false | - |
 | trigger | 触发下拉的行为，移动端不支持 hover | ('click' \| 'hover' \| 'contextMenu')[] | \[`hover`] | - |
@@ -53,11 +53,11 @@ demo:
 | 事件 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
 | update:open | - | (open: boolean) =&gt; void | - |
-| openChange | 菜单显示状态改变时调用，点击菜单按钮导致的消失不会触发 | (open: boolean, info: \{ source: 'trigger' \| 'menu' \}) =&gt; void | `info.source`: 5.11.0 |
+| openChange | 菜单显示状态改变时调用，点击菜单按钮导致的消失不会触发 | (open: boolean, info: &#123; source: 'trigger' \| 'menu' &#125;) =&gt; void | `info.source`: 5.11.0 |
 | menuClick | - | MenuEmits['click'] | - |
 
 ### 插槽 {#slots}
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| popupRender | 自定义弹出框内容 | (info: \{ open: boolean, source: 'trigger' \| 'menu' \}) =&gt; any | 5.25.0 |
+| popupRender | 自定义弹出框内容 | (info: &#123; open: boolean, source: 'trigger' \| 'menu' &#125;) =&gt; any | 5.25.0 |

@@ -26,12 +26,12 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*d27AQJrowGAAAA
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | bordered | 是否展示边框 | boolean | false | - |
-| size | 设置列表的大小。可以设置为 `middle` 、`small`, 或不填（只有设置 `bordered={true}` 生效） | 'middle' \| 'small' \| 'default' | - | - |
+| size | 设置列表的大小。可以设置为 `middle` 、`small`, 或不填（只有设置 `bordered=&#123;true&#125;` 生效） | 'middle' \| 'small' \| 'default' | - | - |
 | title | 描述列表的标题，显示在最顶部 | VueNode | - | - |
 | extra | 描述列表的操作区域，显示在右上方 | VueNode | - | 4.5.0 |
 | labelRender | - | RenderDescriptionsItem | - | - |
 | contentRender | - | RenderDescriptionsItem | - | - |
-| column | 一行的 `DescriptionItems` 数量，可以写成像素值或支持响应式的对象写法 `{ xs: 8, sm: 16, md: 24}` | number \| Partial&lt;Record&lt;Breakpoint, number&gt;&gt; | 3 | - |
+| column | 一行的 `DescriptionItems` 数量，可以写成像素值或支持响应式的对象写法 `&#123; xs: 8, sm: 16, md: 24&#125;` | number \| Partial&lt;Record&lt;Breakpoint, number&gt;&gt; | 3 | - |
 | layout | 描述布局 | 'horizontal' \| 'vertical' | `horizontal` | - |
 | colon | 配置 `Descriptions.Item` 的 `colon` 的默认值。表示是否显示 label 后面的冒号 | boolean | true | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | DescriptionsStylesType | - | - |

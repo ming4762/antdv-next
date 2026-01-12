@@ -41,7 +41,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | dropdownClassName | Deprecated. | string | - | - |
 | popupClassName | To customize the className of the popup calendar, use `classNames.popup.root` instead | string | - | 4.23.0 |
 | rootClass | - | string | - | - |
-| popupStyle | To customize the style of the popup calendar, use `styles.popup.root` instead | CSSProperties | {} | - |
+| popupStyle | To customize the style of the popup calendar, use `styles.popup.root` instead | CSSProperties | &#123;&#125; | - |
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | DatePickerClassNamesType&lt;Props&gt; | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | DatePickerStylesType&lt;Props&gt; | - | - |
 
@@ -68,6 +68,6 @@ Common props ref：[Common props](/docs/vue/common-props)
 | renderExtraFooter | - | (mode: PickerMode) =&gt; any | - |
 | panelRender | Customize panel render | (originPanel: VueNode) =&gt; any | 4.5.0 |
 | inputRender | - | (props: Record&lt;string, any&gt;) =&gt; any | - |
-| cellRender | Custom rendering function for picker cells | (ctx: \{ current: AnyObject, info: any \}) =&gt; any | 5.4.0 |
-| dateRender | Custom rendering function for date cells, &gt;= 5.4.0 use `cellRender` instead. | (ctx: \{ date: AnyObject, today: AnyObject \}) =&gt; any | &lt; 5.4.0 |
-| monthCellRender | - | (ctx: \{ date: AnyObject, locale: any \}) =&gt; any | - |
+| cellRender | Custom rendering function for picker cells | (ctx: &#123; current: AnyObject, info: any &#125;) =&gt; any | 5.4.0 |
+| dateRender | Custom rendering function for date cells, &gt;= 5.4.0 use `cellRender` instead. | (ctx: &#123; date: AnyObject, today: AnyObject &#125;) =&gt; any | &lt; 5.4.0 |
+| monthCellRender | - | (ctx: &#123; date: AnyObject, locale: any &#125;) =&gt; any | - |

@@ -28,7 +28,7 @@ demo:
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | align | - | AlignType | - | - |
-| arrow | - | boolean \| \{ pointAtCenter?: boolean \} | - | - |
+| arrow | - | boolean \| &#123; pointAtCenter?: boolean &#125; | - | - |
 | autoAdjustOverflow | - | boolean \| AdjustOverflow | - | - |
 | color | 设置背景颜色，使用该属性后内部文字颜色将自适应 | LiteralUnion&lt;PresetColorType&gt; | - | 5.27.0 |
 | open | - | boolean | - | - |

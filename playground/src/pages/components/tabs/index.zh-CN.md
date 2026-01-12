@@ -46,9 +46,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*8HMoTZUoSGoAAA
 | addIcon | 自定义添加按钮，设置 `type="editable-card"` 时有效 | () =&gt; any | 4.4.0 |
 | moreIcon | - | () =&gt; any | - |
 | removeIcon | 自定义删除按钮，设置 `type="editable-card"` 时有效 | () =&gt; any | 5.15.0 |
-| labelRender | - | (args: \{ item: Tab, index: number \}) =&gt; any | - |
-| contentRender | - | (args: \{ item: Tab, index: number \}) =&gt; any | - |
-| renderTabBar | 替换 TabBar，用于二次封装标签头 | (args: \{ props: any, TabNavListComponent: any \}) =&gt; any | - |
+| labelRender | - | (args: &#123; item: Tab, index: number &#125;) =&gt; any | - |
+| contentRender | - | (args: &#123; item: Tab, index: number &#125;) =&gt; any | - |
+| renderTabBar | 替换 TabBar，用于二次封装标签头 | (args: &#123; props: any, TabNavListComponent: any &#125;) =&gt; any | - |
 | rightExtra | - | () =&gt; any | - |
 | leftExtra | - | () =&gt; any | - |
 

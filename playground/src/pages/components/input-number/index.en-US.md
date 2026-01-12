@@ -37,7 +37,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | variant | Variants of Input | Variant | `outlined` | 5.13.0 \| `underlined`: 5.24.0 |
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | InputNumberClassNamesType | - | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | InputNumberStylesType | - | - |
-| controls | Whether to show `+-` controls, or set custom arrow icons | boolean \| \{ upIcon?: VueNode, downIcon?: VueNode \} | - | - |
+| controls | Whether to show `+-` controls, or set custom arrow icons | boolean \| &#123; upIcon?: VueNode, downIcon?: VueNode &#125; | - | - |
 | type | - | 'number' \| 'text' | - | - |
 
 ### Events {#events}

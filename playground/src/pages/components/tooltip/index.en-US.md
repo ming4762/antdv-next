@@ -27,7 +27,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | align | - | AlignType | - | - |
-| arrow | - | boolean \| \{ pointAtCenter?: boolean \} | - | - |
+| arrow | - | boolean \| &#123; pointAtCenter?: boolean &#125; | - | - |
 | autoAdjustOverflow | - | boolean \| AdjustOverflow | - | - |
 | color | The background color. After using this attribute, the internal text color will adapt automatically | LiteralUnion&lt;PresetColorType&gt; | - | 5.27.0 |
 | open | - | boolean | - | - |

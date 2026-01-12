@@ -67,6 +67,6 @@ demo:
 | suffixIcon | 自定义的选择框后缀图标 | () =&gt; any | - |
 | notFoundContent | 当下拉列表为空时显示的内容 | () =&gt; any | - |
 | popupRender | 自定义下拉框内容 | (menu: any) =&gt; any | - |
-| displayRender | 选择后展示的渲染函数 | (data: \{ labels: string[], selectedOptions?: DefaultOptionType[] \}) =&gt; any | `multiple`: 4.18.0 |
+| displayRender | 选择后展示的渲染函数 | (data: &#123; labels: string[], selectedOptions?: DefaultOptionType[] &#125;) =&gt; any | `multiple`: 4.18.0 |
 | optionRender | 自定义渲染下拉选项 | (option: DefaultOptionType) =&gt; any | 5.16.0 |
 | expandIcon | 自定义次级菜单展开图标 | () =&gt; any | 4.4.0 |

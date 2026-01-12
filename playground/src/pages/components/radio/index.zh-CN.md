@@ -40,7 +40,7 @@ demo:
 | buttonStyle | - | RadioGroupButtonStyle | - | - |
 | block | - | boolean | - | - |
 | vertical | - | boolean | - | - |
-| labelRender | - | (params: \{ item: CheckboxOptionType, index: number \}) =&gt; any | - | - |
+| labelRender | - | (params: &#123; item: CheckboxOptionType, index: number &#125;) =&gt; any | - | - |
 
 #### Radio
 
@@ -69,4 +69,4 @@ demo:
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| labelRender | - | (params: \{ item: CheckboxOptionType, index: number \}) =&gt; any | - |
+| labelRender | - | (params: &#123; item: CheckboxOptionType, index: number &#125;) =&gt; any | - |

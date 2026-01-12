@@ -47,10 +47,10 @@ demo:
 | shape | 设置包含的 FloatButton 按钮形状 | `circle` \| `square` | `circle` | - |
 | trigger | 触发方式（有触发方式为菜单模式） | `click` \| `hover` | - | - |
 | open | 受控展开，需配合 trigger 一起使用 | boolean | - | - |
-| closeIcon | 自定义关闭按钮 | VueNode | `<CloseOutlined />` | - |
+| closeIcon | 自定义关闭按钮 | VueNode | `&lt;CloseOutlined /&gt;` | - |
 | placement | 自定义菜单弹出位置 | `top` \| `left` \| `right` \| `bottom` | `top` | - |
-| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
-| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 
 #### FloatButton
 
@@ -66,15 +66,15 @@ demo:
 | target | 相当于 a 标签的 target 属性，href 存在时生效 | string | - | - |
 | htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#type) | `submit` \| `reset` \| `button` | `button` | - |
 | badge | 带徽标数字的悬浮按钮（不支持 `status` 以及相关属性） | [BadgeProps](/components/badge-cn#api) | - | - |
-| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
-| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 
 #### FloatButton.BackTop
 
 | 属性             | 说明                               | 类型              | 默认值       | 版本 |
 | ---------------- | ---------------------------------- | ----------------- | ------------ | ---- |
 | duration         | 回到顶部所需时间（ms）             | number            | 450          | -    |
-| target           | 设置需要监听其滚动事件的元素       | () => HTMLElement | () => window | -    |
+| target           | 设置需要监听其滚动事件的元素       | () =&gt; HTMLElement | () =&gt; window | -    |
 | visibilityHeight | 滚动高度达到此参数值才出现 BackTop | number            | 400          | -    |
 
 ### 事件 {#events}

@@ -30,7 +30,7 @@ demo:
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | rootClass | - | string | - | - |
-| showLine | 是否展示连接线 | boolean \| \{ showLeafIcon: boolean \| TreeLeafIcon \} | false | - |
+| showLine | 是否展示连接线 | boolean \| &#123; showLeafIcon: boolean \| TreeLeafIcon &#125; | false | - |
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | TreeClassNamesType | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | TreeStylesType | - | - |
 | multiple | 支持点选多个节点（节点本身） | boolean | false | - |
@@ -42,7 +42,7 @@ demo:
 | defaultExpandParent | 默认展开父节点 | boolean | true | - |
 | defaultExpandedKeys | 默认展开指定的树节点 | Key[] | \[] | - |
 | expandedKeys | （受控）展开指定的树节点 | Key[] | \[] | - |
-| checkedKeys | （受控）选中复选框的树节点（注意：父子节点有关联，如果传入父节点 key，则子节点自动选中；相应当子节点 key 都传入，父节点也自动选中。当设置 `checkable` 和 `checkStrictly`，它是一个有`checked`和`halfChecked`属性的对象，并且父子节点的选中与否不再关联 | Key[] \| \{ checked: Key[], halfChecked: Key[] \} | \[] | - |
+| checkedKeys | （受控）选中复选框的树节点（注意：父子节点有关联，如果传入父节点 key，则子节点自动选中；相应当子节点 key 都传入，父节点也自动选中。当设置 `checkable` 和 `checkStrictly`，它是一个有`checked`和`halfChecked`属性的对象，并且父子节点的选中与否不再关联 | Key[] \| &#123; checked: Key[], halfChecked: Key[] &#125; | \[] | - |
 | defaultCheckedKeys | 默认选中复选框的树节点 | Key[] | \[] | - |
 | selectedKeys | （受控）设置选中的树节点，多选需设置 `multiple` 为 true | Key[] | - | - |
 | defaultSelectedKeys | 默认选中的树节点 | Key[] | \[] | - |
@@ -84,7 +84,7 @@ demo:
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
 | rootClass | - | string | - | - |
-| showLine | 是否展示连接线 | boolean \| \{ showLeafIcon: boolean \| TreeLeafIcon \} | false | - |
+| showLine | 是否展示连接线 | boolean \| &#123; showLeafIcon: boolean \| TreeLeafIcon &#125; | false | - |
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | TreeClassNamesType | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | TreeStylesType | - | - |
 | multiple | 支持点选多个节点（节点本身） | boolean | false | - |
@@ -96,7 +96,7 @@ demo:
 | defaultExpandParent | 默认展开父节点 | boolean | true | - |
 | defaultExpandedKeys | 默认展开指定的树节点 | Key[] | \[] | - |
 | expandedKeys | （受控）展开指定的树节点 | Key[] | \[] | - |
-| checkedKeys | （受控）选中复选框的树节点（注意：父子节点有关联，如果传入父节点 key，则子节点自动选中；相应当子节点 key 都传入，父节点也自动选中。当设置 `checkable` 和 `checkStrictly`，它是一个有`checked`和`halfChecked`属性的对象，并且父子节点的选中与否不再关联 | Key[] \| \{ checked: Key[], halfChecked: Key[] \} | \[] | - |
+| checkedKeys | （受控）选中复选框的树节点（注意：父子节点有关联，如果传入父节点 key，则子节点自动选中；相应当子节点 key 都传入，父节点也自动选中。当设置 `checkable` 和 `checkStrictly`，它是一个有`checked`和`halfChecked`属性的对象，并且父子节点的选中与否不再关联 | Key[] \| &#123; checked: Key[], halfChecked: Key[] &#125; | \[] | - |
 | defaultCheckedKeys | 默认选中复选框的树节点 | Key[] | \[] | - |
 | selectedKeys | （受控）设置选中的树节点，多选需设置 `multiple` 为 true | Key[] | - | - |
 | defaultSelectedKeys | 默认选中的树节点 | Key[] | \[] | - |
@@ -140,7 +140,7 @@ demo:
 | scroll | - | NonNullable&lt;VcTreeProps['onScroll']&gt; | - |
 | activeChange | - | NonNullable&lt;VcTreeProps['onActiveChange']&gt; | - |
 | update:expandedKeys | - | (keys: Key[]) =&gt; void | - |
-| update:checkedKeys | - | (keys: Key[] \| \{ checked: Key[], halfChecked: Key[] \}) =&gt; void | - |
+| update:checkedKeys | - | (keys: Key[] \| &#123; checked: Key[], halfChecked: Key[] &#125;) =&gt; void | - |
 | update:selectedKeys | - | (keys: Key[]) =&gt; void | - |
 | update:activeKey | - | (key: Key) =&gt; void | - |
 
@@ -170,7 +170,7 @@ demo:
 | scroll | - | NonNullable&lt;VcTreeProps['onScroll']&gt; | - |
 | activeChange | - | NonNullable&lt;VcTreeProps['onActiveChange']&gt; | - |
 | update:expandedKeys | - | (keys: Key[]) =&gt; void | - |
-| update:checkedKeys | - | (keys: Key[] \| \{ checked: Key[], halfChecked: Key[] \}) =&gt; void | - |
+| update:checkedKeys | - | (keys: Key[] \| &#123; checked: Key[], halfChecked: Key[] &#125;) =&gt; void | - |
 | update:selectedKeys | - | (keys: Key[]) =&gt; void | - |
 | update:activeKey | - | (key: Key) =&gt; void | - |
 

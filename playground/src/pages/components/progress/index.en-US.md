@@ -45,7 +45,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | gapDegree | - | number | - | - |
 | gapPlacement | - | GapPlacement | - | - |
 | gapPosition | Deprecated. | GapPosition | - | - |
-| size | Progress size | number \| [number \| string, number] \| ProgressSize \| \{ width?: number, height?: number \} | "default" | 5.3.0, Object: 5.18.0 |
-| steps | - | number \| \{ count: number, gap: number \} | - | - |
+| size | Progress size | number \| [number \| string, number] \| ProgressSize \| &#123; width?: number, height?: number &#125; | "default" | 5.3.0, Object: 5.18.0 |
+| steps | - | number \| &#123; count: number, gap: number &#125; | - | - |
 | percentPosition | - | PercentPositionType | - | - |
 | rounding | - | (step: number) =&gt; number | - | - |

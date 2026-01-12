@@ -39,7 +39,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | buttonStyle | - | RadioGroupButtonStyle | - | - |
 | block | - | boolean | - | - |
 | vertical | - | boolean | - | - |
-| labelRender | - | (params: \{ item: CheckboxOptionType, index: number \}) =&gt; any | - | - |
+| labelRender | - | (params: &#123; item: CheckboxOptionType, index: number &#125;) =&gt; any | - | - |
 
 #### Radio
 
@@ -68,4 +68,4 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| labelRender | - | (params: \{ item: CheckboxOptionType, index: number \}) =&gt; any | - |
+| labelRender | - | (params: &#123; item: CheckboxOptionType, index: number &#125;) =&gt; any | - |

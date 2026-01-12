@@ -91,7 +91,7 @@ demo:
 | action | - | PasswordAction | - | - |
 | visibilityToggle | - | VisibilityToggle | - | - |
 | suffix | 带有后缀图标的 input | VueNode | - | - |
-| iconRender | - | (params: \{ visible: boolean \}) =&gt; any | - | - |
+| iconRender | - | (params: &#123; visible: boolean &#125;) =&gt; any | - | - |
 | iconVisible | - | boolean | - | - |
 
 #### Search

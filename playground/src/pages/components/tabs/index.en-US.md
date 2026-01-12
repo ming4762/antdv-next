@@ -45,9 +45,9 @@ Common props ref：[Common props](/docs/vue/common-props)
 | addIcon | Customize add icon, only works with `type="editable-card"` | () =&gt; any | 4.4.0 |
 | moreIcon | - | () =&gt; any | - |
 | removeIcon | The custom icon of remove, only works with `type="editable-card"` | () =&gt; any | 5.15.0 |
-| labelRender | - | (args: \{ item: Tab, index: number \}) =&gt; any | - |
-| contentRender | - | (args: \{ item: Tab, index: number \}) =&gt; any | - |
-| renderTabBar | Replace the TabBar | (args: \{ props: any, TabNavListComponent: any \}) =&gt; any | - |
+| labelRender | - | (args: &#123; item: Tab, index: number &#125;) =&gt; any | - |
+| contentRender | - | (args: &#123; item: Tab, index: number &#125;) =&gt; any | - |
+| renderTabBar | Replace the TabBar | (args: &#123; props: any, TabNavListComponent: any &#125;) =&gt; any | - |
 | rightExtra | - | () =&gt; any | - |
 | leftExtra | - | () =&gt; any | - |
 

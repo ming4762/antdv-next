@@ -50,10 +50,10 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| actionsRender | custom action | (originNode: any, info: \{ current: number, total: number \}) =&gt; any | 5.25.0 |
+| actionsRender | custom action | (originNode: any, info: &#123; current: number, total: number &#125;) =&gt; any | 5.25.0 |
 | indicatorsRender | custom indicator | (current: number, total: number) =&gt; any | 5.2.0 |
-| nextButton | - | (params: \{ current: number, isFirst: boolean, isLast: boolean \}) =&gt; any | - |
-| prevButton | - | (params: \{ current: number, isFirst: boolean, isLast: boolean \}) =&gt; any | - |
-| coverRender | - | (params: \{ step: TourStepProps, index: number \}) =&gt; any | - |
-| titleRender | - | (params: \{ step: TourStepProps, index: number \}) =&gt; any | - |
-| descriptionRender | - | (params: \{ step: TourStepProps, index: number \}) =&gt; any | - |
+| nextButton | - | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
+| prevButton | - | (params: &#123; current: number, isFirst: boolean, isLast: boolean &#125;) =&gt; any | - |
+| coverRender | - | (params: &#123; step: TourStepProps, index: number &#125;) =&gt; any | - |
+| titleRender | - | (params: &#123; step: TourStepProps, index: number &#125;) =&gt; any | - |
+| descriptionRender | - | (params: &#123; step: TourStepProps, index: number &#125;) =&gt; any | - |

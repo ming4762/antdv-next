@@ -49,7 +49,7 @@ demo:
 | supportServerRender | - | boolean | - | - |
 | disabled | 是否禁用 | boolean | false | 对于自定义 Upload children 时请将 disabled 属性同时传给 child node 确保 disabled 渲染效果保持一致 |
 | prefixCls | - | string | - | - |
-| customRequest | 通过覆盖默认的上传行为，可以自定义自己的上传实现 | (     options: VcCustomRequestOptions&lt;T&gt;,     info: \{       /**        * @since 5.28.0        */       defaultRequest: (option: VcCustomRequestOptions&lt;T&gt;) =&gt; void     \},   ) =&gt; void | - | defaultRequest: 5.28.0 |
+| customRequest | 通过覆盖默认的上传行为，可以自定义自己的上传实现 | (     options: VcCustomRequestOptions&lt;T&gt;,     info: &#123;       /**        * @since 5.28.0        */       defaultRequest: (option: VcCustomRequestOptions&lt;T&gt;) =&gt; void     &#125;,   ) =&gt; void | - | defaultRequest: 5.28.0 |
 | withCredentials | 上传请求时是否携带 cookie | boolean | false | - |
 | openFileDialogOnClick | 点击打开文件对话框 | boolean | true | - |
 | locale | - | UploadLocale | - | - |
@@ -57,7 +57,7 @@ demo:
 | previewFile | 自定义文件预览逻辑 | PreviewFileHandler | - | - |
 | iconRender | 自定义显示 icon | (file: UploadFile&lt;T&gt;, listType?: UploadListType) =&gt; any | - | - |
 | isImageUrl | 自定义缩略图是否使用 &lt;img /&gt; 标签进行显示 | (file: UploadFile&lt;T&gt;) =&gt; boolean | [(内部实现)](https://github.com/ant-design/ant-design/blob/4ad5830eecfb87471cd8ac588c5d992862b70770/components/upload/utils.tsx#L47-L68) | - |
-| progress | 自定义进度条样式 | UploadListProgressProps | { strokeWidth: 2, showInfo: false } | 4.3.0 |
+| progress | 自定义进度条样式 | UploadListProgressProps | &#123; strokeWidth: 2, showInfo: false &#125; | 4.3.0 |
 | itemRender | 自定义上传列表项 | ItemRender&lt;T&gt; | - | 4.16.0 |
 | maxCount | 限制上传数量。当为 1 时，始终用最新上传的文件代替当前文件 | number | - | 4.10.0 |
 | onRemove | 点击移除文件时的回调，返回值为 false 时不移除。支持返回一个 Promise 对象，Promise 对象 resolve(false) 或 reject 时不移除 | (file: UploadFile&lt;T&gt;) =&gt; void \| boolean \| Promise&lt;void \| boolean&gt; | - | - |
@@ -76,7 +76,7 @@ demo:
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | UploadStylesType&lt;T&gt; | - | - |
 | listType | 上传列表的内建样式，支持四种基本样式 `text`, `picture`, `picture-card` 和 `picture-circle` | UploadListType | `text` | `picture-circle`(5.2.0+) |
 | items | - | Array&lt;UploadFile&lt;T&gt;&gt; | - | - |
-| progress | 自定义进度条样式 | UploadListProgressProps | { strokeWidth: 2, showInfo: false } | 4.3.0 |
+| progress | 自定义进度条样式 | UploadListProgressProps | &#123; strokeWidth: 2, showInfo: false &#125; | 4.3.0 |
 | prefixCls | - | string | - | - |
 | showRemoveIcon | - | boolean \| ((file: UploadFile&lt;T&gt;) =&gt; boolean) | - | - |
 | showDownloadIcon | - | boolean \| ((file: UploadFile&lt;T&gt;) =&gt; boolean) | - | - |
@@ -121,7 +121,7 @@ demo:
 | supportServerRender | - | boolean | - | - |
 | disabled | 是否禁用 | boolean | false | 对于自定义 Upload children 时请将 disabled 属性同时传给 child node 确保 disabled 渲染效果保持一致 |
 | prefixCls | - | string | - | - |
-| customRequest | 通过覆盖默认的上传行为，可以自定义自己的上传实现 | (     options: VcCustomRequestOptions&lt;T&gt;,     info: \{       /**        * @since 5.28.0        */       defaultRequest: (option: VcCustomRequestOptions&lt;T&gt;) =&gt; void     \},   ) =&gt; void | - | defaultRequest: 5.28.0 |
+| customRequest | 通过覆盖默认的上传行为，可以自定义自己的上传实现 | (     options: VcCustomRequestOptions&lt;T&gt;,     info: &#123;       /**        * @since 5.28.0        */       defaultRequest: (option: VcCustomRequestOptions&lt;T&gt;) =&gt; void     &#125;,   ) =&gt; void | - | defaultRequest: 5.28.0 |
 | withCredentials | 上传请求时是否携带 cookie | boolean | false | - |
 | openFileDialogOnClick | 点击打开文件对话框 | boolean | true | - |
 | locale | - | UploadLocale | - | - |
@@ -129,7 +129,7 @@ demo:
 | previewFile | 自定义文件预览逻辑 | PreviewFileHandler | - | - |
 | iconRender | 自定义显示 icon | (file: UploadFile&lt;T&gt;, listType?: UploadListType) =&gt; any | - | - |
 | isImageUrl | 自定义缩略图是否使用 &lt;img /&gt; 标签进行显示 | (file: UploadFile&lt;T&gt;) =&gt; boolean | [(内部实现)](https://github.com/ant-design/ant-design/blob/4ad5830eecfb87471cd8ac588c5d992862b70770/components/upload/utils.tsx#L47-L68) | - |
-| progress | 自定义进度条样式 | UploadListProgressProps | { strokeWidth: 2, showInfo: false } | 4.3.0 |
+| progress | 自定义进度条样式 | UploadListProgressProps | &#123; strokeWidth: 2, showInfo: false &#125; | 4.3.0 |
 | itemRender | 自定义上传列表项 | ItemRender&lt;T&gt; | - | 4.16.0 |
 | maxCount | 限制上传数量。当为 1 时，始终用最新上传的文件代替当前文件 | number | - | 4.10.0 |
 | onRemove | 点击移除文件时的回调，返回值为 false 时不移除。支持返回一个 Promise 对象，Promise 对象 resolve(false) 或 reject 时不移除 | (file: UploadFile&lt;T&gt;) =&gt; void \| boolean \| Promise&lt;void \| boolean&gt; | - | - |
@@ -151,8 +151,8 @@ demo:
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| iconRender | 自定义显示 icon | (props: \{ file: UploadFile&lt;T&gt;, listType?: UploadListType \}) =&gt; any | - |
-| itemRender | 自定义上传列表项 | (props: \{     originNode: any     file: UploadFile&lt;T&gt;     fileList: Array&lt;UploadFile&lt;T&gt;&gt;     actions: \{       download: () =&gt; void       preview: () =&gt; void       remove: () =&gt; void     \}   \}) =&gt; any | 4.16.0 |
+| iconRender | 自定义显示 icon | (props: &#123; file: UploadFile&lt;T&gt;, listType?: UploadListType &#125;) =&gt; any | - |
+| itemRender | 自定义上传列表项 | (props: &#123;     originNode: any     file: UploadFile&lt;T&gt;     fileList: Array&lt;UploadFile&lt;T&gt;&gt;     actions: &#123;       download: () =&gt; void       preview: () =&gt; void       remove: () =&gt; void     &#125;   &#125;) =&gt; any | 4.16.0 |
 
 ### 方法 {#methods}
 
@@ -160,7 +160,7 @@ demo:
 | --- | --- | --- | --- |
 | onBatchStart | - | VcUploadProps['onBatchStart'] | - |
 | onSuccess | - | (response: any, file: VcFile, xhr: any) =&gt; void | - |
-| onProgress | - | (e: \{ percent: number \}, file: VcFile) =&gt; void | - |
+| onProgress | - | (e: &#123; percent: number &#125;, file: VcFile) =&gt; void | - |
 | onError | - | (error: Error, response: any, file: VcFile) =&gt; void | - |
 | fileList | - | UploadFile&lt;T&gt;[] | - |
 | upload | - | any \| null | - |

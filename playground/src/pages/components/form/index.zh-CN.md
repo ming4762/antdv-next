@@ -32,7 +32,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*ylFATY6w-ygAAA
 | layout | 表单布局 | FormLayout | `horizontal` | - |
 | labelAlign | label 标签的文本对齐方式 | FormLabelAlign | `right` | - |
 | labelWrap | label 标签的文本换行方式 | boolean | false | 4.18.0 |
-| labelCol | label 标签布局，同 `&lt;Col&gt;` 组件，设置 `span` `offset` 值，如 `{span: 3, offset: 12}` 或 `sm: {span: 3, offset: 12}` | ColProps | - | - |
+| labelCol | label 标签布局，同 `&lt;Col&gt;` 组件，设置 `span` `offset` 值，如 `&#123;span: 3, offset: 12&#125;` 或 `sm: &#123;span: 3, offset: 12&#125;` | ColProps | - | - |
 | wrapperCol | 需要为输入控件设置布局样式时，使用该属性，用法同 labelCol | ColProps | - | - |
 | feedbackIcons | 当 `Form.Item` 有 `hasFeedback` 属性时可以自定义图标 | FeedbackIcons | - | 5.9.0 |
 | size | 设置字段组件的尺寸（仅限 antd 组件） | SizeType | - | - |

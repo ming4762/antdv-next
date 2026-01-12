@@ -39,7 +39,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | cover | Card cover | VueNode | - | - |
 | actions | The action list, shows at the bottom of the Card | VueNode[] | - | - |
 | tabList | List of TabPane's head | CardTabListType[] | - | - |
-| tabBarExtraContent | Extra content in tab bar | VueNode \| \{ [key: string]: VueNode \} | - | - |
+| tabBarExtraContent | Extra content in tab bar | VueNode \| &#123; [key: string]: VueNode &#125; | - | - |
 | activeTabKey | Current TabPane's key | string | - | - |
 | defaultActiveTabKey | Initial active TabPane's key, if `activeTabKey` is not set | string | `The key of first tab` | - |
 | tabProps | [Tabs](/components/tabs/#tabs) | Record&lt;string, any&gt; | - | - |

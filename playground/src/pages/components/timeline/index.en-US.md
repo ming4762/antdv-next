@@ -33,9 +33,9 @@ Common props ref：[Common props](/docs/vue/common-props)
 | reverse | Whether reverse nodes or not | boolean | false | - |
 | mode | By sending `alternate` the timeline will distribute the nodes to the left and right | 'left' \| 'alternate' \| 'right' | `start` | - |
 | items | Each node of timeline | TimelineItemProps[] | - | - |
-| dotRender | - | (params: \{ item: TimelineItemProps, index: number \}) =&gt; void | - | - |
-| labelRender | - | (params: \{ item: TimelineItemProps, index: number \}) =&gt; void | - | - |
-| contentRender | - | (params: \{ item: TimelineItemProps, index: number \}) =&gt; void | - | - |
+| dotRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - | - |
+| labelRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - | - |
+| contentRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - | - |
 
 #### TimelineItem
 
@@ -58,6 +58,6 @@ Common props ref：[Common props](/docs/vue/common-props)
 | --- | --- | --- | --- |
 | pending | Set the last ghost node's existence or its content. Use `item.loading` instead | () =&gt; void | - |
 | pendingDot | Set the dot of the last ghost node when pending is true. Use `item.icon` instead | () =&gt; void | - |
-| dotRender | - | (params: \{ item: TimelineItemProps, index: number \}) =&gt; void | - |
-| labelRender | - | (params: \{ item: TimelineItemProps, index: number \}) =&gt; void | - |
-| contentRender | - | (params: \{ item: TimelineItemProps, index: number \}) =&gt; void | - |
+| dotRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - |
+| labelRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - |
+| contentRender | - | (params: &#123; item: TimelineItemProps, index: number &#125;) =&gt; void | - |

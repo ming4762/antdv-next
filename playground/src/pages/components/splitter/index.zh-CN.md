@@ -43,12 +43,12 @@ tag: 5.21.0
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \}) =&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
-| collapsibleIcon | 自定义折叠图标 | \{ start?: VueNode; end?: VueNode \} | - | 6.0.0 |
+| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;) =&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| collapsibleIcon | 自定义折叠图标 | &#123; start?: VueNode; end?: VueNode &#125; | - | 6.0.0 |
 | draggerIcon | 自定义拖拽图标 | VueNode | - | 6.0.0 |
 | lazy | 延迟渲染模式 | boolean | false | 5.23.0 |
 | orientation | 布局方向 | `vertical` \| `horizontal` | `horizontal` | - |
-| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \}) =&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;) =&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 | vertical | 排列方向，与 `orientation` 同时存在，以 `orientation` 优先 | boolean | false | - |
 
 #### 事件 {#splitter-events}
@@ -74,7 +74,7 @@ tag: 5.21.0
 
 | 属性 | 说明 | 类型 | 默认值 | 版本 |
 | --- | --- | --- | --- | --- |
-| collapsible | 启用折叠 | boolean \| \{ start?: boolean; end?: boolean; showCollapsibleIcon?: boolean \| 'auto' \} | false | 5.28.0 |
+| collapsible | 启用折叠 | boolean \| &#123; start?: boolean; end?: boolean; showCollapsibleIcon?: boolean \| 'auto' &#125; | false | 5.28.0 |
 | defaultSize | 面板初始大小，支持像素和百分比 | number \| string | - | - |
 | max | 最大阈值，支持像素和百分比 | number \| string | - | - |
 | min | 最小阈值，支持像素和百分比 | number \| string | - | - |

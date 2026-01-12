@@ -65,7 +65,7 @@ group:
 | --- | --- | --- | --- | --- |
 | autoInsertSpace | 我们默认提供两个汉字之间的空格，可以设置 `autoInsertSpace` 为 `false` 关闭 | boolean | `true` | - |
 | block | 将按钮宽度调整为其父宽度的选项 | boolean | false | - |
-| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
 | color | 设置按钮的颜色 | `default` \| `primary` \| `danger` \| [PresetColors](#presetcolors) | - | - |
 | danger | 语法糖，设置危险按钮。当设置 `color` 时会以后者为准 | boolean | false | - |
 | disabled | 设置按钮失效状态 | boolean | false | - |
@@ -73,10 +73,10 @@ group:
 | href | 点击跳转的地址，指定此属性 button 的行为和 a 链接一致 | string | - | - |
 | htmlType | 设置 `button` 原生的 `type` 值，可选值请参考 [HTML 标准](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/button#type) | `submit` \| `reset` \| `button` | `button` | - |
 | iconPlacement | 设置按钮图标组件的位置 | `start` \| `end` | `start` | - |
-| loading | 设置按钮载入状态 | boolean \| \{ delay: number, icon: VueNode \} | false | - |
+| loading | 设置按钮载入状态 | boolean \| &#123; delay: number, icon: VueNode &#125; | false | - |
 | shape | 设置按钮形状 | `default` \| `circle` \| `round` | `default` | - |
 | size | 设置按钮大小 | `large` \| `middle` \| `small` | `middle` | - |
-| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 | target | 相当于 a 链接的 target 属性，href 存在时生效 | string | - | - |
 | type | 语法糖，设置按钮类型。当设置 `variant` 与 `color` 时以后者为准 | `primary` \| `dashed` \| `link` \| `text` \| `default` | `default` | - |
 | variant | 设置按钮的变体 | `outlined` \| `dashed` \| `solid` \| `filled` \| `text` \| `link` | - | - |

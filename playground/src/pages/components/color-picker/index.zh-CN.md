@@ -39,9 +39,9 @@ group:
 | defaultFormat | - | ColorFormatType | - | - |
 | allowClear | - | boolean | - | - |
 | presets | - | PresetsItem[] | - | - |
-| arrow | - | boolean \| \{ pointAtCenter: boolean \} | - | - |
-| panelRender | - | (params: \{ panel: any, extra: \{ components: \{ Picker: any, Presets: any \} \} \}) =&gt; any | - | - |
-| showText | - | boolean \| ((params: \{ color: AggregationColor \}) =&gt; any) | - | - |
+| arrow | - | boolean \| &#123; pointAtCenter: boolean &#125; | - | - |
+| panelRender | - | (params: &#123; panel: any, extra: &#123; components: &#123; Picker: any, Presets: any &#125; &#125; &#125;) =&gt; any | - | - |
+| showText | - | boolean \| ((params: &#123; color: AggregationColor &#125;) =&gt; any) | - | - |
 | size | - | SizeType | - | - |
 | classes | - | ColorPickerClassNamesType | - | - |
 | styles | - | ColorPickerStylesType | - | - |
@@ -66,5 +66,5 @@ group:
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| panelRender | - | (params: \{ panel: any, extra: \{ components: \{ Picker: any, Presets: any \} \} \}) =&gt; any | - |
-| showText | - | (params: \{ color: AggregationColor \}) =&gt; any | - |
+| panelRender | - | (params: &#123; panel: any, extra: &#123; components: &#123; Picker: any, Presets: any &#125; &#125; &#125;) =&gt; any | - |
+| showText | - | (params: &#123; color: AggregationColor &#125;) =&gt; any | - |

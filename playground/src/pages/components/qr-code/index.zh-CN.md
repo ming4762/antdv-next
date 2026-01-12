@@ -44,7 +44,7 @@ group:
 | --- | --- | --- | --- | --- |
 | type | - | 'canvas' \| 'svg' | - | - |
 | icon | - | string | - | - |
-| iconSize | - | number \| \{ width: number, height: number \} | - | - |
+| iconSize | - | number \| &#123; width: number, height: number &#125; | - | - |
 | bordered | - | boolean | - | - |
 | errorLevel | - | 'L' \| 'M' \| 'Q' \| 'H' | - | - |
 | status | - | QRStatus | - | - |

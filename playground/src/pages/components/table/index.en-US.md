@@ -78,9 +78,9 @@ Common props ref：[Common props](/docs/vue/common-props)
 | locale | The i18n text including filter, sort, empty text, etc | TableLocale | [Default Value](https://github.com/ant-design/ant-design/blob/6dae4a7e18ad1ba193aedd5ab6867e1d823e2aa4/components/locale/en_US.tsx#L19-L37) | - |
 | rowSelection | Row selection [config](#rowselection) | TableRowSelection&lt;RecordType&gt; | - | - |
 | getPopupContainer | The render container of dropdowns in table | GetPopupContainer | () =&gt; TableHtmlElement | - |
-| scroll | Whether the table can be scrollable, [config](#scroll) | VcTableProps&lt;RecordType&gt;['scroll'] & \{ scrollToFirstRowOnChange?: boolean \} | - | - |
+| scroll | Whether the table can be scrollable, [config](#scroll) | VcTableProps&lt;RecordType&gt;['scroll'] & &#123; scrollToFirstRowOnChange?: boolean &#125; | - | - |
 | sortDirections | Supported sort way, could be `ascend`, `descend` | SortOrder[] | \[`ascend`, `descend`] | - |
-| showSorterTooltip | The header show next sorter direction tooltip. It will be set as the property of Tooltip if its type is object | boolean \| SorterTooltipProps | { target: 'full-header' } | 5.16.0 |
+| showSorterTooltip | The header show next sorter direction tooltip. It will be set as the property of Tooltip if its type is object | boolean \| SorterTooltipProps | &#123; target: 'full-header' &#125; | 5.16.0 |
 | virtual | Support virtual list | boolean | - | 5.9.0 |
 
 ### Events {#events}
@@ -100,8 +100,8 @@ Common props ref：[Common props](/docs/vue/common-props)
 | summary | Summary content | (data: readonly RecordType[]) =&gt; any | - |
 | emptyText | - | () =&gt; any | - |
 | expandIcon | - | (info: any) =&gt; any | - |
-| expandedRowRender | - | (ctx: \{ record: RecordType, index: number, indent: number, expanded: boolean \}) =&gt; any | - |
-| headerCell | - | (ctx: \{ column: ColumnType&lt;RecordType&gt;, index: number, text: any \}) =&gt; any | - |
-| bodyCell | - | (ctx: \{ column: ColumnType&lt;RecordType&gt;, index: number, text: any, record: RecordType \}) =&gt; any | - |
-| filterDropdown | - | (ctx: FilterDropdownProps & \{ column: ColumnType&lt;RecordType&gt; \}) =&gt; any | - |
-| filterIcon | - | (ctx: \{ column: ColumnType&lt;RecordType&gt;, filtered: boolean \}) =&gt; any | - |
+| expandedRowRender | - | (ctx: &#123; record: RecordType, index: number, indent: number, expanded: boolean &#125;) =&gt; any | - |
+| headerCell | - | (ctx: &#123; column: ColumnType&lt;RecordType&gt;, index: number, text: any &#125;) =&gt; any | - |
+| bodyCell | - | (ctx: &#123; column: ColumnType&lt;RecordType&gt;, index: number, text: any, record: RecordType &#125;) =&gt; any | - |
+| filterDropdown | - | (ctx: FilterDropdownProps & &#123; column: ColumnType&lt;RecordType&gt; &#125;) =&gt; any | - |
+| filterIcon | - | (ctx: &#123; column: ColumnType&lt;RecordType&gt;, filtered: boolean &#125;) =&gt; any | - |

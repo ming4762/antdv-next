@@ -57,10 +57,10 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| dateFullCellRender | Customize the display of the date cell, the returned content will override the cell | (ctx: \{ date: AnyObject \}) =&gt; any | - |
-| dateCellRender | - | (ctx: \{ date: AnyObject \}) =&gt; any | - |
-| monthFullCellRender | - | (ctx: \{ date: AnyObject \}) =&gt; any | - |
-| monthCellRender | - | (ctx: \{ date: AnyObject \}) =&gt; any | - |
-| cellRender | Customize cell content | (ctx: \{ date: AnyObject, info: any \}) =&gt; any | 5.4.0 |
-| fullCellRender | Customize cell content | (ctx: \{ date: AnyObject, info: any \}) =&gt; any | 5.4.0 |
-| headerRender | Render custom header in panel | (config: \{ value: AnyObject, type: CalendarMode, onChange: (date: AnyObject) =&gt; void, onTypeChange: (type: CalendarMode) =&gt; void \}) =&gt; any | - |
+| dateFullCellRender | Customize the display of the date cell, the returned content will override the cell | (ctx: &#123; date: AnyObject &#125;) =&gt; any | - |
+| dateCellRender | - | (ctx: &#123; date: AnyObject &#125;) =&gt; any | - |
+| monthFullCellRender | - | (ctx: &#123; date: AnyObject &#125;) =&gt; any | - |
+| monthCellRender | - | (ctx: &#123; date: AnyObject &#125;) =&gt; any | - |
+| cellRender | Customize cell content | (ctx: &#123; date: AnyObject, info: any &#125;) =&gt; any | 5.4.0 |
+| fullCellRender | Customize cell content | (ctx: &#123; date: AnyObject, info: any &#125;) =&gt; any | 5.4.0 |
+| headerRender | Render custom header in panel | (config: &#123; value: AnyObject, type: CalendarMode, onChange: (date: AnyObject) =&gt; void, onTypeChange: (type: CalendarMode) =&gt; void &#125;) =&gt; any | - |

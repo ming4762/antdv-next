@@ -43,7 +43,7 @@ demo:
 | dropdownClassName | Deprecated. | string | - | - |
 | popupClassName | 额外的弹出日历 className，使用 `classNames.popup.root` 替代 | string | - | 4.23.0 |
 | rootClass | - | string | - | - |
-| popupStyle | 额外的弹出日历样式，使用 `styles.popup.root` 替代 | CSSProperties | {} | - |
+| popupStyle | 额外的弹出日历样式，使用 `styles.popup.root` 替代 | CSSProperties | &#123;&#125; | - |
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | DatePickerClassNamesType&lt;Props&gt; | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | DatePickerStylesType&lt;Props&gt; | - | - |
 
@@ -70,6 +70,6 @@ demo:
 | renderExtraFooter | - | (mode: PickerMode) =&gt; any | - |
 | panelRender | 自定义渲染面板 | (originPanel: VueNode) =&gt; any | 4.5.0 |
 | inputRender | - | (props: Record&lt;string, any&gt;) =&gt; any | - |
-| cellRender | 自定义单元格的内容 | (ctx: \{ current: AnyObject, info: any \}) =&gt; any | 5.4.0 |
-| dateRender | 自定义日期单元格的内容，5.4.0 起用 `cellRender` 代替 | (ctx: \{ date: AnyObject, today: AnyObject \}) =&gt; any | &lt; 5.4.0 |
-| monthCellRender | - | (ctx: \{ date: AnyObject, locale: any \}) =&gt; any | - |
+| cellRender | 自定义单元格的内容 | (ctx: &#123; current: AnyObject, info: any &#125;) =&gt; any | 5.4.0 |
+| dateRender | 自定义日期单元格的内容，5.4.0 起用 `cellRender` 代替 | (ctx: &#123; date: AnyObject, today: AnyObject &#125;) =&gt; any | &lt; 5.4.0 |
+| monthCellRender | - | (ctx: &#123; date: AnyObject, locale: any &#125;) =&gt; any | - |

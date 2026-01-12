@@ -46,10 +46,10 @@ Common props ref：[Common props](/docs/vue/common-props)
 | shape | Setting button shape of children | `circle` \| `square` | `circle` | - |
 | trigger | Which action can trigger menu open/close | `click` \| `hover` | - | - |
 | open | Whether the menu is visible or not, use it with trigger | boolean | - | - |
-| closeIcon | Customize close button icon | VueNode | `<CloseOutlined />` | - |
+| closeIcon | Customize close button icon | VueNode | `&lt;CloseOutlined /&gt;` | - |
 | placement | Customize menu animation placement | `top` \| `left` \| `right` \| `bottom` | `top` | - |
-| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
-| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 
 #### FloatButton
 
@@ -65,18 +65,18 @@ Common props ref：[Common props](/docs/vue/common-props)
 | target | Specifies where to display the linked URL | string | - | - |
 | htmlType | Set the original html `type` of `button`, see: [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type) | `submit` \| `reset` \| `button` | `button` | - |
 | badge | Attach Badge to FloatButton. `status` and other props related are not supported. | [BadgeProps](/components/badge#api) | - | - |
-| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
-| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \})=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| classes | Customize class for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function. | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;)=&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 
 #### FloatButton.BackTop
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | duration | Time to return to top（ms） | number | 450 | - |
-| target | Specifies the scrollable area dom node | () => HTMLElement | () => window | - |
+| target | Specifies the scrollable area dom node | () =&gt; HTMLElement | () =&gt; window | - |
 | visibilityHeight | The BackTop button will not show until the scroll height reaches this value | number | 400 | - |
 | target | Specifies where to display the linked URL | '_self' \| '_blank' \| '_parent' \| '_top' \| string | - | - |
-| badge | Attach Badge to FloatButton. `status` and other props related are not supported. | FloatButtonBadgeProps & \{ class?: string \} | - | 5.4.0 |
+| badge | Attach Badge to FloatButton. `status` and other props related are not supported. | FloatButtonBadgeProps & &#123; class?: string &#125; | - | 5.4.0 |
 | htmlType | Set the original html `type` of `button`, see: [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#type) | ButtonHTMLType | `button` | 5.21.0 |
 | ariaLabel | - | string | - | - |
 | style | - | CSSProperties | - | - |

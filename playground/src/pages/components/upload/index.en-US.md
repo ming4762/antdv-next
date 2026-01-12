@@ -48,7 +48,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | supportServerRender | - | boolean | - | - |
 | disabled | Disable upload button | boolean | false | When customizing Upload children, please pass the disabled attribute to the child node at the same time to ensure the disabled rendering effect is consistent. |
 | prefixCls | - | string | - | - |
-| customRequest | Override for the default xhr behavior allowing for additional customization and the ability to implement your own XMLHttpRequest | (     options: VcCustomRequestOptions&lt;T&gt;,     info: \{       /**        * @since 5.28.0        */       defaultRequest: (option: VcCustomRequestOptions&lt;T&gt;) =&gt; void     \},   ) =&gt; void | - | defaultRequest: 5.28.0 |
+| customRequest | Override for the default xhr behavior allowing for additional customization and the ability to implement your own XMLHttpRequest | (     options: VcCustomRequestOptions&lt;T&gt;,     info: &#123;       /**        * @since 5.28.0        */       defaultRequest: (option: VcCustomRequestOptions&lt;T&gt;) =&gt; void     &#125;,   ) =&gt; void | - | defaultRequest: 5.28.0 |
 | withCredentials | The ajax upload with cookie sent | boolean | false | - |
 | openFileDialogOnClick | Click open file dialog | boolean | true | - |
 | locale | - | UploadLocale | - | - |
@@ -56,7 +56,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | previewFile | Customize preview file logic | PreviewFileHandler | - | - |
 | iconRender | Custom show icon | (file: UploadFile&lt;T&gt;, listType?: UploadListType) =&gt; any | - | - |
 | isImageUrl | Customize if render &lt;img /&gt; in thumbnail | (file: UploadFile&lt;T&gt;) =&gt; boolean | [(inside implementation)](https://github.com/ant-design/ant-design/blob/4ad5830eecfb87471cd8ac588c5d992862b70770/components/upload/utils.tsx#L47-L68) | - |
-| progress | Custom progress bar | UploadListProgressProps | { strokeWidth: 2, showInfo: false } | 4.3.0 |
+| progress | Custom progress bar | UploadListProgressProps | &#123; strokeWidth: 2, showInfo: false &#125; | 4.3.0 |
 | itemRender | Custom item of uploadList | ItemRender&lt;T&gt; | - | 4.16.0 |
 | maxCount | Limit the number of uploaded files. Will replace current one when `maxCount` is `1` | number | - | 4.10.0 |
 | onRemove | A callback function, will be executed when removing file button is clicked, remove event will be prevented when the return value is false or a Promise which resolve(false) or reject | (file: UploadFile&lt;T&gt;) =&gt; void \| boolean \| Promise&lt;void \| boolean&gt; | - | - |
@@ -75,7 +75,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | UploadStylesType&lt;T&gt; | - | - |
 | listType | Built-in stylesheets, support for four types: `text`, `picture`, `picture-card` or `picture-circle` | UploadListType | `text` | `picture-circle`(5.2.0+) |
 | items | - | Array&lt;UploadFile&lt;T&gt;&gt; | - | - |
-| progress | Custom progress bar | UploadListProgressProps | { strokeWidth: 2, showInfo: false } | 4.3.0 |
+| progress | Custom progress bar | UploadListProgressProps | &#123; strokeWidth: 2, showInfo: false &#125; | 4.3.0 |
 | prefixCls | - | string | - | - |
 | showRemoveIcon | - | boolean \| ((file: UploadFile&lt;T&gt;) =&gt; boolean) | - | - |
 | showDownloadIcon | - | boolean \| ((file: UploadFile&lt;T&gt;) =&gt; boolean) | - | - |
@@ -120,7 +120,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | supportServerRender | - | boolean | - | - |
 | disabled | Disable upload button | boolean | false | When customizing Upload children, please pass the disabled attribute to the child node at the same time to ensure the disabled rendering effect is consistent. |
 | prefixCls | - | string | - | - |
-| customRequest | Override for the default xhr behavior allowing for additional customization and the ability to implement your own XMLHttpRequest | (     options: VcCustomRequestOptions&lt;T&gt;,     info: \{       /**        * @since 5.28.0        */       defaultRequest: (option: VcCustomRequestOptions&lt;T&gt;) =&gt; void     \},   ) =&gt; void | - | defaultRequest: 5.28.0 |
+| customRequest | Override for the default xhr behavior allowing for additional customization and the ability to implement your own XMLHttpRequest | (     options: VcCustomRequestOptions&lt;T&gt;,     info: &#123;       /**        * @since 5.28.0        */       defaultRequest: (option: VcCustomRequestOptions&lt;T&gt;) =&gt; void     &#125;,   ) =&gt; void | - | defaultRequest: 5.28.0 |
 | withCredentials | The ajax upload with cookie sent | boolean | false | - |
 | openFileDialogOnClick | Click open file dialog | boolean | true | - |
 | locale | - | UploadLocale | - | - |
@@ -128,7 +128,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | previewFile | Customize preview file logic | PreviewFileHandler | - | - |
 | iconRender | Custom show icon | (file: UploadFile&lt;T&gt;, listType?: UploadListType) =&gt; any | - | - |
 | isImageUrl | Customize if render &lt;img /&gt; in thumbnail | (file: UploadFile&lt;T&gt;) =&gt; boolean | [(inside implementation)](https://github.com/ant-design/ant-design/blob/4ad5830eecfb87471cd8ac588c5d992862b70770/components/upload/utils.tsx#L47-L68) | - |
-| progress | Custom progress bar | UploadListProgressProps | { strokeWidth: 2, showInfo: false } | 4.3.0 |
+| progress | Custom progress bar | UploadListProgressProps | &#123; strokeWidth: 2, showInfo: false &#125; | 4.3.0 |
 | itemRender | Custom item of uploadList | ItemRender&lt;T&gt; | - | 4.16.0 |
 | maxCount | Limit the number of uploaded files. Will replace current one when `maxCount` is `1` | number | - | 4.10.0 |
 | onRemove | A callback function, will be executed when removing file button is clicked, remove event will be prevented when the return value is false or a Promise which resolve(false) or reject | (file: UploadFile&lt;T&gt;) =&gt; void \| boolean \| Promise&lt;void \| boolean&gt; | - | - |
@@ -150,8 +150,8 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| iconRender | Custom show icon | (props: \{ file: UploadFile&lt;T&gt;, listType?: UploadListType \}) =&gt; any | - |
-| itemRender | Custom item of uploadList | (props: \{     originNode: any     file: UploadFile&lt;T&gt;     fileList: Array&lt;UploadFile&lt;T&gt;&gt;     actions: \{       download: () =&gt; void       preview: () =&gt; void       remove: () =&gt; void     \}   \}) =&gt; any | 4.16.0 |
+| iconRender | Custom show icon | (props: &#123; file: UploadFile&lt;T&gt;, listType?: UploadListType &#125;) =&gt; any | - |
+| itemRender | Custom item of uploadList | (props: &#123;     originNode: any     file: UploadFile&lt;T&gt;     fileList: Array&lt;UploadFile&lt;T&gt;&gt;     actions: &#123;       download: () =&gt; void       preview: () =&gt; void       remove: () =&gt; void     &#125;   &#125;) =&gt; any | 4.16.0 |
 
 ### Methods {#methods}
 
@@ -159,7 +159,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | --- | --- | --- | --- |
 | onBatchStart | - | VcUploadProps['onBatchStart'] | - |
 | onSuccess | - | (response: any, file: VcFile, xhr: any) =&gt; void | - |
-| onProgress | - | (e: \{ percent: number \}, file: VcFile) =&gt; void | - |
+| onProgress | - | (e: &#123; percent: number &#125;, file: VcFile) =&gt; void | - |
 | onError | - | (error: Error, response: any, file: VcFile) =&gt; void | - |
 | fileList | - | UploadFile&lt;T&gt;[] | - |
 | upload | - | any \| null | - |

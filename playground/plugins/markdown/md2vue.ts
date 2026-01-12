@@ -132,6 +132,8 @@ export function md2VuePlugin(options: CreateMarkdownOptions = {}): PluginOption 
         id: /\.md($|\?)/,
       },
       async handler(code, id) {
+        if (id.includes('?vue'))
+          return null
         return transform(code, id)
       },
     },

@@ -35,8 +35,8 @@ demo:
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | MentionsClassNamesType | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | MentionsStylesType | - | - |
 | size | - | SizeType | - | - |
-| labelRender | - | (ctx: \{ option: MentionsOptionProps, index: number \}) =&gt; any | - | - |
-| allowClear | 可以点击清除图标删除内容 | boolean \| \{     clearIcon?: VueNode   \} | false | 5.13.0 |
+| labelRender | - | (ctx: &#123; option: MentionsOptionProps, index: number &#125;) =&gt; any | - | - |
+| allowClear | 可以点击清除图标删除内容 | boolean \| &#123;     clearIcon?: VueNode   &#125; | false | 5.13.0 |
 | disabled | - | boolean | - | - |
 
 ### 事件 {#events}
@@ -56,4 +56,4 @@ demo:
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
 | suffix | - | () =&gt; any | - |
-| labelRender | - | (ctx: \{ option: MentionsOptionProps, index: number \}) =&gt; any | - |
+| labelRender | - | (ctx: &#123; option: MentionsOptionProps, index: number &#125;) =&gt; any | - |

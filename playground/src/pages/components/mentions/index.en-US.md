@@ -34,8 +34,8 @@ Common props ref：[Common props](/docs/vue/common-props)
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | MentionsClassNamesType | - | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | MentionsStylesType | - | - |
 | size | - | SizeType | - | - |
-| labelRender | - | (ctx: \{ option: MentionsOptionProps, index: number \}) =&gt; any | - | - |
-| allowClear | If allow to remove mentions content with clear icon | boolean \| \{     clearIcon?: VueNode   \} | false | 5.13.0 |
+| labelRender | - | (ctx: &#123; option: MentionsOptionProps, index: number &#125;) =&gt; any | - | - |
+| allowClear | If allow to remove mentions content with clear icon | boolean \| &#123;     clearIcon?: VueNode   &#125; | false | 5.13.0 |
 | disabled | - | boolean | - | - |
 
 ### Events {#events}
@@ -55,4 +55,4 @@ Common props ref：[Common props](/docs/vue/common-props)
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
 | suffix | - | () =&gt; any | - |
-| labelRender | - | (ctx: \{ option: MentionsOptionProps, index: number \}) =&gt; any | - |
+| labelRender | - | (ctx: &#123; option: MentionsOptionProps, index: number &#125;) =&gt; any | - |

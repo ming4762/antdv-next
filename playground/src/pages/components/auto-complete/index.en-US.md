@@ -46,22 +46,22 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| allowClear | Show clear button | boolean \| \{ clearIcon?: VueNode \} | false | - |
+| allowClear | Show clear button | boolean \| &#123; clearIcon?: VueNode &#125; | false | - |
 | backfill | If backfill selected item the input when using keyboard | boolean | false | - |
-| classes | Customize class for each semantic structure inside the component. Supports object or function | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: \{ props \}) =&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
+| classes | Customize class for each semantic structure inside the component. Supports object or function | Record&lt;[SemanticDOM](#semantic-dom), string&gt; \| (info: &#123; props &#125;) =&gt; Record&lt;[SemanticDOM](#semantic-dom), string&gt; | - | - |
 | defaultActiveFirstOption | Whether active first option by default | boolean | true | - |
 | disabled | Whether disabled select | boolean | false | - |
 | getPopupContainer | Parent node of the dropdown. Default to body, if you encountered positioning problems during scroll, try changing to the scrollable area and position relative to it | (triggerNode: HTMLElement) =&gt; HTMLElement | () =&gt; document.body | - |
 | notFoundContent | Specify content to show when no result matches | VueNode | - | - |
 | open | Controlled open state of dropdown | boolean | - | - |
-| options | Select options. Will get better perf than jsx definition | \{ label: VueNode; value: string \}[] | - | - |
+| options | Select options. Will get better perf than jsx definition | &#123; label: VueNode; value: string &#125;[] | - | - |
 | placeholder | The placeholder of input | string | - | - |
 | popupMatchSelectWidth | Determine whether the dropdown menu and the select input are the same width. Default set `min-width` same as input. Will ignore when value less than select width. `false` will disable virtual scroll | boolean \| number | true | - |
 | popupRender | Customize dropdown content | (menu: VueNode) =&gt; VueNode | - | - |
 | showSearch | Search configuration | boolean \| [SearchConfig](#showsearch) | true | - |
 | size | The size of the input box | `large` \| `middle` \| `small` | - | - |
 | status | Set validation status | `error` \| `warning` | - | - |
-| styles | Customize inline style for each semantic structure inside the component. Supports object or function | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: \{ props \}) =&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function | Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; \| (info: &#123; props &#125;) =&gt; Record&lt;[SemanticDOM](#semantic-dom), CSSProperties&gt; | - | - |
 | value | Selected option | string | - | - |
 | variant | Variants of input | `outlined` \| `borderless` \| `filled` \| `underlined` | `outlined` | - |
 | virtual | Disable virtual scroll when set to false | boolean | true | - |

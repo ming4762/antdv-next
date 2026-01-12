@@ -19,8 +19,6 @@ demo:
 ## Examples {#examples}
 
 <demo-group>
-
-<demo-group>
   <demo src="./demo/basic.vue">Basic</demo>
   <demo src="./demo/vertical.vue">Vertical Direction</demo>
   <demo src="./demo/block.vue">Block Segmented</demo>

@@ -37,9 +37,9 @@ demo:
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | BreadcrumbClassNamesType&lt;T&gt; | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | BreadcrumbStylesType&lt;T&gt; | - | - |
 | itemRender | 自定义链接函数，和 react-router 配置使用 | (route: ItemType, params: T, routes: ItemType[], paths: string[]) =&gt; any | - | - |
-| titleRender | - | (params: \{ item: ItemType, index: number \}) =&gt; any | - | - |
-| menuLabelRender | - | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - | - |
-| menuExtraRender | - | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - | - |
+| titleRender | - | (params: &#123; item: ItemType, index: number &#125;) =&gt; any | - | - |
+| menuLabelRender | - | (params: &#123; item: ItemType, index: number, menu: MenuItem &#125;) =&gt; any | - | - |
+| menuExtraRender | - | (params: &#123; item: ItemType, index: number, menu: MenuItem &#125;) =&gt; any | - | - |
 
 #### BreadcrumbItem
 
@@ -49,7 +49,7 @@ demo:
 | key | - | Key | - | - |
 | prefixCls | - | string | - | - |
 | href | - | string | - | - |
-| menu | - | Omit&lt;MenuType, 'items'&gt; & \{     items?: MenuItem[]   \} | - | - |
+| menu | - | Omit&lt;MenuType, 'items'&gt; & &#123;     items?: MenuItem[]   &#125; | - | - |
 | dropdownProps | - | DropdownProps | - | - |
 | onClick | - | (event: MouseEvent) =&gt; void | - | - |
 | class | - | string | - | - |
@@ -66,7 +66,7 @@ demo:
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
 | itemRender | 自定义链接函数，和 react-router 配置使用 | (route: ItemType, params: AnyObject, routes: ItemType[], paths: string[]) =&gt; any | - |
-| titleRender | - | (params: \{ item: ItemType, index: number \}) =&gt; any | - |
+| titleRender | - | (params: &#123; item: ItemType, index: number &#125;) =&gt; any | - |
 | separator | 分隔符自定义 | () =&gt; any | - |
-| menuLabelRender | - | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - |
-| menuExtraRender | - | (params: \{ item: ItemType, index: number, menu: MenuItem \}) =&gt; any | - |
+| menuLabelRender | - | (params: &#123; item: ItemType, index: number, menu: MenuItem &#125;) =&gt; any | - |
+| menuExtraRender | - | (params: &#123; item: ItemType, index: number, menu: MenuItem &#125;) =&gt; any | - |

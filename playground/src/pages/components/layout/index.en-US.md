@@ -117,8 +117,8 @@ The sidebar.
 
 | Property | Description | Type | Default |
 | --- | --- | --- | --- |
-| breakpoint | The callback function, executed when [breakpoints](/components/grid/#api) changed | (broken) =\> \{\} | - |
-| collapse | The callback function, executed by clicking the trigger or activating the responsive layout | (collapsed, type) =\> \{\} | - |
+| breakpoint | The callback function, executed when [breakpoints](/components/grid/#api) changed | (broken) =\&gt; &#123;&#125; | - |
+| collapse | The callback function, executed by clicking the trigger or activating the responsive layout | (collapsed, type) =\&gt; &#123;&#125; | - |
 
 #### breakpoint width
 

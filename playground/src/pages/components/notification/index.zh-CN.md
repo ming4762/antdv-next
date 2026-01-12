@@ -45,7 +45,7 @@ demo:
 | type | - | IconType | - | - |
 | onClick | 点击通知时触发的回调函数 | () =&gt; void | - | - |
 | closeIcon | 自定义关闭图标 | VueNode | true | 5.7.0：设置为 null 或 false 时隐藏关闭按钮 |
-| closable | 是否显示右上角的关闭按钮 | \| boolean     \| (Exclude&lt;ClosableType, boolean&gt; & \{       onClose?: () =&gt; void     \}) | true | - |
+| closable | 是否显示右上角的关闭按钮 | \| boolean     \| (Exclude&lt;ClosableType, boolean&gt; & &#123;       onClose?: () =&gt; void     &#125;) | true | - |
 | props | 透传至通知 `div` 上的 props 对象，支持传入 `data-*` `aria-*` 或 `role` 作为对象的属性。需要注意的是，虽然在 TypeScript 类型中声明的类型支持传入 `data-*` 作为对象的属性，但目前只允许传入 `data-testid` 作为对象的属性。 详见 https://github.com/microsoft/TypeScript/issues/28960 | DivProps | - | - |
 | role | 供屏幕阅读器识别的通知内容语义，默认为 `alert`。此情况下屏幕阅读器会立即打断当前正在阅读的其他内容，转而阅读通知内容 | 'alert' \| 'status' | `alert` | 5.6.0 |
 

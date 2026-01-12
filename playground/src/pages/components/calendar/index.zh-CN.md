@@ -58,10 +58,10 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-p-wQLik200AAA
 
 | 插槽 | 说明 | 类型 | 版本 |
 | --- | --- | --- | --- |
-| dateFullCellRender | 自定义渲染日期单元格，返回内容覆盖单元格，&gt;= 5.4.0 请用 `fullCellRender` | (ctx: \{ date: AnyObject \}) =&gt; any | &lt; 5.4.0 |
-| dateCellRender | - | (ctx: \{ date: AnyObject \}) =&gt; any | - |
-| monthFullCellRender | - | (ctx: \{ date: AnyObject \}) =&gt; any | - |
-| monthCellRender | - | (ctx: \{ date: AnyObject \}) =&gt; any | - |
-| cellRender | 自定义单元格的内容 | (ctx: \{ date: AnyObject, info: any \}) =&gt; any | 5.4.0 |
-| fullCellRender | 自定义单元格的内容 | (ctx: \{ date: AnyObject, info: any \}) =&gt; any | 5.4.0 |
-| headerRender | 自定义头部内容 | (config: \{ value: AnyObject, type: CalendarMode, onChange: (date: AnyObject) =&gt; void, onTypeChange: (type: CalendarMode) =&gt; void \}) =&gt; any | - |
+| dateFullCellRender | 自定义渲染日期单元格，返回内容覆盖单元格，&gt;= 5.4.0 请用 `fullCellRender` | (ctx: &#123; date: AnyObject &#125;) =&gt; any | &lt; 5.4.0 |
+| dateCellRender | - | (ctx: &#123; date: AnyObject &#125;) =&gt; any | - |
+| monthFullCellRender | - | (ctx: &#123; date: AnyObject &#125;) =&gt; any | - |
+| monthCellRender | - | (ctx: &#123; date: AnyObject &#125;) =&gt; any | - |
+| cellRender | 自定义单元格的内容 | (ctx: &#123; date: AnyObject, info: any &#125;) =&gt; any | 5.4.0 |
+| fullCellRender | 自定义单元格的内容 | (ctx: &#123; date: AnyObject, info: any &#125;) =&gt; any | 5.4.0 |
+| headerRender | 自定义头部内容 | (config: &#123; value: AnyObject, type: CalendarMode, onChange: (date: AnyObject) =&gt; void, onTypeChange: (type: CalendarMode) =&gt; void &#125;) =&gt; any | - |

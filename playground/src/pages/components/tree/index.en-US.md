@@ -29,7 +29,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | rootClass | - | string | - | - |
-| showLine | Shows a connecting line | boolean \| \{ showLeafIcon: boolean \| TreeLeafIcon \} | false | - |
+| showLine | Shows a connecting line | boolean \| &#123; showLeafIcon: boolean \| TreeLeafIcon &#125; | false | - |
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | TreeClassNamesType | - | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | TreeStylesType | - | - |
 | multiple | Allows selecting multiple treeNodes | boolean | false | - |
@@ -41,7 +41,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | defaultExpandParent | If auto expand parent treeNodes when init | boolean | true | - |
 | defaultExpandedKeys | Specify the keys of the default expanded treeNodes | Key[] | \[] | - |
 | expandedKeys | (Controlled) Specifies the keys of the expanded treeNodes | Key[] | \[] | - |
-| checkedKeys | (Controlled) Specifies the keys of the checked treeNodes (PS: When this specifies the key of a treeNode which is also a parent treeNode, all the children treeNodes of will be checked; and vice versa, when it specifies the key of a treeNode which is a child treeNode, its parent treeNode will also be checked. When `checkable` and `checkStrictly` is true, its object has `checked` and `halfChecked` property. Regardless of whether the child or parent treeNode is checked, they won't impact each other | Key[] \| \{ checked: Key[], halfChecked: Key[] \} | \[] | - |
+| checkedKeys | (Controlled) Specifies the keys of the checked treeNodes (PS: When this specifies the key of a treeNode which is also a parent treeNode, all the children treeNodes of will be checked; and vice versa, when it specifies the key of a treeNode which is a child treeNode, its parent treeNode will also be checked. When `checkable` and `checkStrictly` is true, its object has `checked` and `halfChecked` property. Regardless of whether the child or parent treeNode is checked, they won't impact each other | Key[] \| &#123; checked: Key[], halfChecked: Key[] &#125; | \[] | - |
 | defaultCheckedKeys | Specifies the keys of the default checked treeNodes | Key[] | \[] | - |
 | selectedKeys | (Controlled) Specifies the keys of the selected treeNodes, multiple selection needs to set `multiple` to true | Key[] | - | - |
 | defaultSelectedKeys | Specifies the keys of the default selected treeNodes | Key[] | \[] | - |
@@ -83,7 +83,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
 | rootClass | - | string | - | - |
-| showLine | Shows a connecting line | boolean \| \{ showLeafIcon: boolean \| TreeLeafIcon \} | false | - |
+| showLine | Shows a connecting line | boolean \| &#123; showLeafIcon: boolean \| TreeLeafIcon &#125; | false | - |
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | TreeClassNamesType | - | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | TreeStylesType | - | - |
 | multiple | Allows selecting multiple treeNodes | boolean | false | - |
@@ -95,7 +95,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | defaultExpandParent | If auto expand parent treeNodes when init | boolean | true | - |
 | defaultExpandedKeys | Specify the keys of the default expanded treeNodes | Key[] | \[] | - |
 | expandedKeys | (Controlled) Specifies the keys of the expanded treeNodes | Key[] | \[] | - |
-| checkedKeys | (Controlled) Specifies the keys of the checked treeNodes (PS: When this specifies the key of a treeNode which is also a parent treeNode, all the children treeNodes of will be checked; and vice versa, when it specifies the key of a treeNode which is a child treeNode, its parent treeNode will also be checked. When `checkable` and `checkStrictly` is true, its object has `checked` and `halfChecked` property. Regardless of whether the child or parent treeNode is checked, they won't impact each other | Key[] \| \{ checked: Key[], halfChecked: Key[] \} | \[] | - |
+| checkedKeys | (Controlled) Specifies the keys of the checked treeNodes (PS: When this specifies the key of a treeNode which is also a parent treeNode, all the children treeNodes of will be checked; and vice versa, when it specifies the key of a treeNode which is a child treeNode, its parent treeNode will also be checked. When `checkable` and `checkStrictly` is true, its object has `checked` and `halfChecked` property. Regardless of whether the child or parent treeNode is checked, they won't impact each other | Key[] \| &#123; checked: Key[], halfChecked: Key[] &#125; | \[] | - |
 | defaultCheckedKeys | Specifies the keys of the default checked treeNodes | Key[] | \[] | - |
 | selectedKeys | (Controlled) Specifies the keys of the selected treeNodes, multiple selection needs to set `multiple` to true | Key[] | - | - |
 | defaultSelectedKeys | Specifies the keys of the default selected treeNodes | Key[] | \[] | - |
@@ -139,7 +139,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | scroll | - | NonNullable&lt;VcTreeProps['onScroll']&gt; | - |
 | activeChange | - | NonNullable&lt;VcTreeProps['onActiveChange']&gt; | - |
 | update:expandedKeys | - | (keys: Key[]) =&gt; void | - |
-| update:checkedKeys | - | (keys: Key[] \| \{ checked: Key[], halfChecked: Key[] \}) =&gt; void | - |
+| update:checkedKeys | - | (keys: Key[] \| &#123; checked: Key[], halfChecked: Key[] &#125;) =&gt; void | - |
 | update:selectedKeys | - | (keys: Key[]) =&gt; void | - |
 | update:activeKey | - | (key: Key) =&gt; void | - |
 
@@ -169,7 +169,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | scroll | - | NonNullable&lt;VcTreeProps['onScroll']&gt; | - |
 | activeChange | - | NonNullable&lt;VcTreeProps['onActiveChange']&gt; | - |
 | update:expandedKeys | - | (keys: Key[]) =&gt; void | - |
-| update:checkedKeys | - | (keys: Key[] \| \{ checked: Key[], halfChecked: Key[] \}) =&gt; void | - |
+| update:checkedKeys | - | (keys: Key[] \| &#123; checked: Key[], halfChecked: Key[] &#125;) =&gt; void | - |
 | update:selectedKeys | - | (keys: Key[]) =&gt; void | - |
 | update:activeKey | - | (key: Key) =&gt; void | - |
 

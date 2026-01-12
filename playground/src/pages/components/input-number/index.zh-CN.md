@@ -38,7 +38,7 @@ demo:
 | variant | 形态变体 | Variant | `outlined` | 5.13.0 \| `underlined`: 5.24.0 |
 | classes | 用于自定义组件内部各语义化结构的 class，支持对象或函数 | InputNumberClassNamesType | - | - |
 | styles | 用于自定义组件内部各语义化结构的行内 style，支持对象或函数 | InputNumberStylesType | - | - |
-| controls | 是否显示增减按钮，也可设置自定义箭头图标 | boolean \| \{ upIcon?: VueNode, downIcon?: VueNode \} | - | - |
+| controls | 是否显示增减按钮，也可设置自定义箭头图标 | boolean \| &#123; upIcon?: VueNode, downIcon?: VueNode &#125; | - | - |
 | type | - | 'number' \| 'text' | - | - |
 
 ### 事件 {#events}

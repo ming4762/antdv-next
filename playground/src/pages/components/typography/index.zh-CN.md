@@ -44,7 +44,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | delete | 添加删除线样式 | boolean | false |
 | disabled | 禁用文本 | boolean | false |
 | editable | 是否可编辑，为对象时可对编辑进行控制 | boolean \| [editable](#editable) | false |
-| ellipsis | 自动溢出省略，为对象时不能设置省略行数、是否可展开、onExpand 展开事件。不同于 Typography.Paragraph，Text 组件自身不带 100% 宽度样式，因而默认情况下初次缩略后宽度便不再变化。如果需要自适应宽度，请手动配置宽度样式 | boolean \| [Omit<ellipsis, 'expandable' \| 'rows' \| 'onExpand'>](#ellipsis) | false |
+| ellipsis | 自动溢出省略，为对象时不能设置省略行数、是否可展开、onExpand 展开事件。不同于 Typography.Paragraph，Text 组件自身不带 100% 宽度样式，因而默认情况下初次缩略后宽度便不再变化。如果需要自适应宽度，请手动配置宽度样式 | boolean \| [Omit&lt;ellipsis, 'expandable' \| 'rows' \| 'onExpand'&gt;](#ellipsis) | false |
 | keyboard | 添加键盘样式 | boolean | false |
 | mark | 添加标记样式 | boolean | false |
 | strong | 是否加粗 | boolean | false |
@@ -58,7 +58,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 
 | 事件 | 说明 | 类型 |
 | --- | --- | --- |
-| click | 点击时的回调 | (event: MouseEvent) => void |
+| click | 点击时的回调 | (event: MouseEvent) =&gt; void |
 
 ### Typography.Title {#typography-title}
 
@@ -84,7 +84,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 
 | 事件 | 说明 | 类型 |
 | --- | --- | --- |
-| click | 点击时的回调 | (event: MouseEvent) => void |
+| click | 点击时的回调 | (event: MouseEvent) =&gt; void |
 
 ### Typography.Paragraph {#typography-paragraph}
 
@@ -110,7 +110,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 
 | 事件 | 说明 | 类型 |
 | --- | --- | --- |
-| click | 点击时的回调 | (event: MouseEvent) => void |
+| click | 点击时的回调 | (event: MouseEvent) =&gt; void |
 
 ### copyable 配置 {#copyable}
 
@@ -126,30 +126,30 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 
 | 事件 | 说明 | 类型 |
 | --- | --- | --- |
-| copy | 拷贝成功的回调函数 | (event: MouseEvent) => void |
+| copy | 拷贝成功的回调函数 | (event: MouseEvent) =&gt; void |
 
 ### editable 配置 {#editable}
 
 | 参数 | 说明 | 类型 | 默认值 |
 | --- | --- | --- | --- |
-| autoSize | `autoSize` 属性的 textarea | boolean \| { minRows: number, maxRows: number } | - |
+| autoSize | `autoSize` 属性的 textarea | boolean \| &#123; minRows: number, maxRows: number &#125; | - |
 | editing | 控制是否是编辑中状态 | boolean | false |
-| icon | 自定义编辑图标 | VueNode | &lt;EditOutlined /> |
+| icon | 自定义编辑图标 | VueNode | &lt;EditOutlined /&gt; |
 | maxLength | 编辑中文本域最大长度 | number | - |
 | tooltip | 自定义提示文本，为 false 时关闭 | VueNode | `编辑` |
 | text | 显式地指定编辑文案，为空时将隐式地使用 children | string | - |
-| triggerType | 编辑模式触发器类型，图标、文本或者两者都设置（不设置图标作为触发器时它会隐藏） | Array&lt;`icon`\|`text`> | \[`icon`] |
-| enterIcon | 在编辑段中自定义"enter"图标（传递"null"将删除图标） | VueNode | `<EnterOutlined />` |
+| triggerType | 编辑模式触发器类型，图标、文本或者两者都设置（不设置图标作为触发器时它会隐藏） | Array&lt;`icon`\|`text`&gt; | \[`icon`] |
+| enterIcon | 在编辑段中自定义"enter"图标（传递"null"将删除图标） | VueNode | `&lt;EnterOutlined /&gt;` |
 | tabIndex | 自定义编辑按钮的 tabIndex | number | 0 |
 
 #### 事件
 
 | 事件 | 说明 | 类型 |
 | --- | --- | --- |
-| change | 文本域编辑时触发 | (value: string) => void |
-| cancel | 按 ESC 退出编辑状态时触发 | () => void |
-| start | 进入编辑中状态时触发 | () => void |
-| end | 按 ENTER 结束编辑状态时触发 | () => void |
+| change | 文本域编辑时触发 | (value: string) =&gt; void |
+| cancel | 按 ESC 退出编辑状态时触发 | () =&gt; void |
+| start | 进入编辑中状态时触发 | () =&gt; void |
+| end | 按 ENTER 结束编辑状态时触发 | () =&gt; void |
 
 ### ellipsis 配置 {#ellipsis}
 
@@ -158,7 +158,7 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 | expandable | 是否可展开 | boolean \| 'collapsible' | - |
 | rows | 最多显示的行数 | number | - |
 | suffix | 自定义省略内容后缀 | string | - |
-| symbol | 自定义展开描述文案 | VueNode \| ((expanded: boolean) => VueNode) | `展开` `收起` |
+| symbol | 自定义展开描述文案 | VueNode \| ((expanded: boolean) =&gt; VueNode) | `展开` `收起` |
 | tooltip | 省略时，展示提示信息 | VueNode \| [TooltipProps](/components/tooltip-cn/#api) | - |
 | defaultExpanded | 默认展开或收起 | boolean | - |
 | expanded | 展开或收起 | boolean | - |
@@ -167,8 +167,8 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*LT2jR41Uj2EAAA
 
 | 事件 | 说明 | 类型 |
 | --- | --- | --- |
-| ellipsis | 触发省略时的回调 | (ellipsis: boolean) => void |
-| expand | 点击展开或收起时的回调 | (event: MouseEvent, info: { expanded: boolean }) => void |
+| ellipsis | 触发省略时的回调 | (ellipsis: boolean) =&gt; void |
+| expand | 点击展开或收起时的回调 | (event: MouseEvent, info: &#123; expanded: boolean &#125;) =&gt; void |
 
 ## 主题变量（Design Token）{#design-token}
 
