@@ -33,6 +33,7 @@
     "./global": "./global.d.ts",
     "./dist/reset.css": "./dist/reset.css",
     "./web-types.json": "./web-types.json",
+    "./web-tags.json": "./web-tags.json",
     "./package.json": "./package.json"
   },
   "unpkg": "dist/antd.js",
