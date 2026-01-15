@@ -8,7 +8,7 @@
     "lint": "eslint . --fix",
     "ci:publish": "pnpm publish -r --access=public",
     "bump": "pnpm changeset version",
-    "build": "turbo build --filter playground"
+    "build": "cross-env NODE_OPTIONS=--max-old-space-size=8192 turbo build --filter playground"
   },
   "dependencies": {
     "vue": "catalog:"
@@ -26,6 +26,7 @@
     "@vitejs/plugin-vue-jsx": "catalog:",
     "@vue/tsconfig": "catalog:",
     "bumpp": "catalog:",
+    "cross-env": "^10.1.0",
     "eslint": "catalog:",
     "eslint-plugin-format": "catalog:",
     "esno": "catalog:",
