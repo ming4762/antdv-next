@@ -58,7 +58,7 @@ const onChange: TreeSelectEmits['change'] = (newValue) => {
     :styles="{
       popup: {
         root: {
-          maxHeight: 400,
+          maxHeight: '400px',
           overflow: 'auto',
         },
       },

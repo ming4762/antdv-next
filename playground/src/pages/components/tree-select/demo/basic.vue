@@ -73,7 +73,7 @@ const onPopupScroll: TreeSelectEmits['popupScroll'] = (e) => {
     :styles="{
       popup: {
         root: {
-          maxHeight: 400,
+          maxHeight: '400px',
           overflow: 'auto',
         },
       },

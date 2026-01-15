@@ -48,8 +48,6 @@ Common props ref：[Common props](/docs/vue/common-props)
 | defaultOpen | Initial open state of dropdown | boolean | - | - |
 | defaultValue | To set the initial selected treeNode(s) | SelectValue | - | - |
 | disabled | Disabled or not | boolean | false | - |
-| dropdownClassName | The className of dropdown menu, **Deprecated. Use `classes.popup.root` instead** | string | - | - |
-| dropdownMatchSelectWidth | Determine whether the popup menu and the select input are the same width, **Deprecated. Use `popupMatchSelectWidth` instead** | boolean \| number | - | - |
 | popupMatchSelectWidth | Determine whether the popup menu and the select input are the same width. Default set `min-width` same as input. Will ignore when value less than select width. `false` will disable virtual scroll | boolean \| number | true | - |
 | popupRender | Customize dropdown content | (menu: VueNode) =&gt; VueNode | - | - |
 | fieldNames | Customize node label, value, children field name | &#123; label?: string, value?: string, children?: string &#125; | &#123; label: 'label', value: 'value', children: 'children' &#125; | - |

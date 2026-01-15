@@ -49,8 +49,6 @@ demo:
 | defaultOpen | 是否默认展开下拉菜单 | boolean | - | - |
 | defaultValue | 指定默认选中的条目 | SelectValue | - | - |
 | disabled | 是否禁用 | boolean | false | - |
-| dropdownClassName | 下拉菜单的 className 属性，**已废弃，使用 `classes.popup.root` 替换** | string | - | - |
-| dropdownMatchSelectWidth | 下拉菜单和选择器同宽，**已废弃，使用 `popupMatchSelectWidth` 替换** | boolean \| number | - | - |
 | popupMatchSelectWidth | 下拉菜单和选择器同宽。默认将设置 `min-width`，当值小于选择框宽度时会被忽略。false 时会关闭虚拟滚动 | boolean \| number | true | - |
 | popupRender | 自定义下拉框内容 | (menu: VueNode) =&gt; VueNode | - | - |
 | fieldNames | 自定义节点 label、value、children 的字段 | &#123; label?: string, value?: string, children?: string &#125; | &#123; label: 'label', value: 'value', children: 'children' &#125; | - |
