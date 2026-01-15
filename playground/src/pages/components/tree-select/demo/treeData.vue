@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+使用 `treeData` 把 JSON 数据直接生成树结构。
+</docs>
+
+<docs lang="en-US">
+The tree structure can be populated using `treeData` property. This is a quick and easy way to provide the tree content.
+</docs>
+
 <script setup lang="ts">
 import type { TreeSelectEmits } from 'antdv-next'
 import { ref } from 'vue'

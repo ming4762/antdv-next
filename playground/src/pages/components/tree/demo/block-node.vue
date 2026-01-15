@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+让节点占据一行。
+</docs>
+
+<docs lang="en-US">
+Make tree nodes fill the remaining horizontal space.
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode } from 'antdv-next'
 import { ref } from 'vue'

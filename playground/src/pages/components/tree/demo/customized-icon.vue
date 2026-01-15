@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+可以针对不同的节点定制图标。
+</docs>
+
+<docs lang="en-US">
+You can customize icons for different nodes.
+</docs>
+
 <script lang="ts" setup>
 import type { TreeDataNode } from 'antdv-next'
 import { DownOutlined, FrownFilled, FrownOutlined, MehOutlined, SmileOutlined } from '@antdv-next/icons'

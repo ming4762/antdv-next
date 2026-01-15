@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+点击展开节点，动态加载数据。
+</docs>
+
+<docs lang="en-US">
+To load data asynchronously when click to expand a treeNode.
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode, TreeProps } from 'antdv-next'
 import { ref } from 'vue'

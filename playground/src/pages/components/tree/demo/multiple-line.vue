@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+多行树节点。
+</docs>
+
+<docs lang="en-US">
+Multiple line tree node.
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode, TreeEmits } from 'antdv-next'
 import { ref } from 'vue'

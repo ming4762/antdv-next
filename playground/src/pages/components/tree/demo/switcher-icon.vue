@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+自定义展开/折叠图标。
+</docs>
+
+<docs lang="en-US">
+customize collapse/expand icon of tree node
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode, TreeEmits } from 'antdv-next'
 import { DownOutlined } from '@antdv-next/icons'

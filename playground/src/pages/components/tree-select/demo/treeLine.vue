@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+通过 `treeLine` 配置线性样式。
+</docs>
+
+<docs lang="en-US">
+Use `treeLine` to show the line style.
+</docs>
+
 <script setup lang="ts">
 import { CarryOutOutlined } from '@antdv-next/icons'
 import { h, ref } from 'vue'

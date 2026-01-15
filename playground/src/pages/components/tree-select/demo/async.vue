@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+异步加载树节点。
+</docs>
+
+<docs lang="en-US">
+Asynchronous loading tree node.
+</docs>
+
 <script setup lang="ts">
 import type { TreeSelectEmits, TreeSelectProps } from 'antdv-next'
 import { ref } from 'vue'

@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+多选的树选择。
+</docs>
+
+<docs lang="en-US">
+Multiple selection usage.
+</docs>
+
 <script setup lang="ts">
 import type { TreeSelectEmits } from 'antdv-next'
 import { ref } from 'vue'

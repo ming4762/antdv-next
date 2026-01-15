@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+通过 `classes` 和 `styles` 传入对象/函数可以自定义 Tree 的[语义化结构](#semantic-dom)样式。
+</docs>
+
+<docs lang="en-US">
+You can customize the [semantic dom](#semantic-dom) style of Tree by passing objects/functions through `classes` and `styles`.
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode, TreeProps } from 'antdv-next'
 import { ref } from 'vue'

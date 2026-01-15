@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+大数据展示。
+</docs>
+
+<docs lang="en-US">
+Plenty of tree nodes.
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode } from 'antdv-next'
 

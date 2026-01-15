@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+自定义前缀 `prefix` 和后缀图标 `suffixIcon`。
+</docs>
+
+<docs lang="en-US">
+Custom `prefix` and `suffixIcon`.
+</docs>
+
 <script setup lang="ts">
 import type { TreeSelectEmits } from 'antdv-next'
 import { SmileOutlined } from '@antdv-next/icons'

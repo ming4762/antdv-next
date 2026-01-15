@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+可搜索的树。
+</docs>
+
+<docs lang="en-US">
+Searchable Tree.
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode, TreeEmits } from 'antdv-next'
 import { computed, h, ref, watch } from 'vue'
@@ -131,3 +139,9 @@ const treeData = computed(() => {
     />
   </div>
 </template>
+
+<style>
+.site-tree-search-value {
+  color: #f50;
+}
+</style>

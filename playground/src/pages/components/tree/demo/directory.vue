@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+内置的目录树，`multiple` 模式支持 `ctrl(Windows)` / `command(Mac)` 复选。
+</docs>
+
+<docs lang="en-US">
+Built-in directory tree. `multiple` support `ctrl(Windows)` / `command(Mac)` selection.
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode, TreeEmits } from 'antdv-next'
 

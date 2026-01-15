@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+使用勾选框实现多选功能。
+</docs>
+
+<docs lang="en-US">
+Multiple and checkable.
+</docs>
+
 <script setup lang="ts">
 import { TreeSelect } from 'antdv-next'
 import { ref } from 'vue'

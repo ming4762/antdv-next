@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+使用 `height` 属性则切换为虚拟滚动。
+</docs>
+
+<docs lang="en-US">
+Use virtual list through `height` prop.
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode } from 'antdv-next'
 

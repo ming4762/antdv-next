@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+最简单的用法。
+</docs>
+
+<docs lang="en-US">
+The most basic usage.
+</docs>
+
 <script setup lang="ts">
 import type { TreeSelectEmits } from 'antdv-next'
 import { ref } from 'vue'

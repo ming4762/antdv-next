@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+当 `showCheckedStrategy='SHOW_PARENT'` 或 `showCheckedStrategy='SHOW_ALL'` 且 `treeCheckStrictly=false` 时，`maxCount` 就不会生效。
+</docs>
+
+<docs lang="en-US">
+When `showCheckedStrategy=SHOW_PARENT` or `showCheckedStrategy=SHOW_ALL` and `treeCheckStrictly=false`, `maxCount` will not take effect.
+</docs>
+
 <script setup lang="ts">
 import { DownOutlined } from '@antdv-next/icons'
 import { TreeSelect } from 'antdv-next'

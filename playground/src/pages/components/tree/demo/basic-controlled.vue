@@ -1,3 +1,11 @@
+<docs lang="zh-CN">
+受控操作示例
+</docs>
+
+<docs lang="en-US">
+Controlled mode lets parent nodes reflect the status of child nodes more intelligently.
+</docs>
+
 <script setup lang="ts">
 import type { TreeDataNode, TreeEmits } from 'antdv-next'
 import { ref } from 'vue'
