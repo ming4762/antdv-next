@@ -1,6 +1,5 @@
 import type { Ref } from 'vue'
 import type { ScreenMap } from '../../_util/responsiveObserver'
-import canUseDom from '@v-c/util/dist/Dom/canUseDom'
 import { nextTick, ref, unref, watchEffect } from 'vue'
 import useResponsiveObserver from '../../_util/responsiveObserver'
 
@@ -12,9 +11,6 @@ export function useBreakpoint(
   const responsiveObserver = useResponsiveObserver()
 
   watchEffect(async (onCleanup) => {
-    if (!canUseDom()) {
-      return
-    }
     await nextTick()
     const token = responsiveObserver.value?.subscribe(
       (supportScreens) => {

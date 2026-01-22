@@ -7,23 +7,21 @@ Set the `disabled` property to make the tag unusable.
 </docs>
 
 <script setup lang="ts">
-import { CheckCircleOutlined, CloseCircleOutlined } from '@antdv-next/icons'
-import { message } from 'antdv-next'
-import { ref } from 'vue'
+  import { CheckCircleOutlined, CloseCircleOutlined } from '@antdv-next/icons'
+  import { message } from 'antdv-next'
+  import { ref } from 'vue'
 
-const selectedTags = ref<string[]>(['Books'])
-function handleClose(tagName: string) {
-  console.log(`Tag ${tagName} closed`)
-  message.info(`Tag ${tagName} closed`)
-};
+  const selectedTags = ref<string[]>(['Books'])
+  function handleClose(tagName: string) {
+    console.log(`Tag ${tagName} closed`);
+    message.info(`Tag ${tagName} closed`);
+  };
 </script>
 
 <template>
   <a-flex vertical gap="middle">
     <a-flex gap="small" wrap>
-      <a-tag disabled>
-        Basic Tag
-      </a-tag>
+      <a-tag disabled>Basic Tag</a-tag>
       <a-tag disabled>
         <a href="https://ant.design">Link Tag</a>
       </a-tag>
@@ -59,9 +57,7 @@ function handleClose(tagName: string) {
 
   <a-flex gap="small" wrap>
     <template v-for="tag in ['Books', 'Movies', 'Music']" :key="tag">
-      <a-checkable-tag :checked="selectedTags.includes(tag)" disabled :value="selectedTags.includes(tag)">
-        {{ tag }}
-      </a-checkable-tag>
+      <a-checkable-tag :checked="selectedTags.includes(tag)" disabled :value="selectedTags.includes(tag)">{{ tag }}</a-checkable-tag>
     </template>
   </a-flex>
 
@@ -70,16 +66,16 @@ function handleClose(tagName: string) {
       Closable Tag
     </a-tag>
     <a-tag disabled closable color="success" @close="() => handleClose('Closable Success')">
-      Closable with Icon
-      <template #icon>
-        <CheckCircleOutlined />
-      </template>
+    Closable with Icon
+    <template #icon>
+      <CheckCircleOutlined />
+    </template>
     </a-tag>
     <a-tag disabled closable>
-      Closable with Custom Icon
-      <template #closeIcon>
-        <CloseCircleOutlined />
-      </template>
+    Closable with Custom Icon
+    <template #closeIcon>
+      <CloseCircleOutlined />
+    </template>
     </a-tag>
   </a-flex>
 
@@ -98,3 +94,5 @@ function handleClose(tagName: string) {
     </a-tag>
   </a-flex>
 </template>
+
+<style scoped></style>

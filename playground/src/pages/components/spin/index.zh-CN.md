@@ -16,7 +16,7 @@ demo:
 
 页面局部处于等待异步数据或正在渲染过程时，合适的加载动效会有效缓解用户的焦虑。
 
-## 代码演示 {#examples}
+## 示例 {#examples}
 
 <demo-group>
   <demo src="./demo/basic.vue">基本用法</demo>
@@ -32,7 +32,7 @@ demo:
 
 ## API
 
-### 属性 {#props}
+### 属性 {#property}
 
 通用属性参考：[通用属性](/docs/vue/common-props)
 

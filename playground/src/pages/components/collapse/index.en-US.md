@@ -36,7 +36,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 
 ### Collapse
 
-#### Props {#collapse-props}
+#### Props {#props}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
@@ -57,13 +57,13 @@ Common props ref：[Common props](/docs/vue/common-props)
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | CollapseStylesType | - | - |
 | items | Collapse items content | CollapseItemType[] | - | - |
 
-#### Events {#collapse-events}
+#### Events {#events}
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
 | change | Callback function executed when active panel is changed | (key: string[]) =&gt; void | - |
 
-#### Slots {#collapse-slots}
+#### Slots {#slots}
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
@@ -84,9 +84,9 @@ Deprecated: when using items, prefer configuring panels with `items`.
 | extra | - | VueNode | - | - |
 | collapsible | Specify how to trigger Collapse. Either by clicking icon or by clicking any area in header or disable collapse functionality itself | CollapsibleType | - | - |
 
-## Types 
+## Types {#types}
 
-### ItemType 
+### ItemType {#itemtype}
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |

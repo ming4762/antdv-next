@@ -11,11 +11,11 @@ demo:
 
 <DocHeading></DocHeading>
 
-## When To Use
+## When To Use {#when-to-use}
 
 When part of the page is waiting for asynchronous data or during a rendering process, an appropriate loading animation can effectively alleviate users' inquietude.
 
-## Examples
+## Examples {#examples}
 
 <demo-group>
   <demo src="./demo/basic.vue">Basic Usage</demo>
@@ -31,7 +31,7 @@ When part of the page is waiting for asynchronous data or during a rendering pro
 
 ## API
 
-### Props
+### Property {#property}
 
 Common props ref：[Common props](/docs/vue/common-props)
 
@@ -49,7 +49,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | classes | Customize class for each semantic structure inside the component. Supports object or function. | SpinClassNamesType | - | - |
 | styles | Customize inline style for each semantic structure inside the component. Supports object or function. | SpinStylesType | - | - |
 
-### Slots
+### Slots {#slots}
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
@@ -57,7 +57,7 @@ Common props ref：[Common props](/docs/vue/common-props)
 | indicator | The node of the spinning indicator | () =&gt; any | - |
 | tip | Customize description content when Spin has children | () =&gt; any | - |
 
-### Static Methods
+### Static Methods {#static-methods}
 
 - `Spin.setDefaultIndicator(indicator: VueNode)`
 

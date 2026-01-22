@@ -10,7 +10,7 @@ Custom action.
 import type { TourStepItem } from 'antdv-next'
 import { EllipsisOutlined } from '@antdv-next/icons'
 import { Button } from 'antdv-next'
-import { h, shallowRef } from 'vue'
+import { shallowRef, h } from 'vue'
 
 const ref1 = shallowRef()
 const ref2 = shallowRef()
@@ -35,7 +35,7 @@ const steps: TourStepItem[] = [
   },
 ]
 
-function actionsRender(originNode: any, info: { current: number, total: number }) {
+const actionsRender = (originNode: any, info: { current: number, total: number }) => {
   const nodes: any[] = []
   if (info.current !== info.total - 1) {
     nodes.push(

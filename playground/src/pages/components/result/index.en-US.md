@@ -9,11 +9,9 @@ coverDark: https://mdn.alipayobjects.com/huamei_7uahnr/afts/img/A*-0kxQrbHx2kAAA
 
 <DocHeading></DocHeading>
 
-## When To Use
+## When To Use {#when-to-use}
 
-Use when important operations need to inform the user to process the results and the feedback is more complicated.
-
-## Examples
+## Examples {#examples}
 
 <demo-group>
   <demo src="./demo/success.vue">Success</demo>
@@ -29,31 +27,25 @@ Use when important operations need to inform the user to process the results and
 
 ## API
 
-Common props ref：[Common props](/docs/vue/common-props)
+### Property {#property}
 
-### Props
+Common props ref：[Common props](/docs/vue/common-props)
 
 | Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| classes | Customize class for each semantic structure inside the component. Supports object or function | Record<[SemanticDOM](#semantic-dom), string> \| (info: { props }) => Record<[SemanticDOM](#semantic-dom), string> | - |  |
-| extra | Operating area | VueNode | - |  |
-| icon | Custom back icon | VueNode | - |  |
-| status | Result status, decide icons and colors | `success` \| `error` \| `info` \| `warning` \| `404` \| `403` \| `500` | `info` |  |
-| styles | Customize inline style for each semantic structure inside the component. Supports object or function | Record<[SemanticDOM](#semantic-dom), CSSProperties> \| (info: { props }) => Record<[SemanticDOM](#semantic-dom), CSSProperties> | - |  |
-| subTitle | The subTitle | VueNode | - |  |
-| title | The title | VueNode | - |  |
+| icon | Custom back icon | VueNode | - | - |
+| status | Result status, decide icons and colors | ResultStatusType | `info` | - |
+| title | The title | VueNode | - | - |
+| subTitle | The subTitle | VueNode | - | - |
+| extra | Operating area | VueNode | - | - |
+| classes | Customize class for each semantic structure inside the component. Supports object or function | ResultClassNamesType | - | - |
+| styles | Customize inline style for each semantic structure inside the component. Supports object or function | ResultStylesType | - | - |
 
-### Slots
+### Slots {#slots}
 
 | Slot | Description | Type | Version |
 | --- | --- | --- | --- |
-| icon | Custom back icon | - | - |
-| title | The title | - | - |
-| subTitle | The subTitle | - | - |
-| extra | Operating area | - | - |
-
-## Semantic DOM
-
-## Design Token
-
-<ComponentTokenTable component="Result"></ComponentTokenTable>
+| icon | Custom back icon | () =&gt; any | - |
+| title | The title | () =&gt; any | - |
+| subTitle | The subTitle | () =&gt; any | - |
+| extra | Operating area | () =&gt; any | - |

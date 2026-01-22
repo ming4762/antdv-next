@@ -1,7 +1,7 @@
 {
   "name": "@antdv-next/icons",
   "type": "module",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0-alpha.1",
   "description": "",
   "repository": {
     "type": "git",
@@ -9,19 +9,19 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.mts",
-      "import": "./dist/index.mjs",
-      "default": "./dist/index.mjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./all": {
-      "types": "./dist/icons/index.d.mts",
-      "import": "./dist/icons/index.mjs",
-      "default": "./dist/icons/index.mjs"
+      "types": "./dist/icons/index.d.ts",
+      "import": "./dist/icons/index.js",
+      "default": "./dist/icons/index.js"
     },
     "./icon/*": {
-      "types": "./dist/icons/*.d.mts",
-      "import": "./dist/icons/*.mjs",
-      "default": "./dist/icons/*.mjs"
+      "types": "./dist/icons/*.d.ts",
+      "import": "./dist/icons/*.js",
+      "default": "./dist/icons/*.js"
     },
     "./package.json": "./package.json"
   },
@@ -40,12 +40,12 @@
     "vue": ">=3.2.0"
   },
   "dependencies": {
-    "@ant-design/colors": "catalog:prod",
-    "@ant-design/icons-svg": "catalog:prod",
-    "@v-c/util": "catalog:vc",
-    "es-toolkit": "catalog:prod"
+    "@ant-design/colors": "catalog:",
+    "@ant-design/icons-svg": "catalog:",
+    "@v-c/util": "catalog:",
+    "es-toolkit": "catalog:"
   },
   "devDependencies": {
-    "pkg-types": "catalog:prod"
+    "pkg-types": "catalog:"
   }
 }

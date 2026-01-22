@@ -11,10 +11,10 @@ export default defineConfig({
   // minify: true,
   clean: true,
   copy: [
-    { from: 'src/style/reset.css', to: 'dist' },
+    { from: 'src/style/reset.css', to: 'dist/reset.css' },
   ],
   external: [
     'vue',
-    '@antdv-next/icons',
+    '@antdv-next/icon',
   ],
 })

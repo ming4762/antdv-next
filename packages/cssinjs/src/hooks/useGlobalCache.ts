@@ -3,7 +3,6 @@ import type { KeyType } from '../Cache'
 import { computed, watch } from 'vue'
 import { pathKey } from '../Cache'
 import { useStyleContext } from '../StyleContext'
-import { isClientSide } from '../util'
 
 export type ExtractStyle<CacheValue> = (
   cache: CacheValue,
@@ -83,15 +82,9 @@ export function useGlobalCache<CacheType>(
         })
       }
       const globalCache = styleContext.value.cache
-      const isServerSide = styleContext.value.mock !== undefined
-        ? styleContext.value.mock === 'server'
-        : !isClientSide
 
       // Cleanup on unmount or when fullPathStr changes
       onCleanup(() => {
-        if (isServerSide) {
-          return
-        }
         globalCache.opUpdate(currentPath, (prevCache) => {
           // if (!prevCache)
           //   return null

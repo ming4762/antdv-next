@@ -32,25 +32,24 @@ demo:
 
 ## API
 
+### Property {#property}
+
 Common props ref：[Common props](/docs/vue/common-props)
 
-### Props
-
-| Property | Description | type | Default | Version |
+| Property | Description | Type | Default | Version |
 | --- | --- | --- | --- | --- |
-| allowClear | Whether to allow clear when click again | boolean | true |  |
-| allowHalf | Whether to allow semi selection | boolean | false |  |
-| character | The custom character of rate | VueNode \| (RateProps) => VueNode | &lt;StarFilled /> | function(): 4.4.0 |
-| className | The custom class name of rate | string | - |  |
-| count | Star count | number | 5 |  |
-| disabled | If read only, unable to interact | boolean | false |  |
-| keyboard | Support keyboard operation | boolean | true | 5.18.0 |
-| size | Star size | 'small' \| 'middle' \| 'large' | 'middle' |  |
-| style | The custom style object of rate | CSSProperties | - |  |
-| tooltips | Customize tooltip by each character | [TooltipProps](/components/tooltip#api)[\] \| string\[] | - |  |
-| value | The current value | number | - |  |
+| allowClear | Whether to allow clear when click again | boolean | true | - |
+| allowHalf | Whether to allow semi selection | boolean | false | - |
+| autoFocus | Get focus automatically | boolean | false | - |
+| character | The custom character of rate | VueNode \| (props: RateProps) => VueNode | `<StarFilled />` | - |
+| count | Star count | number | 5 | - |
+| disabled | If read only, unable to interact | boolean | false | - |
+| rootClass | - | string | - | - |
+| size | Star size | 'small' \| 'middle' \| 'large' | 'middle' | - |
+| tooltips | Customize tooltip by each character | (TooltipProps \| string)[] | - | - |
+| value | The current value | number | - | - |
 
-### Events
+### Events {#events}
 
 | Event | Description | Type | Version |
 | --- | --- | --- | --- |
@@ -58,16 +57,5 @@ Common props ref：[Common props](/docs/vue/common-props)
 | hoverChange | Callback when hover item | (value: number) =&gt; void | - |
 | focus | Callback when component get focus | () =&gt; void | - |
 | blur | Callback when component lose focus | () =&gt; void | - |
-| keydown | Callback when keydown on component | (e: KeyboardEvent) =&gt; void | - |
-| mouseleave | Callback when mouse leaves the component | (e: FocusEvent) =&gt; void | - |
-
-### Methods
-
-| Name    | Description  |
-| ------- | ------------ |
-| blur()  | Remove focus |
-| focus() | Get focus    |
-
-## Design Token
-
-<ComponentTokenTable component="Rate"></ComponentTokenTable>
+| keydown | - | (e: KeyboardEvent) =&gt; void | - |
+| mouseleave | - | (e: FocusEvent) =&gt; void | - |
