@@ -1,3 +1,6 @@
+onlyBuiltDependencies:
+  - esbuild
+  - less
 packages:
   - packages/*
   - playground
@@ -134,3 +137,9 @@ catalogs:
     '@v-c/virtual-list': ^1.0.5
 
 cleanupUnusedCatalogs: true
+
+overrides:
+  '@v-c/resize-observer': catalog:vc
+  '@v-c/trigger': catalog:vc
+  '@v-c/util': catalog:vc
+  vite: catalog:dev
