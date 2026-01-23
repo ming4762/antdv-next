@@ -35,6 +35,8 @@ const algorithm = computed(() => {
   }
   return algorithms
 })
+
+const zeroRuntime = import.meta.env.PROD === true
 </script>
 
 <template>
@@ -43,7 +45,7 @@ const algorithm = computed(() => {
       :locale="antdLocale"
       :theme="{
         algorithm,
-        zeroRuntime: true,
+        zeroRuntime,
       }"
     >
       <a-app>
