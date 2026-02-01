@@ -9,7 +9,7 @@ Today, we are finally releasing the very first version of **Antdv Next — v1.0*
 After more than a year of design, experimentation, and development, we have completed the first full implementation of the **Ant Design v6 Design Token system** in the Vue ecosystem.
 
 Since Antdv Next is built upon the Ant Design v6 design system, we intentionally keep a high level of consistency with Ant Design in terms of design principles and specifications.
-For detailed explanations of Design Tokens, CSS Variables, and the styling runtime, we will not repeat them here. Instead, we recommend referring directly to the official Ant Design documentation and related articles, such as: [Some Notes on V6](https://ant.design/docs/blog/css-tricks-cn).
+For detailed explanations of Design Tokens, CSS Variables, and the styling runtime, we will not repeat them here. Instead, we recommend referring directly to the official Ant Design documentation and related articles, such as: [Ant Design 6.0 is Here!](https://github.com/ant-design/ant-design/issues/55804)  [Some Notes on V6](https://ant.design/docs/blog/css-tricks-cn).
 
 However, **Vue and React naturally differ in their component design paradigms**.
 Therefore, during the migration process, we did not simply "mirror the APIs", but made a series of necessary engineering-level adjustments based on Vue's idiomatic usage patterns.
@@ -129,7 +129,6 @@ In this release, we have added AI support to the documentation system.
 ## Acknowledgements
 
 We would like to sincerely thank all community contributors who have provided code, documentation, and valuable feedback over the past year.
-
 Without your support and dedication, this project would not have reached its current state.
 
 Special thanks to the following core contributors (in no particular order):
@@ -138,8 +137,11 @@ Special thanks to the following core contributors (in no particular order):
 - [@cc-hearts](https://github.com/cc-hearts)
 - [@ffgenius](https://github.com/ffgenius)
 
-We also appreciate every contributor who has ever participated in Antdv Next — whether through code, issues, or discussions.
-You are all essential parts of this project.
+We also appreciate everyone who has ever participated in Antdv Next — whether through code, issues, or discussions, you are all essential parts of this project.
+
+<a href="https://github.com/antdv-next/antdv-next/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=antdv-next/antdv-next&max=100&columns=15" />
+</a>
 
 ## Future Outlook
 
@@ -159,6 +161,18 @@ These resources will be used to subsidize core maintenance costs and allow us to
 
 If you encounter sponsorship information during usage, we hope you can understand and support it —
 this directly helps us make the project more stable, longer-lasting, and better.
+
+## Disclaimer
+
+Antdv Next is **not an official Ant Design project**. It is a community-initiated and community-maintained independent project.
+
+This project is a complete reimplementation of Vue components based on the Ant Design v6 design system, aiming to provide the Vue ecosystem with a design system solution that is highly consistent with Ant Design's style.
+
+Since our project is **not** a fork or secondary development of Ant Design Vue, we do not maintain full API compatibility with Ant Design Vue. Therefore, you may encounter some differences during usage.
+
+If your project is just getting started and you want to migrate to our library, we recommend referring to our [Migration Guide](/docs/vue/migration-antdv-next).
+
+If your project is already mature and running in production, we recommend that you carefully evaluate potential risks and impacts before upgrading, and consider whether the upgrade is necessary to avoid unnecessary disruptions to your existing system.
 
 ### On Community Governance
 

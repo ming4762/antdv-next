@@ -2,9 +2,6 @@ import type { DOMWindow } from 'jsdom'
 
 import util from 'node:util'
 import { vi } from 'vitest'
-import { version } from 'vue'
-
-console.log('Current Vue Version:', version)
 
 const originConsoleErr = console.error
 

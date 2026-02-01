@@ -1,5 +1,7 @@
 // Docs menu locales
-export default {
+import type { MenuDocs } from '@/locales/en-US/menu-docs'
+
+const menuDocs: MenuDocs = {
   docs: {
     vue: {
       introduce: '介绍',
@@ -21,4 +23,9 @@ export default {
       faq: '常见问题',
     },
   },
+  blog: {
+    antdvNextRelease: 'Antdv Next 1.0 发布',
+  },
 } as const
+
+export default menuDocs

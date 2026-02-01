@@ -1,5 +1,5 @@
 // Docs menu locales
-export default {
+const menuLocales = {
   docs: {
     vue: {
       introduce: 'Ant Design of Vue',
@@ -21,4 +21,17 @@ export default {
       faq: 'FAQ',
     },
   },
+  blog: {
+    antdvNextRelease: 'Antdv Next 1.0 Released',
+  },
 } as const
+
+export default menuLocales
+
+type DeepStringLeaves<T>
+  = T extends string ? string
+    : T extends Record<PropertyKey, any>
+      ? { [K in keyof T]: DeepStringLeaves<T[K]> }
+      : never
+
+export type MenuDocs = DeepStringLeaves<typeof menuLocales>

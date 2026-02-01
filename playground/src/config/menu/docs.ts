@@ -1,11 +1,13 @@
 import type { AntdvMenuItem } from './interface'
+import type { MenuDocs } from '@/locales/en-US/menu-docs'
 import type { InnerLocale } from '@/utils/locale'
 import locales from '@/locales'
 import { components } from './components'
 
 // Helper to flatten nested docs locales
-function flattenDocsLocales(nestedLocales: typeof locales['zh-CN']['menuDocs']) {
+function flattenDocsLocales(nestedLocales: MenuDocs) {
   const vue = nestedLocales.docs.vue
+  const blog = nestedLocales.blog
   return {
     '/docs/vue/introduce': vue.introduce,
     '/docs/vue/use': vue.use,
@@ -24,6 +26,7 @@ function flattenDocsLocales(nestedLocales: typeof locales['zh-CN']['menuDocs']) 
     '/docs/vue/awesome': vue.awesome,
     '/docs/vue/contributing': vue.contributing,
     '/docs/vue/faq': vue.faq,
+    '/blog/antdv-next-release': blog.antdvNextRelease,
   }
 }
 
@@ -36,8 +39,8 @@ export const docsMenuLocales: Record<string, Record<InnerLocale, string>> = (() 
 
   for (const key of Object.keys(zhFlat)) {
     result[key] = {
-      'zh-CN': zhFlat[key],
-      'en-US': enFlat[key],
+      'zh-CN': zhFlat[key as keyof typeof zhFlat],
+      'en-US': enFlat[key as keyof typeof enFlat],
     }
   }
 
@@ -132,5 +135,10 @@ export const docsMenus: Record<string, AntdvMenuItem[]> = {
     },
   ],
   '/components': components,
-  '/blog': [],
+  '/blog': [
+    {
+      key: '/blog/antdv-next-release',
+      label: '/blog/antdv-next-release',
+    },
+  ],
 }

@@ -9,7 +9,7 @@ author: aibayanyu20
 在经历了一年多的酝酿与开发之后，我们完成了这一代 **Ant Design v6 Design Token 体系** 在 Vue 生态中的第一次完整落地。
 
 由于 Antdv Next 本身是从 Ant Design v6 体系迁移而来，因此在设计理念与规范层面，我们始终与 Ant Design 保持高度一致。
-关于 Design Token、CSS Variables、样式运行时等基础设计体系的详细说明，这里不再重复展开，建议直接参考官方文档与相关文章，例如：[V6 的一些琐事](https://ant.design/docs/blog/css-tricks-cn)。
+关于 Design Token、CSS Variables、样式运行时等基础设计体系的详细说明，这里不再重复展开，建议直接参考官方文档与相关文章，例如：[Ant Design 6.0 来了](https://github.com/ant-design/ant-design/issues/55805) 、 [V6 的一些琐事](https://ant.design/docs/blog/css-tricks-cn)。
 
 但与此同时，**Vue 与 React 在组件设计范式上存在天然差异**。
 因此在迁移过程中，我们并不是简单地“对齐 API”，而是结合 Vue 的使用习惯，对部分设计做了必要的工程级调整。
@@ -125,6 +125,18 @@ Antdv Next 仍然完整支持通过 props 传递节点内容，你可以继续�
 1. llm.txt 集成，默认集成了 llm.txt 支持，方便用户通过本地或远程 LLM 模型进行离线问答。
 2. skills 支持，目前比较流行的本地的技能库，配合 [Antfu Skills 集合](https://github.com/antfu/skills) 一起使用，可以减少 AI 幻觉导致的一些问题。
 
+
+## 声明
+
+Antdv Next 并非 Ant Design 官方项目，而是由社区发起并维护的一个独立项目。
+
+本项目是基于 Ant Design v6 设计体系重新实现的 Vue 组件库，旨在为 Vue 生态提供一套与 Ant Design 风格高度一致的设计系统解决方案。
+
+所以本身我们的项目并不是基于 Ant Design Vue 进行二次开发的，所以我们并没有与 Ant Design Vue的所有API完全保持一致，所以在使用过程中可能会有一些差异。
+
+如果您的项目刚起步，想要升级到我们的项目，建议可以参考我们的[迁移指南](/docs/vue/migration-antdv-next-cn)
+
+如果您的项目已经是成熟且在生产环境中运行的项目，建议您在升级前先评估可能的风险和影响，再考虑是不是有升级的必要，以免对现有系统造成不必要的影响。
 
 
 ## 致谢

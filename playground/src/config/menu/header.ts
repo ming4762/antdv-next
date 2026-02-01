@@ -30,14 +30,14 @@ function flattenHeaderLocales(nestedLocales: typeof locales['zh-CN']['menuHeader
 // Export locale map by converting centralized locales to the expected format
 export const headerLocales: Record<string, Record<InnerLocale, string>> = (() => {
   const zhFlat = flattenHeaderLocales(locales['zh-CN'].menuHeader)
-  const enFlat = flattenHeaderLocales(locales['en-US'].menuHeader)
+  const enFlat = flattenHeaderLocales(locales['en-US'].menuHeader as any)
 
   const result: Record<string, Record<InnerLocale, string>> = {}
 
   for (const key of Object.keys(zhFlat)) {
     result[key] = {
-      'zh-CN': zhFlat[key],
-      'en-US': enFlat[key],
+      'zh-CN': zhFlat[key as keyof typeof zhFlat],
+      'en-US': enFlat[key as keyof typeof enFlat],
     }
   }
 
