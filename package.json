@@ -62,7 +62,6 @@
     "npm-run-all": "catalog:dev",
     "picocolors": "catalog:dev",
     "pretty-format": "catalog:dev",
-    "prismjs": "catalog:docs",
     "simple-git-hooks": "catalog:dev",
     "tinyglobby": "catalog:dev",
     "tsdown": "catalog:dev",

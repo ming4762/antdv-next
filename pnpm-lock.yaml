@@ -181,9 +181,6 @@ catalogs:
     markdown-it-ts:
       specifier: 0.0.2
       version: 0.0.2
-    prismjs:
-      specifier: ^1.30.0
-      version: 1.30.0
     shiki:
       specifier: ^3.20.0
       version: 3.20.0
@@ -524,9 +521,6 @@ importers:
       pretty-format:
         specifier: catalog:dev
         version: 30.2.0
-      prismjs:
-        specifier: catalog:docs
-        version: 1.30.0
       simple-git-hooks:
         specifier: catalog:dev
         version: 2.13.1
@@ -4651,10 +4645,6 @@ packages:
   pretty-format@30.2.0:
     resolution: {integrity: sha512-9uBdv/B4EefsuAL+pWqueZyZS2Ba+LxfFeQ9DN14HU4bN8bhaxKdkpjpB6fs9+pSjIBu+FXQHImEg8j/Lw0+vA==}
     engines: {node: ^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0}
-
-  prismjs@1.30.0:
-    resolution: {integrity: sha512-DEvV2ZF2r2/63V+tK8hQvrR2ZGn10srHbXviTlcv7Kpzw8jWiNTqbVgjO3IY8RxrrOUF8VPMQQFysYYYv0YZxw==}
-    engines: {node: '>=6'}
 
   property-information@7.1.0:
     resolution: {integrity: sha512-TwEZ+X+yCJmYfL7TPUOcvBZ4QfoT5YenQiJuX//0th53DE6w0xxLEtfK3iyryQFddXuvkIk51EEgrJQ0WJkOmQ==}
@@ -9933,8 +9923,6 @@ snapshots:
       '@jest/schemas': 30.0.5
       ansi-styles: 5.2.0
       react-is: 18.3.1
-
-  prismjs@1.30.0: {}
 
   property-information@7.1.0: {}
 

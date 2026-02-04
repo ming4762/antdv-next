@@ -1,17 +1,6 @@
-cleanupUnusedCatalogs: true
-
-shellEmulator: true
-
-trustPolicy: no-downgrade
 packages:
   - packages/*
   - playground
-overrides:
-  '@v-c/portal': catalog:vc
-  '@v-c/resize-observer': catalog:vc
-  '@v-c/trigger': catalog:vc
-  '@v-c/util': catalog:vc
-  vite: catalog:dev
 
 catalogs:
   dev:
@@ -75,7 +64,6 @@ catalogs:
     markdown-it-container: ^4.0.0
     markdown-it-emoji: ^3.0.0
     markdown-it-ts: 0.0.2
-    prismjs: ^1.30.0
     shiki: ^3.20.0
   prod:
     '@ant-design/colors': 7.2.1
@@ -157,6 +145,20 @@ catalogs:
     '@v-c/upload': ^1.0.0
     '@v-c/util': ^1.0.13
     '@v-c/virtual-list': ^1.0.5
+
+cleanupUnusedCatalogs: true
+
 onlyBuiltDependencies:
   - esbuild
   - less
+
+overrides:
+  '@v-c/portal': catalog:vc
+  '@v-c/resize-observer': catalog:vc
+  '@v-c/trigger': catalog:vc
+  '@v-c/util': catalog:vc
+  vite: catalog:dev
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
