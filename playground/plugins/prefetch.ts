@@ -5,6 +5,16 @@ interface PrefetchConfig {
 }
 
 function prefetch(config: PrefetchConfig = { concurrency: 2 }): Plugin {
+  const snippet = `
+<!-- Cloudflare Web Analytics -->
+<script
+  defer
+  src="https://static.cloudflareinsights.com/beacon.min.js"
+  data-cf-beacon='{"token": "6b0750c8a044412cb1993ad5c4524a61"}'>
+</script>
+<!-- End Cloudflare Web Analytics -->
+`
+
   return {
     name: 'vite-plugin-prefetch',
     apply: 'build',
@@ -99,6 +109,21 @@ function prefetch(config: PrefetchConfig = { concurrency: 2 }): Plugin {
         const scriptTag = `<script src="/${fileName}?v=${Date.now()}"></script>`
         htmlAsset.source = htmlAsset.source.replace('</body>', `${scriptTag}</body>`)
       }
+    },
+    transformIndexHtml: {
+      order: 'post',
+      handler(html) {
+        // 防止重复注入（多入口 / 多次构建）
+        if (html.includes('cloudflareinsights.com/beacon.min.js')) {
+          return html
+        }
+
+        // 注入到 </head> 前（也可以放到 </body> 前）
+        return html.replace(
+          '</head>',
+          `${snippet}\n</head>`,
+        )
+      },
     },
   }
 }
