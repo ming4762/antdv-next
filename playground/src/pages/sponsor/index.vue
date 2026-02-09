@@ -27,22 +27,29 @@ const teamMembers = [
     github: 'aibayanyu20',
     name: 'aibayanyu20',
     avatar: 'https://avatars.githubusercontent.com/u/45655660?v=4',
+    wxCode: 'wxp://f2f0CAPw6HcV3Vm85wFYpEJZHONHoQklOWd6vXe4Z0udKvA',
+    alipayCode: 'https://qr.alipay.com/2m614380prbpz28lwb4t863',
   },
   {
     github: 'selicens',
     name: 'selicens',
     avatar: 'https://avatars.githubusercontent.com/u/69418751?v=4',
+    wxCode: '',
+    alipayCode: '',
   },
   {
     github: 'cc-hearts',
     name: 'cc-hearts',
     avatar: 'https://avatars.githubusercontent.com/u/71313168?v=4',
+    wxCode: '',
+    alipayCode: '',
   },
-
   {
     github: 'ffgenius',
     name: 'ffgenius',
     avatar: 'https://avatars.githubusercontent.com/u/106022674?v=4',
+    wxCode: '',
+    alipayCode: '',
   },
 ]
 
@@ -361,16 +368,7 @@ const amountOptions = [
                     <a-space class="member-actions">
                       <a-popover trigger="hover" placement="bottom">
                         <template #content>
-                          <div class="qrcode-content">
-                            <img
-                              src="https://via.placeholder.com/200x200?text=Alipay+QR"
-                              alt="支付宝二维码"
-                              class="qrcode-img"
-                            >
-                            <p class="qrcode-tip">
-                              扫码赞助 {{ member.name }}
-                            </p>
-                          </div>
+                          <a-qrcode :value="member.alipayCode || 'not-has-qr'" :status="member.alipayCode ? undefined : 'loading'" :bordered="false" />
                         </template>
                         <a-button type="primary" ghost>
                           <template #icon>
@@ -381,16 +379,7 @@ const amountOptions = [
                       </a-popover>
                       <a-popover trigger="hover" placement="bottom">
                         <template #content>
-                          <div class="qrcode-content">
-                            <img
-                              src="https://via.placeholder.com/200x200?text=WeChat+QR"
-                              alt="微信二维码"
-                              class="qrcode-img"
-                            >
-                            <p class="qrcode-tip">
-                              扫码赞助 {{ member.name }}
-                            </p>
-                          </div>
+                          <a-qrcode :value="member.wxCode || 'not-has-qr'" :status="member.wxCode ? undefined : 'loading'" :bordered="false" />
                         </template>
                         <a-button style="color: #07c160; border-color: #07c160">
                           <template #icon>
