@@ -9,7 +9,7 @@ import { computed, ref } from 'vue'
 import { useLocale } from '@/composables/use-locale'
 import Group from '../group/index.vue'
 import BackgroundImage from './background-image.vue'
-import { usePreviewThemes } from './previre-theme'
+import { usePreviewThemes } from './preview-theme'
 
 const ModalPanel = (Modal as any)._InternalPanelDoNotUseOrYouWillBeFired
 const previewThemes = usePreviewThemes()
@@ -69,16 +69,29 @@ const memoThemeProps = computed(() => activeTheme.value?.props)
     id="flexible"
     :title="t('homePage.theme.themeTitle')"
     :description="t('homePage.theme.themeDesc')"
+    :title-color="activeTheme?.bgImgDark ? '#fff' : undefined"
   >
     <a-flex class="theme-container" gap="large">
       <!-- Theme List -->
-      <div class="theme-list">
+      <div class="theme-list" role="tablist" aria-label="Theme selection">
         <div
           v-for="(item, index) in previewThemes"
           :key="item.name"
           class="theme-list-item"
-          :class="{ active: activeThemeIndex === index }"
+          :class="{
+            active: activeThemeIndex === index,
+            dark: activeTheme?.bgImgDark,
+          }"
+          role="tab"
+          :tabindex="activeThemeIndex === index ? 0 : -1"
+          :aria-selected="activeThemeIndex === index"
           @click="activeThemeIndex = index"
+          @keydown="(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault()
+              activeThemeIndex = index
+            }
+          }"
         >
           {{ item.name }}
         </div>
@@ -91,7 +104,12 @@ const memoThemeProps = computed(() => activeTheme.value?.props)
           :is-light="!activeTheme?.bgImgDark"
         />
         <!-- Components Block -->
-        <a-card class="components-block">
+        <a-card
+          class="components-block"
+          :classes="{
+            root: 'components-card',
+          }"
+        >
           <a-flex vertical gap="middle">
             <!-- Modal Panel -->
             <ModalPanel title="Ant Design">
@@ -207,9 +225,14 @@ const memoThemeProps = computed(() => activeTheme.value?.props)
   color: rgba(0, 0, 0, 0.88);
 }
 
-.theme-list-item:hover {
+.theme-list-item:hover:not(.active) {
   border-color: #91caff;
   background-color: #e6f4ff;
+}
+
+.theme-list-item:focus-visible {
+  outline: 2px solid #1677ff;
+  outline-offset: 2px;
 }
 
 .theme-list-item.active {
@@ -218,15 +241,37 @@ const memoThemeProps = computed(() => activeTheme.value?.props)
   color: #1677ff;
 }
 
+.theme-list-item.dark {
+  color: #fff;
+  background-color: transparent;
+}
+
+.theme-list-item.dark:hover,
+.theme-list-item.dark.active {
+  border-color: #fff;
+  background-color: transparent;
+}
+
 .components-block {
-  flex: auto;
+  flex: none;
   background: color-mix(in srgb, var(--ant-color-bg-container) 70%, transparent);
   backdrop-filter: blur(12px);
-  max-width: calc(420px + var(--ant-padding-xl) * 2);
+  max-width: calc(420px + var(--ant-padding-xl) * 8);
   border: var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary);
 }
 
 .flex-auto {
   flex: auto;
+}
+
+.components-card {
+  flex: auto;
+  display: flex;
+  padding: var(--ant-padding-xl);
+  -webkit-box-pack: center;
+  justify-content: center;
+  border: var(--ant-line-width) var(--ant-line-type) var(--ant-color-border-secondary);
+  border-radius: var(--ant-border-radius);
+  box-shadow: var(--ant-box-shadow);
 }
 </style>

@@ -1,23 +1,10 @@
 import type { ConfigProviderProps } from 'antdv-next'
 import type { CSSProperties } from 'vue'
 import type { UseTheme } from '.'
+import type { CSSVar, StylesResult } from './types.ts'
 import { theme } from 'antdv-next'
 import { useToken } from 'antdv-next/theme/internal'
 import { computed } from 'vue'
-
-type CSSVar = Record<string, string>
-
-function createCssVar(prefix = 'ant'): CSSVar {
-  return new Proxy({} as CSSVar, {
-    get(_, key: string) {
-      return `var(--${prefix}-${key.replace(/([A-Z])/g, '-$1').toLowerCase()})`
-    },
-  })
-}
-
-interface StylesResult {
-  [key: string]: CSSProperties
-}
 
 function createStyles(cssVar: CSSVar): StylesResult {
   const illustrationBorder: CSSProperties = {
@@ -65,9 +52,8 @@ function createStyles(cssVar: CSSVar): StylesResult {
 }
 
 function useStyles() {
-  const [, , , , cssVarConfig] = useToken()
-  const cssVar = createCssVar(cssVarConfig.value?.prefix)
-  const styles = computed(() => createStyles(cssVar))
+  const [, , , token] = useToken()
+  const styles = computed(() => createStyles(token.value))
   return { styles }
 }
 

@@ -1,25 +1,11 @@
-import type { ConfigProviderProps } from 'antdv-next'
-import type { CSSProperties } from 'vue'
+import type { ConfigProviderProps, GlobalToken } from 'antdv-next'
 import type { UseTheme } from '.'
+import type { StylesResult } from './types.ts'
 import { theme } from 'antdv-next'
 import { useToken } from 'antdv-next/theme/internal'
 import { computed } from 'vue'
 
-type CSSVar = Record<string, string>
-
-function createCssVar(prefix = 'ant'): CSSVar {
-  return new Proxy({} as CSSVar, {
-    get(_, key: string) {
-      return `var(--${prefix}-${key.replace(/([A-Z])/g, '-$1').toLowerCase()})`
-    },
-  })
-}
-
-interface StylesResult {
-  [key: string]: CSSProperties
-}
-
-function createStyles(cssVar: CSSVar): StylesResult {
+function createStyles(cssVar: GlobalToken): StylesResult {
   return {
     boxBorder: {
       border: `${cssVar.lineWidth} ${cssVar.lineType} color-mix(in srgb, ${cssVar.colorBorder} 80%, #000)`,
@@ -84,9 +70,9 @@ function createStyles(cssVar: CSSVar): StylesResult {
 }
 
 function useStyles() {
-  const [, , , , cssVarConfig] = useToken()
-  const cssVar = createCssVar(cssVarConfig.value?.prefix)
-  const styles = computed(() => createStyles(cssVar))
+  const [, , , token] = useToken()
+  const styles = computed(() => createStyles(token.value))
+
   return { styles }
 }
 
