@@ -5,7 +5,7 @@ import {
   DownOutlined,
 } from '@antdv-next/icons'
 import { Modal } from 'antdv-next'
-import { computed, h, ref } from 'vue'
+import { computed, h, ref, watchEffect } from 'vue'
 import { useLocale } from '@/composables/use-locale'
 import Group from '../group/index.vue'
 import BackgroundImage from './background-image.vue'
@@ -67,6 +67,10 @@ const radioOptions = computed(() => [
 ])
 
 const memoThemeProps = computed(() => activeTheme.value?.props)
+
+watchEffect(() => {
+  console.log(memoThemeProps.value)
+})
 </script>
 
 <template>
@@ -74,7 +78,7 @@ const memoThemeProps = computed(() => activeTheme.value?.props)
     id="flexible"
     :title="t('homePage.theme.themeTitle')"
     :description="t('homePage.theme.themeDesc')"
-    :title-color="activeTheme?.bgImgDark ? '#fff' : undefined"
+    :title-color="activeTheme?.bgImgDark ? '#fff' : '#000'"
   >
     <a-flex class="theme-container" gap="large">
       <!-- Theme List -->
