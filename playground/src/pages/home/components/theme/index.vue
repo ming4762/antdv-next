@@ -5,7 +5,7 @@ import {
   DownOutlined,
 } from '@antdv-next/icons'
 import { Modal } from 'antdv-next'
-import { computed, ref } from 'vue'
+import { computed, h, ref } from 'vue'
 import { useLocale } from '@/composables/use-locale'
 import Group from '../group/index.vue'
 import BackgroundImage from './background-image.vue'
@@ -22,7 +22,12 @@ const sliderMarks = {
   0: '0°C',
   26: '26°C',
   37: '37°C',
-  100: '100°C',
+  100: {
+    style: {
+      color: '#f50',
+    },
+    label: h('strong', '100°C'),
+  },
 }
 
 const { t } = useLocale()
