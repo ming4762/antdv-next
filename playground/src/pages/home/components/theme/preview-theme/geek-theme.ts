@@ -59,6 +59,7 @@ function createStyles(cssVar: CSSVar): StylesResult {
     },
     progressTrack: {
       backgroundColor: cssVar.colorPrimary,
+      height: '8px',
     },
   }
 }
@@ -83,12 +84,12 @@ const useGeekTheme: UseTheme = () => {
         controlHeightSM: 26,
         controlHeight: 34,
       },
-      components: {
-        Button: {
-          colorPrimary: '#39ff14',
-          colorText: '#39ff14',
-        },
-      },
+      // components: {
+      //   Button: {
+      //     colorPrimary: '#39ff14',
+      //     colorText: '#39ff14',
+      //   },
+      // },
     },
     app: {
       styles: {
