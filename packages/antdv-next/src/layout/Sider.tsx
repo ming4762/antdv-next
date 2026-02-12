@@ -117,7 +117,7 @@ const Sider = defineComponent<
   const responsiveHandler: (mql: MediaQueryListEvent | MediaQueryList) => void = (mql) => {
     below.value = mql.matches
     emit('breakpoint', mql.matches)
-    if (!collapsed.value !== mql.matches) {
+    if (collapsed.value !== mql.matches) {
       handleSetCollapsed(mql.matches, 'responsive')
     }
   }
@@ -218,7 +218,7 @@ const Sider = defineComponent<
       {
         [`${prefixCls.value}-collapsed`]: collapsed.value,
         [`${prefixCls.value}-has-trigger`]: collapsible && trigger !== null && !zeroWidthTrigger,
-        [`${prefixCls.value}-below`]: !!below,
+        [`${prefixCls.value}-below`]: !!below.value,
         [`${prefixCls.value}-zero-width`]: Number.parseFloat(siderWidth.value) === 0,
       },
       (attrs as any).class,
