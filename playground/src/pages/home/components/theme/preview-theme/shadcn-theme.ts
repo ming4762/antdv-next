@@ -143,6 +143,7 @@ const useShadcnTheme: UseTheme = () => {
           primaryShadow: 'none',
           defaultShadow: 'none',
           dangerShadow: 'none',
+          colorPrimary: '#262626',
           defaultBorderColor: '#e4e4e7',
           defaultColor: '#18181b',
           defaultBg: '#ffffff',

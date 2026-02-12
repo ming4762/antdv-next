@@ -20,6 +20,7 @@ function createStyles(cssVar: CSSVar): StylesResult {
     modalContainer: {
       ...lightBorder,
       padding: 0,
+      backgroundColor: '#1F1F1F',
     },
     modalHeader: {
       padding: `${cssVar.padding} ${cssVar.paddingLG}`,
@@ -81,6 +82,12 @@ const useGeekTheme: UseTheme = () => {
         colorText: '#39ff14',
         controlHeightSM: 26,
         controlHeight: 34,
+      },
+      components: {
+        Button: {
+          colorPrimary: '#39ff14',
+          colorText: '#39ff14',
+        },
       },
     },
     app: {

@@ -34,7 +34,7 @@ const PurePanel = defineComponent<
   SlotsType<PurePanelSlots>
 >(
   (props, { slots, attrs }) => {
-    const { prefixCls, getPrefixCls } = useComponentBaseConfig('modal', props, [])
+    const { prefixCls, getPrefixCls, styles } = useComponentBaseConfig('modal', props, [])
     const rootPrefixCls = computed(() => getPrefixCls(undefined, ''))
     const rootCls = useCSSVarCls(rootPrefixCls)
     const [hashId, cssVarCls] = useStyle(prefixCls, rootCls)
@@ -92,6 +92,7 @@ const PurePanel = defineComponent<
           closable={closable}
           visible={true}
           {...additionalProps}
+          styles={styles.value}
           v-slots={{
             default: () => additionalProps.children,
           }}
