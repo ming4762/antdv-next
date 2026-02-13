@@ -1,7 +1,18 @@
+cleanupUnusedCatalogs: true
+
+shellEmulator: true
+
+trustPolicy: no-downgrade
 packages:
   - packages/*
   - playground
 
+overrides:
+  '@v-c/portal': catalog:vc
+  '@v-c/resize-observer': catalog:vc
+  '@v-c/trigger': catalog:vc
+  '@v-c/util': catalog:vc
+  vite: catalog:dev
 catalog:
   '@vitest/coverage-v8': ^4.0.18
   flexsearch: ^0.8.212
@@ -150,19 +161,6 @@ catalogs:
     '@v-c/util': ^1.0.14
     '@v-c/virtual-list': ^1.0.6
 
-cleanupUnusedCatalogs: true
-
 onlyBuiltDependencies:
   - esbuild
   - less
-
-overrides:
-  '@v-c/portal': catalog:vc
-  '@v-c/resize-observer': catalog:vc
-  '@v-c/trigger': catalog:vc
-  '@v-c/util': catalog:vc
-  vite: catalog:dev
-
-shellEmulator: true
-
-trustPolicy: no-downgrade
