@@ -126,7 +126,7 @@ catalogs:
     '@v-c/cascader': ^1.0.1
     '@v-c/checkbox': ^1.0.1
     '@v-c/collapse': ^1.0.0
-    '@v-c/color-picker': ^1.0.5
+    '@v-c/color-picker': ^1.0.6
     '@v-c/dialog': ^1.0.1
     '@v-c/drawer': ^1.0.0
     '@v-c/dropdown': ^1.0.2
@@ -138,7 +138,7 @@ catalogs:
     '@v-c/mutate-observer': ^1.0.1
     '@v-c/notification': ^1.0.0
     '@v-c/pagination': ^1.0.0
-    '@v-c/picker': ^1.0.2
+    '@v-c/picker': ^1.0.3
     '@v-c/portal': ^1.0.7
     '@v-c/progress': ^1.0.0
     '@v-c/qrcode': ^1.0.0

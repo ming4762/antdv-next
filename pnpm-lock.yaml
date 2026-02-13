@@ -324,8 +324,8 @@ catalogs:
       specifier: ^1.0.0
       version: 1.0.0
     '@v-c/color-picker':
-      specifier: ^1.0.5
-      version: 1.0.5
+      specifier: ^1.0.6
+      version: 1.0.6
     '@v-c/dialog':
       specifier: ^1.0.1
       version: 1.0.1
@@ -360,8 +360,8 @@ catalogs:
       specifier: ^1.0.0
       version: 1.0.0
     '@v-c/picker':
-      specifier: ^1.0.2
-      version: 1.0.2
+      specifier: ^1.0.3
+      version: 1.0.3
     '@v-c/progress':
       specifier: ^1.0.0
       version: 1.0.0
@@ -605,7 +605,7 @@ importers:
         version: 1.0.0(vue@3.5.27(typescript@5.9.3))
       '@v-c/color-picker':
         specifier: catalog:vc
-        version: 1.0.5(vue@3.5.27(typescript@5.9.3))
+        version: 1.0.6(vue@3.5.27(typescript@5.9.3))
       '@v-c/dialog':
         specifier: catalog:vc
         version: 1.0.1(vue@3.5.27(typescript@5.9.3))
@@ -641,7 +641,7 @@ importers:
         version: 1.0.0(vue@3.5.27(typescript@5.9.3))
       '@v-c/picker':
         specifier: catalog:vc
-        version: 1.0.2(dayjs@1.11.19)(vue@3.5.27(typescript@5.9.3))
+        version: 1.0.3(dayjs@1.11.19)(vue@3.5.27(typescript@5.9.3))
       '@v-c/progress':
         specifier: catalog:vc
         version: 1.0.0(vue@3.5.27(typescript@5.9.3))
@@ -2239,6 +2239,11 @@ packages:
     peerDependencies:
       vue: ^3.0.0
 
+  '@v-c/color-picker@1.0.6':
+    resolution: {integrity: sha512-XiTlEMG5p5jkCdKP7nbeo9EJrpdXnoW4uBOA2us8pVgA6m0GxrwMoCg//X+1XsuOaebG/1Swo65mjRuMBM6rZg==}
+    peerDependencies:
+      vue: ^3.0.0
+
   '@v-c/dialog@1.0.1':
     resolution: {integrity: sha512-8+HqvlDXGcgie4Z+sQB3HnMkkFN0N1zfIxdQwtpXTl+gWu9ue8tz+zI7pNXMq7XdM3DU6A+x+qeNRstJ2poCbw==}
     peerDependencies:
@@ -2304,6 +2309,24 @@ packages:
 
   '@v-c/picker@1.0.2':
     resolution: {integrity: sha512-Lf9qPZ/hODaIBEoXpkpGmHK5oXubquia8bYN8zVWigr312jbl/bI6txRF4p+zci0UTtJQsOX1zp9fqX8rg0vSA==}
+    peerDependencies:
+      date-fns: '>= 2.x'
+      dayjs: '>= 1.x'
+      luxon: '>= 3.x'
+      moment: '>= 2.x'
+      vue: ^3.0.0
+    peerDependenciesMeta:
+      date-fns:
+        optional: true
+      dayjs:
+        optional: true
+      luxon:
+        optional: true
+      moment:
+        optional: true
+
+  '@v-c/picker@1.0.3':
+    resolution: {integrity: sha512-ELnKQ5msaPMKs2T1PSqz1MNQ7p0Hr4tXZD5JGPBYCxG+LOzwSu46q0UlfhoPIJ+1pttjyR5rztMrDA3/Qzmvmw==}
     peerDependencies:
       date-fns: '>= 2.x'
       dayjs: '>= 1.x'
@@ -7153,6 +7176,12 @@ snapshots:
       '@v-c/util': 1.0.14(vue@3.5.27(typescript@5.9.3))
       vue: 3.5.27(typescript@5.9.3)
 
+  '@v-c/color-picker@1.0.6(vue@3.5.27(typescript@5.9.3))':
+    dependencies:
+      '@ant-design/fast-color': 3.0.0
+      '@v-c/util': 1.0.14(vue@3.5.27(typescript@5.9.3))
+      vue: 3.5.27(typescript@5.9.3)
+
   '@v-c/dialog@1.0.1(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@v-c/portal': 1.0.7(vue@3.5.27(typescript@5.9.3))
@@ -7230,6 +7259,16 @@ snapshots:
       vue: 3.5.27(typescript@5.9.3)
 
   '@v-c/picker@1.0.2(dayjs@1.11.19)(vue@3.5.27(typescript@5.9.3))':
+    dependencies:
+      '@v-c/overflow': 1.0.3(vue@3.5.27(typescript@5.9.3))
+      '@v-c/resize-observer': 1.0.8(vue@3.5.27(typescript@5.9.3))
+      '@v-c/trigger': 1.0.11(vue@3.5.27(typescript@5.9.3))
+      '@v-c/util': 1.0.14(vue@3.5.27(typescript@5.9.3))
+      vue: 3.5.27(typescript@5.9.3)
+    optionalDependencies:
+      dayjs: 1.11.19
+
+  '@v-c/picker@1.0.3(dayjs@1.11.19)(vue@3.5.27(typescript@5.9.3))':
     dependencies:
       '@v-c/overflow': 1.0.3(vue@3.5.27(typescript@5.9.3))
       '@v-c/resize-observer': 1.0.8(vue@3.5.27(typescript@5.9.3))
