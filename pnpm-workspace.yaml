@@ -91,7 +91,6 @@ catalogs:
     '@vueuse/core': ^14.2.0
     csstype: ^3.2.3
     dayjs: ^1.11.19
-    defu: ^6.1.4
     dom-serializer: ^2.0.0
     domhandler: ^5.0.3
     es-toolkit: 1.43.0
