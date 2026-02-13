@@ -202,6 +202,7 @@ function changeDirection(value: 1 | 2) {
 .ant-doc-header {
   height: var(--ant-doc-header-height);
   background-color: color-mix(in srgb, var(--ant-color-bg-container), transparent 20%);
+  backdrop-filter: blur(8px);
 }
 .ant-doc-header a {
   white-space: nowrap;
