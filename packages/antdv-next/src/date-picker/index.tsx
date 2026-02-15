@@ -6,9 +6,9 @@ import type {
   PickerProps,
   PickerPropsWithMultiple,
 } from './generatePicker/interface'
-import dayjsGenerateConfig from '@v-c/picker/generate/dayjs'
 import genPurePanel from '../_util/PurePanel.tsx'
 import generatePicker from './generatePicker'
+import zonedDayjsGenerateConfig from './generatePicker/zonedDayjsGenerateConfig'
 
 export type { PickerLocale } from './generatePicker'
 
@@ -34,7 +34,7 @@ export type WeekPickerProps<ValueType = Dayjs | Dayjs> = Omit<
 
 export type RangePickerProps = BaseRangePickerProps<Dayjs>
 
-const DatePicker = generatePicker<Dayjs>(dayjsGenerateConfig)
+const DatePicker = generatePicker<Dayjs>(zonedDayjsGenerateConfig)
 
 export type DatePickerType = typeof DatePicker & {
   generatePicker: typeof generatePicker
