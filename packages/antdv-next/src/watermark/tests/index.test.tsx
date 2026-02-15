@@ -30,8 +30,7 @@ HTMLCanvasElement.prototype.getContext = vi.fn((type) => {
 HTMLCanvasElement.prototype.toDataURL = vi.fn(() => 'data:image/png;base64,mock')
 
 if (typeof CanvasRenderingContext2D === 'undefined') {
-  // @ts-expect-error mock implementation
-  global.CanvasRenderingContext2D = class {
+  (globalThis as any).CanvasRenderingContext2D = class {
     drawImage() {}
   }
 }

@@ -23,7 +23,7 @@
     "build:search": "pnpm -F docs run gen:search",
     "build:p": "run-p build:llm build:search",
     "build": "run-s build:p build:site",
-    "build:site": "cross-env NODE_OPTIONS=--max-old-space-size=8192 turbo build --filter playground",
+    "build:site": "cross-env NODE_OPTIONS=--max-old-space-size=8192 turbo build --filter docs",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "prepare": "simple-git-hooks",
