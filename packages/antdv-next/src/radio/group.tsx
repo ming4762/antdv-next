@@ -3,7 +3,7 @@ import type { RadioChangeEvent, RadioGroupEmits, RadioGroupProps, RadioGroupSlot
 import { clsx } from '@v-c/util'
 import pickAttrs from '@v-c/util/dist/pickAttrs'
 import { filterEmpty } from '@v-c/util/dist/props-util'
-import { computed, defineComponent, ref, useId, watch } from 'vue'
+import { computed, defineComponent, getCurrentInstance, ref, useId, watch } from 'vue'
 import { getAttrStyleAndClass, useOrientation } from '../_util/hooks'
 import { toPropsRefs } from '../_util/tools.ts'
 import { checkRenderNode } from '../_util/vueNode.ts'
@@ -37,6 +37,12 @@ const RadioGroup = defineComponent<
 
     const value = ref(props?.value ?? props?.defaultValue)
 
+    // is in controlled mode
+    const instance = getCurrentInstance()
+    const hasVModel = () => {
+      return !!instance?.vnode.props?.['onUpdate:value']
+    }
+
     const onRadioChange = (e: RadioChangeEvent) => {
       const lastValue = value.value
       const val = e.target.value
@@ -44,8 +50,7 @@ const RadioGroup = defineComponent<
         emit('change', e)
         emit('update:value', val)
       }
-
-      if (props.value === undefined) {
+      if (!hasVModel()) {
         value.value = val
       }
     }
@@ -53,9 +58,7 @@ const RadioGroup = defineComponent<
     watch(
       () => props.value,
       () => {
-        if (props.value !== undefined) {
-          value.value = props.value
-        }
+        value.value = props.value
       },
     )
     const groupPrefixCls = computed(() => `${prefixCls.value}-group`)

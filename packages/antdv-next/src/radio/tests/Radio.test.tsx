@@ -350,6 +350,40 @@ describe('radio group', () => {
     expect(labels[1].classes()).toContain(`${prefixCls}-wrapper-checked`)
   })
 
+  it('should effect v-model even if it is undefined', async () => {
+    const model = ref<any>({})
+    const TestWrapper = defineComponent({
+      setup() {
+        return () => (
+          <RadioGroup
+            v-model:value={model.value.test}
+          >
+            <Radio value="A">A</Radio>
+            <Radio value="B">B</Radio>
+          </RadioGroup>
+        )
+      },
+    })
+    const wrapper = mount(TestWrapper)
+    await nextTick()
+    // 校验是否update
+    const inputs = wrapper.findAll('input')
+    const labels = wrapper.findAll('label')
+    await inputs[1]?.trigger('change')
+    await nextTick()
+    expect(labels[1]?.classes()).toContain(`${prefixCls}-wrapper-checked`)
+    expect(model.value.test).toBe('B')
+    // 校验修改v-model，是否正确响应
+    model.value = {}
+    await nextTick()
+    expect(labels[1]?.classes()).not.toContain(`${prefixCls}-wrapper-checked`)
+
+    model.value.test = 'A'
+    await nextTick()
+    const labels2 = wrapper.findAll('label')
+    expect(labels2[0]?.classes()).toContain(`${prefixCls}-wrapper-checked`)
+  })
+
   // ===================== disabled =====================
 
   it('should disable all radios when group is disabled', () => {
