@@ -39,8 +39,8 @@ const RadioGroup = defineComponent<
 
     // is in controlled mode
     const instance = getCurrentInstance()
-    const hasVModel = () => {
-      return !!instance?.vnode.props?.['onUpdate:value']
+    const hasValueProps = () => {
+      return 'value' in (instance?.vnode.props || {})
     }
 
     const onRadioChange = (e: RadioChangeEvent) => {
@@ -50,7 +50,7 @@ const RadioGroup = defineComponent<
         emit('change', e)
         emit('update:value', val)
       }
-      if (!hasVModel()) {
+      if (!hasValueProps()) {
         value.value = val
       }
     }
